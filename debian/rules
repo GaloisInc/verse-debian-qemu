@@ -41,6 +41,7 @@ enable_system = $(if $(filter qemu-system,${BUILD_PACKAGES}),enable,disable)
 enable_linux_user = $(if $(filter qemu-user,${BUILD_PACKAGES}),enable,disable)
 
 FIRMWAREPATH = /usr/share/qemu:/usr/share/seabios:/usr/lib/ipxe/qemu
+QEMU_XEN = /usr/libexec/xen-qemu-system-i386
 PKGVERSION = Debian ${DEB_VERSION}
 SAVEMODDIR = /run/qemu/$(shell echo -n "${PKGVERSION}" | tr --complement '[:alnum:]+-.~' '_')
 sysdatadir = debian/qemu-system-data/usr/share/qemu
@@ -315,6 +316,37 @@ install-microvm: b/microvm/qemu-system-x86_64
 # build microvm on amd64 only if system build is enabled
 ifeq ($(filter-out $(DEB_HOST_ARCH),amd64)${enable_system},enable)
 qemu-builds += microvm
+endif
+
+##############################################
+# xen build (amd64 arch only, i386-softmmu target only)
+configure-xen: b/xen/configured
+b/xen/configured: configure
+	# system build for qemu-system-xen
+	rm -rf b/xen; mkdir -p b/xen
+	cd b/xen && \
+	    ../../configure ${common_configure_opts} \
+		--disable-blobs --disable-docs --disable-tools \
+		--without-default-features \
+		--enable-avx2 --enable-avx512f \
+		--enable-xen --target-list=i386-softmmu \
+		--disable-tcg --disable-kvm \
+		--disable-slirp \
+		--disable-capstone \
+		--audio-drv-list= \
+		--enable-vnc --enable-vnc-jpeg --enable-vnc-png \
+		--enable-spice \
+		${QEMU_XEN_CONFIGURE_OPTIONS}
+	touch $@
+build-xen: b/xen/built
+b/xen/built: b/xen/configured
+	$(MAKE) -C b/xen V=${V} qemu-system-i386
+	touch $@
+install-xen: b/xen/built
+	install -D b/xen/qemu-system-i386 \
+	  debian/qemu-system-xen${QEMU_XEN}
+ifeq (${DEB_HOST_ARCH}-${enable_system},amd64-enable)
+qemu-builds += xen
 endif
 
 ##############################################
