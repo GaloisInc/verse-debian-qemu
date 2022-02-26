@@ -164,6 +164,9 @@ install-qemu: b/qemu/built
 	$(MAKE) -C b/qemu DESTDIR=$(CURDIR)/debian/tmp install \
 	  KEYMAPS= ICON_SIZES=
 
+# remove qtest "accel" modules
+	rm -f debian/tmp${libdir}/qemu/accel-qtest-*.so
+
 # save block-extra loadable modules on upgrades
 # other module types for now (5.0) can't be loaded at runtime, only at startup
 	echo 'case $$1 in (upgrade|deconfigure) [ -d /run/qemu ] || exit 0; ! findmnt --noheadings --target /run/qemu/ | grep -q noexec || exit 0; mkdir -p ${SAVEMODDIR}; cp -p ${libdir}/qemu/block-*.so ${SAVEMODDIR}/;; esac' \
