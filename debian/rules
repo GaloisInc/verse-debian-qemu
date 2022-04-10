@@ -7,10 +7,12 @@ SHELL = /bin/sh -e
 
 # get DEB_VERSION
 include /usr/share/dpkg/pkg-info.mk
-# get DEB_HOST_ARCH DEB_HOST_ARCH_OS DEB_HOST_GNU_TYPE DEB_HOST_MULTIARCH DEB_BUILD_GNU_TYPE
-include /usr/share/dpkg/architecture.mk
 # get CFLAGS LDFLAGS etc
 include /usr/share/dpkg/buildflags.mk
+# Fast version of dpkg/architecture.mk defining all vars in one go
+ifeq (${DEB_HOST_MULTIARCH},)
+   $(foreach d, $(shell dpkg-architecture | sed 's/=/?=/'), $(eval export $d))
+endif
 
 libdir = /usr/lib/${DEB_HOST_MULTIARCH}
 
