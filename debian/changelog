@@ -1,3 +1,9 @@
+qemu (1:7.0~rc4+dfsg-1) UNRELEASED; urgency=medium
+
+  * start of 7.0 series
+
+ -- Michael Tokarev <mjt@tls.msk.ru>  Mon, 11 Apr 2022 13:48:48 +0300
+
 qemu (1:6.2+dfsg-3) unstable; urgency=medium
 
   [ Christian Ehrhardt ]
