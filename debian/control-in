@@ -134,6 +134,8 @@ Build-Depends-Indep:
  gcc-hppa-linux-gnu,
 # opensbi
  gcc-riscv64-linux-gnu,
+# vbootrom/npcm7xx_bootrom
+ gcc-arm-none-eabi,
 Build-Conflicts: oss4-dev
 Standards-Version: 4.5.1
 Homepage: http://www.qemu.org/

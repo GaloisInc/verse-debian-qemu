@@ -49,6 +49,7 @@ sysdatadir = debian/qemu-system-data/usr/share/qemu
 ALPHAEV67_CROSSPFX = alpha-linux-gnu-
 PPC64_CROSSPFX = powerpc64-linux-gnu-
 RISCV64_CROSSPFX = riscv64-linux-gnu-
+ARM_CROSSPFX = arm-none-eabi-
 
 # we add another set of configure options from debian/control
 common_configure_opts = \
@@ -622,6 +623,16 @@ install-opensbi: build-opensbi
 	install -m 0644 b/opensbi/platform/generic/firmware/fw_dynamic.bin ${sysdatadir}/opensbi-riscv64-generic-fw_dynamic.bin
 	install -m 0644 b/opensbi/platform/generic/firmware/fw_dynamic.elf ${sysdatadir}/opensbi-riscv64-generic-fw_dynamic.elf
 sysdata-components += opensbi
+
+### vbootrom (npcm7xx)
+build-vbootrom: b/vbootrom/.built
+b/vbootrom/.built: | b
+	cp -pa roms/vbootrom b/
+	${MAKE} -C b/vbootrom CROSS_COMPILE=${ARM_CROSSPFX}
+	touch $@
+install-vbootrom: build-vbootrom
+	install -m 0644 b/vbootrom/npcm7xx_bootrom.bin ${sysdatadir}/
+sysdata-components += vbootrom
 
 ### misc firmware
 build-misc: b/misc/.built
