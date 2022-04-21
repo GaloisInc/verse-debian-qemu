@@ -423,41 +423,30 @@ endif
 ##############################################
 # common rules
 
-.PHONY: configure-arch build-arch before-binary-arch
 .PHONY: $(addprefix configure-, ${qemu-builds}) \
 	$(addprefix build-, ${qemu-builds}) \
-	$(addprefix install-, ${qemu-builds})
-binary-arch $(addprefix install-, ${qemu-builds}): | before-binary-arch
+	$(addprefix install-, ${qemu-builds}) \
+	configure-arch build-arch
 configure-arch: $(addprefix configure-, ${qemu-builds})
 build-arch: $(addprefix build-, ${qemu-builds})
 
-before-binary-arch:
-	dh_testdir
-	dh_testroot
-	dh_prep -a
-	dh_installdirs -a
+override_dh_auto_install-arch: $(addprefix install-, ${qemu-builds})
 
-binary-arch: $(addprefix install-, ${qemu-builds})
-	dh_install -a
-	dh_missing --list-missing
-	dh_installdocs -a -Nqemu-user-binfmt
-	dh_installchangelogs -a -Nqemu-user-binfmt
-	dh_installdocs -a -pqemu-user-binfmt --link-doc=qemu-user
-	dh_installman -a
-	dh_installudev -a
-	dh_installinit -a -pqemu-guest-agent
-	dh_installsystemd -a -pqemu-guest-agent --no-start --no-enable
+override_dh_installdocs:
+	dh_installdocs -Nqemu-user-binfmt
+	dh_installdocs -pqemu-user-binfmt --link-doc=qemu-user
+override_dh_installchangelogs:
+	dh_installchangelogs -Nqemu-user-binfmt
+override_dh_installinit:
+	dh_installinit -pqemu-guest-agent
+override_dh_installsystemd:
+	dh_installsystemd -pqemu-guest-agent --no-start --no-enable
 # default-enable /run/qemu mount only on ubuntu,
 # on debian let it be manually controlled and off by default
-	dh_installsystemd -a -pqemu-block-extra --no-restart-on-upgrade --name=run-qemu.mount \
+	dh_installsystemd -pqemu-block-extra --no-restart-on-upgrade --name=run-qemu.mount \
 		$(if $(filter ${VENDOR},DEBIAN),--no-start --no-enable,)
-	dh_link -a
-	dh_lintian -a
-	dh_strip -a
-	dh_compress -a
-	dh_fixperms -a
-	dh_shlibdeps -a
-	dh_installdeb -a
+override_dh_shlibdeps:
+	dh_shlibdeps
 ifeq ($(enable_linux_user),enable)
 # after shlibdeps finished, grab ${shlibs:Depends} from -user package
 # and transform it into Built-Using field for -user-static.
@@ -470,9 +459,6 @@ ifeq ($(enable_linux_user),enable)
 	  echo "built-using=$$srcs" >> debian/qemu-user-static.substvars ; \
 	fi
 endif
-	dh_gencontrol -a
-	dh_md5sums -a
-	dh_builddeb -a
 
 ### openbios rules
 b/openbios/config-host.mak:
@@ -525,7 +511,7 @@ b/optionrom/built:
 	mkdir -p b/optionrom
 	${MAKE} -f ${CURDIR}/debian/optionrom.mak -C b/optionrom SRC_PATH="${CURDIR}" all
 	touch $@
-install-x86-optionrom: build-x86-optionrom b/install-indep-prep.stamp | ${sysdatadir}
+install-x86-optionrom: build-x86-optionrom | ${sysdatadir}
 	${MAKE} -f ${CURDIR}/debian/optionrom.mak -C b/optionrom SRC_PATH="${CURDIR}" install DESTDIR="${CURDIR}/${sysdatadir}"
 sysdata-components += x86-optionrom
 
@@ -634,29 +620,19 @@ install-misc: build-misc
 		${sysdatadir}
 sysdata-components += misc
 
-build-indep: $(addprefix build-, ${sysdata-components})
-
-b/install-indep-prep.stamp:
-	dh_testdir
-	dh_testroot
-	dh_prep -i -Xdebian/tmp
-	touch $@
-
 ${sysdatadir}:
 	mkdir -p -m 0755 $@
 b:
 	mkdir -p $@
 
-.PHONY: $(addprefix build-  , ${sysdata-components})
-.PHONY: $(addprefix install-, ${sysdata-components})
+.PHONY: $(addprefix build-  , ${sysdata-components}) \
+	$(addprefix install-, ${sysdata-components}) \
+	build-indep
 $(addprefix build-  , ${sysdata-components}): | b
-$(addprefix install-, ${sysdata-components}): b/install-indep-prep.stamp | ${sysdatadir}
+$(addprefix install-, ${sysdata-components}): | ${sysdatadir}
+build-indep: $(addprefix build-, ${sysdata-components})
 
-binary-indep: b/install-indep-prep.stamp \
-	        $(addprefix install-, ${sysdata-components}) \
-		| ${sysdatadir}
-# dh_install can't rename files so we do things here
-#	dh_install -i
+override_dh_auto_install-indep: $(addprefix install-, ${sysdata-components})
 # qemu-system-data
 	install -Dp -m0644 ui/icons/qemu.svg \
 	 -t debian/qemu-system-data/usr/share/icons/hicolor/scalable/apps/
@@ -665,25 +641,21 @@ binary-indep: b/install-indep-prep.stamp \
 	 -t debian/qemu-system-data/usr/share/icons/hicolor/32x32/apps/
 	install -Dp -m0644 -t debian/qemu-system-data/usr/share/qemu/keymaps/ \
 	 $$(ls -1 pc-bios/keymaps/* | fgrep -v /meson.build)
-	dh_installdocs -i
-	dh_installchangelogs -i
-	dh_lintian -i
-	dh_compress -i
-	dh_fixperms -i
-	dh_installdeb -i
-	dh_gencontrol -i
-	dh_md5sums -i
-	dh_builddeb -i
 
+binary-arch binary-indep binary \
+install-arch install-indep install \
+: %:
+	dh $@
 build: build-arch build-indep
-binary: binary-arch binary-indep
 
 clean:	debian/control
 	dh_clean \
 		b/ \
 		configs/devices/x86_64-softmmu/microvm.mak \
 
-.PHONY: build clean binary-arch binary-indep binary build-arch build-indep build get-orig-source
+.PHONY: build binary-arch binary-indep binary \
+	install-arch install-indep install \
+	clean get-orig-source
 
 get-orig-source:
 	./debian/get-orig-source.sh ${DEB_VERSION}
