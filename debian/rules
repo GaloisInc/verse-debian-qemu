@@ -405,7 +405,7 @@ b/user-static/built: b/user-static/configured
 	$(MAKE) -C b/user-static V=${V} $(addprefix qemu-,${user_targets})
 	sed -e 's/qemu\\-user\\-static/qemu\\-user/g' \
 	    -e 's/ (static version)//' \
-	    debian/qemu-user-static.1 > debian/qemu-user.1
+	    debian/qemu-user-static.1 > b/qemu-user.1
 	touch $@
 install-user-static: b/user-static/built
 	mkdir -p debian/qemu-user-static/usr/bin debian/qemu-user-static/usr/share/man/man1
@@ -682,7 +682,6 @@ clean:	debian/control
 	dh_testdir
 	rm -rf b
 	find scripts/ -name '*.pyc' -delete || :
-	rm -f debian/qemu-user.1
 	rm -f configs/devices/x86_64-softmmu/microvm.mak
 	dh_clean
 
