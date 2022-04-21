@@ -266,13 +266,6 @@ ifeq ($(enable_linux_user),enable)
 	./debian/binfmt-install qemu-user-binfmt
 endif	# enable_linux_user
 
-	dh_install -a
-	dh_missing --list-missing
-	dh_installdocs -a -Nqemu-user-binfmt
-	dh_installchangelogs -a -Nqemu-user-binfmt
-	dh_installdocs -a -pqemu-user-binfmt --link-doc=qemu-user
-	dh_installman -a
-	dh_installudev -a
 ifeq (${enable_system},enable)
 # qemu-ifup is arch-specific
 	install -D debian/qemu-ifup.$(DEB_HOST_ARCH_OS) \
@@ -445,7 +438,13 @@ before-binary-arch:
 	dh_installdirs -a
 
 binary-arch: $(addprefix install-, ${qemu-builds})
-
+	dh_install -a
+	dh_missing --list-missing
+	dh_installdocs -a -Nqemu-user-binfmt
+	dh_installchangelogs -a -Nqemu-user-binfmt
+	dh_installdocs -a -pqemu-user-binfmt --link-doc=qemu-user
+	dh_installman -a
+	dh_installudev -a
 	dh_installinit -a -pqemu-guest-agent
 	dh_installsystemd -a -pqemu-guest-agent --no-start --no-enable
 # default-enable /run/qemu mount only on ubuntu,
