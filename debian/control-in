@@ -138,6 +138,7 @@ Build-Depends-Indep:
 Build-Conflicts: oss4-dev
 Standards-Version: 4.5.1
 Homepage: http://www.qemu.org/
+Rules-Requires-Root: no
 :debian:Vcs-Browser: https://salsa.debian.org/qemu-team/qemu
 :debian:Vcs-Git: https://salsa.debian.org/qemu-team/qemu.git
 :ubuntu:XS-Debian-Vcs-Browser: https://salsa.debian.org/qemu-team/qemu
