@@ -679,11 +679,9 @@ build: build-arch build-indep
 binary: binary-arch binary-indep
 
 clean:	debian/control
-	dh_testdir
-	rm -rf b
-	find scripts/ -name '*.pyc' -delete || :
-	rm -f configs/devices/x86_64-softmmu/microvm.mak
-	dh_clean
+	dh_clean \
+		b/ \
+		configs/devices/x86_64-softmmu/microvm.mak \
 
 .PHONY: build clean binary-arch binary-indep binary build-arch build-indep build get-orig-source
 
