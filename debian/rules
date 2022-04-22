@@ -287,7 +287,6 @@ b/microvm/configured: configure debian/microvm-devices.mak
 		--without-default-features \
 		--disable-user \
 		--target-list=x86_64-softmmu --enable-kvm --disable-tcg \
-		--disable-slirp --disable-capstone \
 		--enable-vnc \
 		--enable-attr --enable-avx2 \
 		--enable-coroutine-pool \
@@ -324,8 +323,6 @@ b/xen/configured: configure
 		--enable-avx2 --enable-avx512f \
 		--enable-xen --target-list=i386-softmmu \
 		--disable-tcg --disable-kvm \
-		--disable-slirp \
-		--disable-capstone \
 		--audio-drv-list= \
 		--enable-vnc --enable-vnc-jpeg --enable-vnc-png \
 		--enable-spice \
