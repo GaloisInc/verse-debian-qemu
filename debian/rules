@@ -212,18 +212,10 @@ ifeq (${VENDOR},UBUNTU)
 	echo ".so man1/kvm-spice.1" > debian/qemu-system-x86/usr/share/man/man1/qemu-system-x86_64-spice.1
 endif
 endif
-ifneq ($(filter ${DEB_HOST_ARCH},arm64),)
-	$(call inst-kvm-link,qemu-system-arm,aarch64)
-endif
-ifneq ($(filter ${DEB_HOST_ARCH},armhf armel),)
-	$(call inst-kvm-link,qemu-system-arm,arm)
-endif
-ifneq ($(filter ${DEB_HOST_ARCH},ppc64 ppc64el),)
-	$(call inst-kvm-link,qemu-system-ppc,ppc64)
-endif
-ifneq ($(filter ${DEB_HOST_ARCH},s390x),)
-	$(call inst-kvm-link,qemu-system-$(if $(filter ${VENDOR},UBUNTU),s390x,misc),s390x)
-endif
+	$(if $(filter ${DEB_HOST_ARCH},arm64), $(call inst-kvm-link,qemu-system-arm,aarch64))
+	$(if $(filter ${DEB_HOST_ARCH},armhf armel), $(call inst-kvm-link,qemu-system-arm,arm))
+	$(if $(filter ${DEB_HOST_ARCH},ppc64 ppc64el), $(call inst-kvm-link,qemu-system-ppc,ppc64))
+	$(if $(filter ${DEB_HOST_ARCH},s390x), $(call inst-kvm-link,qemu-system-$(if $(filter ${VENDOR},UBUNTU),s390x,misc),s390x))
 ifeq ($(VENDOR),UBUNTU)
 # apport hook is ubuntu-specific
 	install -p -D -t debian/qemu-system-common/usr/share/apport/package-hooks/ \
