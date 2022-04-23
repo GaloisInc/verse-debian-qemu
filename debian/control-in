@@ -146,26 +146,6 @@ Rules-Requires-Root: no
 :ubuntu:Vcs-Browser: https://git.launchpad.net/ubuntu/+source/qemu
 :ubuntu:Vcs-Git: https://git.launchpad.net/ubuntu/+source/qemu
 
-Package: qemu
-Architecture: amd64 arm arm64 armel armhf i386 ia64 kfreebsd-amd64 kfreebsd-i386 mips mipsel mips64 mips64el powerpc powerpcspe ppc64 ppc64el riscv64 s390x sparc sparc64 x32
-Multi-Arch: foreign
-Section: oldlibs
-Depends: ${misc:Depends}
-Description: fast processor emulator, dummy package
- QEMU is a fast processor emulator. Once upon a time there was only one
- package named `qemu', with all functionality included. These days, qemu
- become large and has been split into numerous packages. Different packages
- provides entirely different services, and it is very unlikely one will
- need all of them together. So current `qemu' package makes no sense anymore,
- and is becoming a dummy package.
- .
- If you want full system emulation of some architecture, install one or more
- of qemu-system-ARCH packages. If you want user-mode emulation, install
- qemu-user or qemu-user-static package. If you need utilities, use qemu-utils
- package.
- .
- This package can safely be removed.
-
 Package: qemu-system
 Architecture: amd64 arm arm64 armel armhf i386 ia64 kfreebsd-amd64 kfreebsd-i386 mips mipsel mips64 mips64el powerpc powerpcspe ppc64 ppc64el riscv64 s390x sparc sparc64 x32
 Multi-Arch: foreign
