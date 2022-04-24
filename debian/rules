@@ -14,8 +14,6 @@ ifeq (${DEB_HOST_MULTIARCH},)
    $(foreach d, $(shell dpkg-architecture | sed 's/=/?=/'), $(eval export $d))
 endif
 
-libdir = /usr/lib/${DEB_HOST_MULTIARCH}
-
 ifeq ($(shell dpkg-vendor --derives-from Ubuntu && echo yes),yes)
 VENDOR := UBUNTU
 DEB_BUILD_PARALLEL = yes
@@ -40,11 +38,12 @@ BUILD_PACKAGES = $(call dpkg_late_eval,BUILD_PACKAGES,dh_listpackages)
 enable_system = $(if $(filter qemu-system,${BUILD_PACKAGES}),enable,disable)
 enable_linux_user = $(if $(filter qemu-user,${BUILD_PACKAGES}),enable,disable)
 
-FIRMWAREPATH = /usr/share/qemu:/usr/share/seabios:/usr/lib/ipxe/qemu
 QEMU_XEN = /usr/libexec/xen-qemu-system-i386
 PKGVERSION = Debian ${DEB_VERSION}
 SAVEMODDIR = /run/qemu/$(shell echo -n "${PKGVERSION}" | tr --complement '[:alnum:]+-.~' '_')
-sysdatadir = debian/qemu-system-data/usr/share/qemu
+sysdataidir = debian/qemu-system-data/usr/share/qemu
+libdir = /usr/lib/${DEB_HOST_MULTIARCH}
+FIRMWAREPATH = /usr/share/qemu:/usr/share/seabios:/usr/lib/ipxe/qemu
 
 ALPHAEV67_CROSSPFX = alpha-linux-gnu-
 PPC64_CROSSPFX = powerpc64-linux-gnu-
@@ -453,10 +452,10 @@ b/openbios/obj-%/.built: b/openbios/config-host.mak
 	${MAKE} -C ${@D} V=${V} EXTRACFLAGS="-ffreestanding -fno-pic -fno-stack-protector"
 	@touch $@
 install-openbios: build-openbios
-	install -m 0644 b/openbios/obj-ppc/openbios-qemu.elf "${sysdatadir}/openbios-ppc"
-	install -m 0644 b/openbios/obj-sparc32/openbios-builtin.elf "${sysdatadir}/openbios-sparc32"
-	install -m 0644 b/openbios/obj-sparc64/openbios-builtin.elf "${sysdatadir}/openbios-sparc64"
-	install -m 0644 -t "${sysdatadir}" \
+	install -m 0644 b/openbios/obj-ppc/openbios-qemu.elf ${sysdataidir}/openbios-ppc
+	install -m 0644 b/openbios/obj-sparc32/openbios-builtin.elf ${sysdataidir}/openbios-sparc32
+	install -m 0644 b/openbios/obj-sparc64/openbios-builtin.elf ${sysdataidir}/openbios-sparc64
+	install -m 0644 -t ${sysdataidir} \
 		b/openbios/obj-sparc32/QEMU,tcx.bin \
 		b/openbios/obj-sparc32/QEMU,cgthree.bin \
 		b/openbios/obj-sparc64/QEMU,VGA.bin
@@ -478,7 +477,7 @@ b/skiboot/skiboot.lid:
 	  SRC=${CURDIR}/roms/skiboot \
 	  CROSS_COMPILE=${PPC64_CROSSPFX} V=${V}
 install-skiboot: b/skiboot/skiboot.lid
-	install -m 0644 -t "${sysdatadir}" $<
+	install -m 0644 -t ${sysdataidir} $<
 sysdata-components += skiboot
 
 build-vof: b/vof/vof.bin
@@ -486,7 +485,7 @@ b/vof/vof.bin: | b
 	cp -al pc-bios/vof b/
 	${MAKE} -C b/vof CROSS=${PPC64_CROSSPFX}
 install-vof: b/vof/vof.bin
-	install -m 0644 -t "${sysdatadir}" $<
+	install -m 0644 -t ${sysdataidir} $<
 sysdata-components += vof
 
 ### x86 optionrom
@@ -495,8 +494,8 @@ b/optionrom/built:
 	mkdir -p b/optionrom
 	${MAKE} -f ${CURDIR}/debian/optionrom.mak -C b/optionrom SRC_PATH="${CURDIR}" all
 	touch $@
-install-x86-optionrom: build-x86-optionrom | ${sysdatadir}
-	${MAKE} -f ${CURDIR}/debian/optionrom.mak -C b/optionrom SRC_PATH="${CURDIR}" install DESTDIR="${CURDIR}/${sysdatadir}"
+install-x86-optionrom: build-x86-optionrom | ${sysdataidir}
+	${MAKE} -f ${CURDIR}/debian/optionrom.mak -C b/optionrom SRC_PATH="${CURDIR}" install DESTDIR="${CURDIR}/${sysdataidir}"
 sysdata-components += x86-optionrom
 
 ### sgabios.
@@ -513,7 +512,7 @@ b/sgabios/sgabios.bin:
 	cc -Wall -O2 -o b/sgabios/csum8 roms/sgabios/csum8.c
 	b/sgabios/csum8 b/sgabios/sgabios.bin
 install-sgabios: b/sgabios/sgabios.bin
-	install -m 0644 $< ${sysdatadir}/sgabios.bin
+	install -m 0644 $< ${sysdataidir}/sgabios.bin
 sysdata-components += sgabios
 
 ### qboot, aka bios-microvm
@@ -523,9 +522,9 @@ b/qboot/bios.bin: | b
 	meson setup roms/qboot b/qboot
 	ninja -C b/qboot
 install-qboot: b/qboot/bios.bin
-	install -m 0644 $< ${sysdatadir}/qboot.rom
+	install -m 0644 $< ${sysdataidir}/qboot.rom
 	# 5.0 & 5.1 compat symlink, can go for bullseye final
-	ln -s qboot.rom ${sysdatadir}/bios-microvm.bin
+	ln -s qboot.rom ${sysdataidir}/bios-microvm.bin
 sysdata-components += qboot
 
 ### alpha firmware in roms/palcode-clipper
@@ -535,7 +534,7 @@ b/qemu-palcode/palcode-clipper: | b
 	${MAKE} -C ${CURDIR}/b/qemu-palcode CROSS=${ALPHAEV67_CROSSPFX}
 	${ALPHAEV67_CROSSPFX}strip b/qemu-palcode/palcode-clipper
 install-palcode-clipper: b/qemu-palcode/palcode-clipper
-	install -m 0644 $< ${sysdatadir}/palcode-clipper
+	install -m 0644 $< ${sysdataidir}/palcode-clipper
 sysdata-components += palcode-clipper
 
 ### SLOF
@@ -544,7 +543,7 @@ b/SLOF/boot_rom.bin: | b
 	cp -al roms/SLOF b/
 	env -u LDFLAGS -u CFLAGS $(MAKE) -C b/SLOF qemu CROSS=${PPC64_CROSSPFX} V=${V}
 install-slof: b/SLOF/boot_rom.bin
-	install -m 0644 $< ${sysdatadir}/slof.bin
+	install -m 0644 $< ${sysdataidir}/slof.bin
 sysdata-components += slof
 
 ### s390x firmware in pc-bios/s390-ccw
@@ -554,7 +553,7 @@ b/s390fw/built:
 	${MAKE} -f debian/s390fw.mak OUT=b/s390fw/
 	touch $@
 install-s390x-fw: build-s390x-fw
-	install -m 0644 -t "${sysdatadir}" b/s390fw/s390*.img
+	install -m 0644 -t ${sysdataidir} b/s390fw/s390*.img
 sysdata-components += s390x-fw
 
 ### hppa-firmware (roms/seabios-hppa)
@@ -566,7 +565,7 @@ b/hppafw/hppa-firmware.img:
 	${MAKE} -C roms/seabios-hppa OUT=../../b/hppafw/ PYTHON=python3 parisc
 	hppa-linux-gnu-strip -R.note -R.comment $@
 install-hppa-fw: b/hppafw/hppa-firmware.img
-	install -m 0644 $< ${sysdatadir}
+	install -m 0644 $< ${sysdataidir}
 sysdata-components += hppa-fw
 
 ### opensbi (riscv firmware)
@@ -578,8 +577,8 @@ b/opensbi/.built:
 	${RISCV64_CROSSPFX}strip --strip-unneeded -R.comment -R.note b/opensbi/platform/generic/firmware/fw_dynamic.elf
 	touch $@
 install-opensbi: build-opensbi
-	install -m 0644 b/opensbi/platform/generic/firmware/fw_dynamic.bin ${sysdatadir}/opensbi-riscv64-generic-fw_dynamic.bin
-	install -m 0644 b/opensbi/platform/generic/firmware/fw_dynamic.elf ${sysdatadir}/opensbi-riscv64-generic-fw_dynamic.elf
+	install -m 0644 b/opensbi/platform/generic/firmware/fw_dynamic.bin ${sysdataidir}/opensbi-riscv64-generic-fw_dynamic.bin
+	install -m 0644 b/opensbi/platform/generic/firmware/fw_dynamic.elf ${sysdataidir}/opensbi-riscv64-generic-fw_dynamic.elf
 sysdata-components += opensbi
 
 ### vbootrom (npcm7xx)
@@ -589,7 +588,7 @@ b/vbootrom/.built: | b
 	${MAKE} -C b/vbootrom CROSS_COMPILE=${ARM_CROSSPFX}
 	touch $@
 install-vbootrom: build-vbootrom
-	install -m 0644 b/vbootrom/npcm7xx_bootrom.bin ${sysdatadir}/
+	install -m 0644 b/vbootrom/npcm7xx_bootrom.bin ${sysdataidir}/
 sysdata-components += vbootrom
 
 ### misc firmware
@@ -601,10 +600,10 @@ b/misc/.built:
 	touch $@
 install-misc: build-misc
 	install -m 0644 b/misc/bamboo.dtb b/misc/canyonlands.dtb \
-		${sysdatadir}
+		${sysdataidir}
 sysdata-components += misc
 
-${sysdatadir}:
+${sysdataidir}:
 	mkdir -p -m 0755 $@
 b:
 	mkdir -p $@
@@ -613,7 +612,7 @@ b:
 	$(addprefix install-, ${sysdata-components}) \
 	build-indep
 $(addprefix build-  , ${sysdata-components}): | b
-$(addprefix install-, ${sysdata-components}): | ${sysdatadir}
+$(addprefix install-, ${sysdata-components}): | ${sysdataidir}
 build-indep: $(addprefix build-, ${sysdata-components})
 
 override_dh_auto_install-indep: $(addprefix install-, ${sysdata-components})
