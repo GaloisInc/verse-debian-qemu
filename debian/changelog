@@ -6,7 +6,8 @@ qemu (1:7.0+dfsg-1) unstable; urgency=medium
 
 qemu (1:7.0~rc4+dfsg-1) experimental; urgency=medium
 
-  * start of 7.0 series
+  * New upstream 7.0 (rc)
+    Closes: #990562, CVE-2021-3611
   * remove patches applied upstream
   * remove new binary file, pc-bios/edk2-x86_64-microvm.fd.bz2
   * d/control: remove libxfs-dev build dependency,
