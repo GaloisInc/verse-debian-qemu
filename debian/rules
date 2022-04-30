@@ -442,6 +442,9 @@ ifeq ($(enable_linux_user),enable)
 	fi
 endif
 
+##############################################
+### firmware, qemu-user-data package
+
 ### openbios rules
 b/openbios/config-host.mak:
 	mkdir -p b/openbios
