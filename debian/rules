@@ -442,6 +442,9 @@ ifeq ($(enable_linux_user),enable)
 	fi
 endif
 
+# we do not need these (just a tiny build speedup):
+override_dh_makeshlibs:
+
 ##############################################
 ### firmware, qemu-user-data package
 
