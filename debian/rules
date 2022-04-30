@@ -428,8 +428,7 @@ override_dh_installsystemd:
 # on debian let it be manually controlled and off by default
 	dh_installsystemd -pqemu-block-extra --no-restart-on-upgrade --name=run-qemu.mount \
 		$(if $(filter ${VENDOR},DEBIAN),--no-start --no-enable,)
-override_dh_shlibdeps:
-	dh_shlibdeps
+execute_after_dh_shlibdeps:
 ifeq ($(enable_linux_user),enable)
 # after shlibdeps finished, grab ${shlibs:Depends} from -user package
 # and transform it into Built-Using field for -user-static.
