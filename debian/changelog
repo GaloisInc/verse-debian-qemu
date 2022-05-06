@@ -1,11 +1,16 @@
 qemu (1:7.0+dfsg-3) UNRELEASED; urgency=medium
 
+  [ Michael Tokarev ]
   * d/binfmt-install: also generate binfmt.d/ entries for systemd
   * d/control: use systemd as preferred alternative to binfmt-support
     hopefully Closes: #789011 (Minimal dependencies to register binfmt)
     Closes: #985889 (make binfmt setup configurable)
   * d/control: remove Riku Voipio from Uploaders. Thank you Riku!
   * d/rules: simplify DEB_BUILD_OPTIONS=parallel=N parsing
+  * d/salsa-ci.yml: initial salsa-ci file
+
+  [ Guido Günther ]
+  * Add minimal autopkgtest (Closes: #832982)
 
  -- Michael Tokarev <mjt@tls.msk.ru>  Sun, 01 May 2022 18:29:43 +0300
 
