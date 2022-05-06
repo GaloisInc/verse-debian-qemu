@@ -12,8 +12,6 @@
 
 #include <sbi/sbi_types.h>
 
-int sifive_test_system_reset(u32 type);
-
 int sifive_test_init(unsigned long base);
 
 #endif

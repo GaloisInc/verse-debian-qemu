@@ -14,11 +14,28 @@
 
 #include <sbi/sbi_string.h>
 
+/*
+  Provides sbi_strcmp for the completeness of supporting string functions.
+  it is not recommended to use sbi_strcmp() but use sbi_strncmp instead.
+*/
 int sbi_strcmp(const char *a, const char *b)
 {
 	/* search first diff or end of string */
 	for (; *a == *b && *a != '\0'; a++, b++)
 		;
+
+	return *a - *b;
+}
+
+int sbi_strncmp(const char *a, const char *b, size_t count)
+{
+	/* search first diff or end of string */
+	for (; count > 0 && *a == *b && *a != '\0'; a++, b++, count--)
+		;
+
+	/* No difference till the end */
+	if (!count)
+		return 0;
 
 	return *a - *b;
 }

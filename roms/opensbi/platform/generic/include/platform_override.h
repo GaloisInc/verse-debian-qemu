@@ -20,7 +20,6 @@ struct platform_override {
 	int (*final_init)(bool cold_boot, const struct fdt_match *match);
 	void (*early_exit)(const struct fdt_match *match);
 	void (*final_exit)(const struct fdt_match *match);
-	int (*system_reset)(u32 reset_type, const struct fdt_match *match);
 	int (*fdt_fixup)(void *fdt, const struct fdt_match *match);
 };
 

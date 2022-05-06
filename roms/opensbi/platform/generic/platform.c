@@ -13,8 +13,10 @@
 #include <sbi/sbi_hartmask.h>
 #include <sbi/sbi_platform.h>
 #include <sbi/sbi_string.h>
+#include <sbi_utils/fdt/fdt_domain.h>
 #include <sbi_utils/fdt/fdt_fixup.h>
 #include <sbi_utils/fdt/fdt_helper.h>
+#include <sbi_utils/fdt/fdt_pmu.h>
 #include <sbi_utils/irqchip/fdt_irqchip.h>
 #include <sbi_utils/serial/fdt_serial.h>
 #include <sbi_utils/timer/fdt_timer.h>
@@ -22,9 +24,11 @@
 #include <sbi_utils/reset/fdt_reset.h>
 
 extern const struct platform_override sifive_fu540;
+extern const struct platform_override sifive_fu740;
 
 static const struct platform_override *special_platforms[] = {
 	&sifive_fu540,
+	&sifive_fu740,
 };
 
 static const struct platform_override *generic_plat = NULL;
@@ -71,7 +75,7 @@ unsigned long fw_platform_init(unsigned long arg0, unsigned long arg1,
 				unsigned long arg2, unsigned long arg3,
 				unsigned long arg4)
 {
-	const char *model, *mmu_type;
+	const char *model;
 	void *fdt = (void *)arg1;
 	u32 hartid, hart_count = 0;
 	int rc, root_offset, cpus_offset, cpu_offset, len;
@@ -84,7 +88,7 @@ unsigned long fw_platform_init(unsigned long arg0, unsigned long arg1,
 
 	model = fdt_getprop(fdt, root_offset, "model", &len);
 	if (model)
-		sbi_strncpy(platform.name, model, sizeof(platform.name));
+		sbi_strncpy(platform.name, model, sizeof(platform.name) - 1);
 
 	if (generic_plat && generic_plat->features)
 		platform.features = generic_plat->features(generic_plat_match);
@@ -101,10 +105,6 @@ unsigned long fw_platform_init(unsigned long arg0, unsigned long arg1,
 		if (SBI_HARTMASK_MAX_BITS <= hartid)
 			continue;
 
-		mmu_type = fdt_getprop(fdt, cpu_offset, "mmu-type", &len);
-		if (!mmu_type || !len)
-			hartid = -1U;
-
 		generic_hart_index2id[hart_count++] = hartid;
 	}
 
@@ -120,24 +120,19 @@ fail:
 
 static int generic_early_init(bool cold_boot)
 {
-	int rc;
-
-	if (generic_plat && generic_plat->early_init) {
-		rc = generic_plat->early_init(cold_boot, generic_plat_match);
-		if (rc)
-			return rc;
-	}
-
-	if (!cold_boot)
+	if (!generic_plat || !generic_plat->early_init)
 		return 0;
 
-	return fdt_reset_init();
+	return generic_plat->early_init(cold_boot, generic_plat_match);
 }
 
 static int generic_final_init(bool cold_boot)
 {
 	void *fdt;
 	int rc;
+
+	if (cold_boot)
+		fdt_reset_init();
 
 	if (generic_plat && generic_plat->final_init) {
 		rc = generic_plat->final_init(cold_boot, generic_plat_match);
@@ -148,10 +143,11 @@ static int generic_final_init(bool cold_boot)
 	if (!cold_boot)
 		return 0;
 
-	fdt = sbi_scratch_thishart_arg1_ptr();
+	fdt = fdt_get_address();
 
 	fdt_cpu_fixup(fdt);
 	fdt_fixups(fdt);
+	fdt_domain_fixup(fdt);
 
 	if (generic_plat && generic_plat->fdt_fixup) {
 		rc = generic_plat->fdt_fixup(fdt, generic_plat_match);
@@ -174,6 +170,11 @@ static void generic_final_exit(void)
 		generic_plat->final_exit(generic_plat_match);
 }
 
+static int generic_domains_init(void)
+{
+	return fdt_domains_populate(fdt_get_address());
+}
+
 static u64 generic_tlbr_flush_limit(void)
 {
 	if (generic_plat && generic_plat->tlbr_flush_limit)
@@ -181,12 +182,31 @@ static u64 generic_tlbr_flush_limit(void)
 	return SBI_PLATFORM_TLB_RANGE_FLUSH_LIMIT_DEFAULT;
 }
 
-static int generic_system_reset(u32 reset_type)
+static int generic_pmu_init(void)
 {
-	if (generic_plat && generic_plat->system_reset)
-		return generic_plat->system_reset(reset_type,
-						  generic_plat_match);
-	return fdt_system_reset(reset_type);
+	return fdt_pmu_setup(fdt_get_address());
+}
+
+static uint64_t generic_pmu_xlate_to_mhpmevent(uint32_t event_idx,
+					       uint64_t data)
+{
+	uint64_t evt_val = 0;
+
+	/* data is valid only for raw events and is equal to event selector */
+	if (event_idx == SBI_PMU_EVENT_RAW_IDX)
+		evt_val = data;
+	else {
+		/**
+		 * Generic platform follows the SBI specification recommendation
+		 * i.e. zero extended event_idx is used as mhpmevent value for
+		 * hardware general/cache events if platform does't define one.
+		 */
+		evt_val = fdt_pmu_get_select_value(event_idx);
+		if (!evt_val)
+			evt_val = (uint64_t)event_idx;
+	}
+
+	return evt_val;
 }
 
 const struct sbi_platform_operations platform_ops = {
@@ -194,22 +214,17 @@ const struct sbi_platform_operations platform_ops = {
 	.final_init		= generic_final_init,
 	.early_exit		= generic_early_exit,
 	.final_exit		= generic_final_exit,
-	.console_putc		= fdt_serial_putc,
-	.console_getc		= fdt_serial_getc,
+	.domains_init		= generic_domains_init,
 	.console_init		= fdt_serial_init,
 	.irqchip_init		= fdt_irqchip_init,
 	.irqchip_exit		= fdt_irqchip_exit,
-	.ipi_send		= fdt_ipi_send,
-	.ipi_clear		= fdt_ipi_clear,
 	.ipi_init		= fdt_ipi_init,
 	.ipi_exit		= fdt_ipi_exit,
+	.pmu_init		= generic_pmu_init,
+	.pmu_xlate_to_mhpmevent = generic_pmu_xlate_to_mhpmevent,
 	.get_tlbr_flush_limit	= generic_tlbr_flush_limit,
-	.timer_value		= fdt_timer_value,
-	.timer_event_stop	= fdt_timer_event_stop,
-	.timer_event_start	= fdt_timer_event_start,
 	.timer_init		= fdt_timer_init,
 	.timer_exit		= fdt_timer_exit,
-	.system_reset		= generic_system_reset,
 };
 
 struct sbi_platform platform = {
