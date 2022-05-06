@@ -1,8 +1,0 @@
----
-include:
-  - https://salsa.debian.org/salsa-ci-team/pipeline/raw/master/salsa-ci.yml
-  - https://salsa.debian.org/salsa-ci-team/pipeline/raw/master/pipeline-jobs.yml
-
-variables:
-  SALSA_CI_BUILD_TIMEOUT_ARGS: "2h"
-  SALSA_CI_DISABLE_BUILD_PACKAGE_ANY: 1
