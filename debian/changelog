@@ -1,4 +1,4 @@
-qemu (1:7.0+dfsg-3) UNRELEASED; urgency=medium
+qemu (1:7.0+dfsg-3) unstable; urgency=medium
 
   [ Michael Tokarev ]
   * d/binfmt-install: also generate binfmt.d/ entries for systemd
@@ -7,12 +7,11 @@ qemu (1:7.0+dfsg-3) UNRELEASED; urgency=medium
     Closes: #985889 (make binfmt setup configurable)
   * d/control: remove Riku Voipio from Uploaders. Thank you Riku!
   * d/rules: simplify DEB_BUILD_OPTIONS=parallel=N parsing
-  * d/salsa-ci.yml: initial salsa-ci file
 
   [ Guido Günther ]
   * Add minimal autopkgtest (Closes: #832982)
 
- -- Michael Tokarev <mjt@tls.msk.ru>  Sun, 01 May 2022 18:29:43 +0300
+ -- Michael Tokarev <mjt@tls.msk.ru>  Sat, 07 May 2022 00:03:24 +0300
 
 qemu (1:7.0+dfsg-2) unstable; urgency=medium
 
