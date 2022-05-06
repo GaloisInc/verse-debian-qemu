@@ -3,7 +3,7 @@ Depends: qemu-utils
 Restrictions: superficial
 
 Tests: test-qemu-system.sh
-Depends: qemu-system
+Depends: qemu-system-x86
 Restrictions: superficial
 
 Tests: test-qemu-user.sh
