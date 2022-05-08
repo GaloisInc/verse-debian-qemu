@@ -8,7 +8,7 @@ case $arch in
   ( amd64 | x86_64 ) arch=x86_64 ;;
   ( i[3456]86 ) arch=i386 ;;
   ( arm64 | aarch64 ) arch=aarch64 ;;
-  ( arm | armhf ) arch=arm ;;
+  ( arm | armel | armhf ) arch=arm ;;
   ( ppc64el | powerpc64le ) arch=ppc64el ;;
   ( s390x ) ;;
   ( * ) echo "Warning: unmapped architecture $arch" ;;
