@@ -19,8 +19,8 @@ tested=
 for f in qemu-$arch qemu-$arch-static ; do
   [ -x /usr/bin/$f ] || continue
   echo "Checking if $f can run executables:"
-  echo "glob with sh: $f /bin/sh -c '$f /bin/ls -ld debian/':"
-  ls="$($f /bin/sh -c "$f /bin/ls -ld debian/*")"
+  echo "glob with sh: $f /bin/sh -c '$f /bin/ls -dCFl debian/*[t]*':"
+  ls="$($f /bin/sh -c "$f /bin/ls -dCFl debian/*[t]*")"
   echo "$ls"
   case "$ls" in
     (*debian/control*) ;;
