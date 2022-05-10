@@ -30,7 +30,7 @@ MAKEFLAGS += $(subst parallel=,-j,$(filter parallel=%,${DEB_BUILD_OPTIONS}))
 V ?= 1
 
 # list of packages we're supposed to build
-BUILD_PACKAGES = $(call dpkg_late_eval,BUILD_PACKAGES,dh_listpackages)
+BUILD_PACKAGES := $(shell dh_listpackages)
 
 enable_system = $(if $(filter qemu-system,${BUILD_PACKAGES}),enable,disable)
 enable_linux_user = $(if $(filter qemu-user,${BUILD_PACKAGES}),enable,disable)
