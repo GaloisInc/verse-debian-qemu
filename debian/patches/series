@@ -19,3 +19,4 @@ virtio-scsi-don-t-waste-CPU-polling-the-event-virtqueue.patch
 coroutine-use-QEMU_DEFINE_STATIC_CO_TLS.patch
 coroutine-rename-qemu_coroutine_inc-dec_pool_size.patch
 coroutine-revert-to-constant-batch-size.patch
+target-i386-do-not-consult-nonexistent-host-leaves.patch
