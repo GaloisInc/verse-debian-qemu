@@ -17,10 +17,8 @@ endif
 ifeq ($(shell dpkg-vendor --derives-from Ubuntu && echo yes),yes)
 VENDOR := UBUNTU
 DEB_BUILD_PARALLEL = yes
-XENENABLED := --disable-xen
 else
 VENDOR := DEBIAN
-XENENABLED := $(if $(filter $(DEB_HOST_ARCH),amd64),--enable-xen,--disable-xen)
 endif
 
 # DEB_BUILD_OPTIONS=parallel=N
@@ -123,7 +121,7 @@ b/qemu/configured: configure
 	    ../../configure ${common_configure_opts} --disable-user \
 		--${enable_system}-system \
 		--${enable_linux_user}-linux-user \
-		${XENENABLED} \
+		--disable-xen \
 		--enable-modules \
 		--enable-module-upgrades \
 		$(shell sh debian/extract-config-opts \
@@ -216,6 +214,14 @@ ifeq ($(VENDOR),UBUNTU)
 # apport hook is ubuntu-specific
 	install -p -D -t debian/qemu-system-common/usr/share/apport/package-hooks/ \
 		 debian/source_qemu.py
+endif
+
+ifeq (DEBIAN-amd64,${VENDOR}-${DEB_HOST_ARCH})
+# do it for bookworm only, remove the wrapper for bookworm+
+	mv debian/qemu-system-x86/usr/bin/qemu-system-i386 \
+	   debian/qemu-system-x86/usr/bin/qemu-system-i386.bin
+	install -pm0755 debian/qemu-system-i386.xen-wrapper \
+	   debian/qemu-system-x86/usr/bin/qemu-system-i386
 endif
 
 # virtfs-proxy-helper and qemu-bridge-helper are linux-specific
