@@ -3,8 +3,7 @@
 # invocations of qemu-system-i386 into xen-specific package if installed.
 #
 xenredir=/usr/libexec/xen-qemu-system-i386
-
-exe="$0.bin"
+exe=/usr/libexec/qemu-system-i386
 
 for opt in "$@"; do
   case "$opt" in
