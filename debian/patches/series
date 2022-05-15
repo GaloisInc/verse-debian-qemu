@@ -14,3 +14,5 @@ spelling.diff
 ati_2d-fix-buffer-overflow-in-ati_2d_blt-CVE-2021-3638.patch
 ignore-roms-dependency-in-qtest.patch
 configure-make-fortify_source-yes-by-default.patch
+virtio-scsi-fix-ctrl-and-event-handler-functions-in-dataplane.patch
+virtio-scsi-don-t-waste-CPU-polling-the-event-virtqueue.patch
