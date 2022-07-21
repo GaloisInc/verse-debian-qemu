@@ -336,48 +336,6 @@ qemu-builds += xen
 endif
 
 ##############################################
-# ubuntu-xen build
-configure-ubuntu-xen: b/ubuntu-xen/configured
-b/ubuntu-xen/configured: configure
-	# system build for qemu-system-x86-xen (ubuntu package)
-	# like the normal system build, but with:
-	#  --enable-xen
-	#  --disable-linux-user (not needed for this binary)
-	#  reduced --target-list as needed for xen
-	#    xen with qemu is only used on x86, skip other architectures
-	#    (could in theory also enable arm/aarch64)
-	rm -rf b/ubuntu-xen; mkdir -p b/ubuntu-xen
-	cd b/ubuntu-xen && \
-	    ../../configure ${common_configure_opts} \
-		$(shell sh debian/extract-config-opts \
-		    $(DEB_HOST_ARCH_OS)-$(DEB_HOST_ARCH) debian/control) \
-		--disable-user \
-		--disable-docs \
-		--enable-xen \
-		--target-list="i386-softmmu x86_64-softmmu" \
-		--enable-modules --enable-module-upgrades \
-		${QEMU_CONFIGURE_OPTIONS}
-	touch $@
-build-ubuntu-xen: b/ubuntu-xen/built
-b/ubuntu-xen/built: b/ubuntu-xen/configured
-	$(MAKE) -C b/ubuntu-xen V=${V} qemu-system-i386 qemu-system-x86_64
-	touch $@
-install-ubuntu-xen: b/ubuntu-xen/built
-	mkdir -p debian/qemu-system-x86-xen/usr/bin/
-	mkdir -p debian/qemu-system-x86-xen/usr/share/man/man1/
-	cp b/ubuntu-xen/x86_64-softmmu/qemu-system-x86_64 debian/qemu-system-x86-xen/usr/bin/
-	cp b/ubuntu-xen/i386-softmmu/qemu-system-i386     debian/qemu-system-x86-xen/usr/bin/
-	echo ".so man1/qemu-system.1" > debian/qemu-system-x86-xen/usr/share/man/man1/qemu-system-x86_64.1
-	echo ".so man1/qemu-system.1" > debian/qemu-system-x86-xen/usr/share/man/man1/qemu-system-i386.1
-	dh_link -pqemu-system-x86-xen usr/share/doc/qemu-system-common usr/share/doc/qemu-system-x86-xen/common
-	# compat link to what libxen-dev reports where to find the binaries
-	dh_link -pqemu-system-x86-xen /usr/bin/qemu-system-i386 /usr/lib/xen/bin/qemu-system-i386
-# build ubuntu-xen version only on ubuntu on amd64 if system build is enabled
-ifeq (${VENDOR}-${DEB_HOST_ARCH}-${enable_system},UBUNTU-amd64-enable)
-qemu-builds += ubuntu-xen
-endif
-
-##############################################
 # linux-user-static build
 configure-user-static: b/user-static/configured
 b/user-static/configured: configure
