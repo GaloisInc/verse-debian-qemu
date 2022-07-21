@@ -548,9 +548,9 @@ Description: Guest-side qemu-system agent
 :ubuntu: code.  It can also be used to provide virtual hosting of several virtual
 :ubuntu: machines on a single server.
 
-:ubuntu:# xen support generally is disabled on ubuntu, for a while we used an
+:ubuntu:# xen support generally is disabled on ubuntu, for a while we used
 :ubuntu:# an extra build with xen enabled. In the meantime Debian followed that
-:ubuntu:# approach but with a slightly other name, so add a transitional until
+:ubuntu:# approach but with a different name, so add a transitional until
 :ubuntu:# after 24.04
 :ubuntu:Package: qemu-system-x86-xen
 :ubuntu:Architecture:  amd64
