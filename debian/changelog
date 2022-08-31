@@ -1,3 +1,12 @@
+qemu (1:7.1+dfsg-1) UNRELEASED; urgency=medium
+
+  * new upstream release (7.1)
+    Closes: #1014958, CVE-2022-35414
+    Closes: #1014590, CVE-2022-0216
+    Closes: #988333
+
+ -- Michael Tokarev <mjt@tls.msk.ru>  Wed, 31 Aug 2022 12:03:18 +0300
+
 qemu (1:7.0+dfsg-7) unstable; urgency=medium
 
   * d/tests/test-qemu-user: rework ls/glob test a bit
