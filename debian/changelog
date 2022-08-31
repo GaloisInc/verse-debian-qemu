@@ -4,6 +4,21 @@ qemu (1:7.1+dfsg-1) UNRELEASED; urgency=medium
     Closes: #1014958, CVE-2022-35414
     Closes: #1014590, CVE-2022-0216
     Closes: #988333
+  * d/copyright:
+   - remove mentions of slirp (packaged separately)
+   - blindly convert to dep-5 (it needs a complete rewrite)
+   - add Files-Excluded from d/get-orig-source.sh
+  * d/gbp.conf: remove filter= (and whole [import-orig])
+  * d/watch: verify upstream tarballs
+  * d/rules: stop faking skiboot version, it is now properly included
+    in roms/skiboot/.version file
+  * d/patches:
+   - remove use-fixed-data-path.patch: not needed anymore
+   - linux-user-binfmt-P.diff: refresh
+   - remove patches applied upstream
+  * d/control:
+   - it is --enable-capstone now, not --enable-capstone=system
+   - it is --enable-png now, not --enable-vnc-png
 
  -- Michael Tokarev <mjt@tls.msk.ru>  Wed, 31 Aug 2022 12:03:18 +0300
 
