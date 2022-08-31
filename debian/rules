@@ -435,17 +435,9 @@ install-openbios: build-openbios
 sysdata-components += openbios
 
 ### powernv firmware in roms/skiboot
-# skiboot's make_version.sh derives its version from the git tag
-# we do not have git repository in the source, so we have to keep it somewhere
-ifeq (${DEB_VERSION_UPSTREAM},7.0+dfsg)
-SKIBOOT_VERSION = v6.8-104-g820d43c0
-else
-$(error Check roms/skiboot version)
-endif
 build-skiboot: b/skiboot/skiboot.lid
 b/skiboot/skiboot.lid:
 	mkdir -p b/skiboot
-	SKIBOOT_VERSION=${SKIBOOT_VERSION} \
 	${MAKE} -C b/skiboot -f ${CURDIR}/roms/skiboot/Makefile \
 	  SRC=${CURDIR}/roms/skiboot \
 	  CROSS_COMPILE=${PPC64_CROSSPFX} V=${V}
