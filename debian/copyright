@@ -1,4 +1,51 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Files-Excluded:
+	dtc
+	meson
+	roms/QemuMacDrivers
+	roms/edk2
+	roms/ipxe
+	roms/seabios
+	roms/u-boot
+	slirp
+#
+	roms/SLOF/board-js2x/rtas/i2c_bmc.oco
+	roms/SLOF/board-js2x/rtas/ipmi_oem.oco
+	roms/SLOF/clients/takeover/takeover.oco
+	roms/SLOF/lib/libipmi/libipmi.oco
+#
+	pc-bios/QEMU,*.bin
+	pc-bios/bamboo.dtb pc-bios/canyonlands.dtb
+	pc-bios/bios.bin
+	pc-bios/bios-256k.bin
+	pc-bios/bios-microvm.bin
+	pc-bios/edk2-*.fd.bz2
+	pc-bios/efi-*.rom
+	pc-bios/pxe-*.rom
+	pc-bios/hppa-firmware.img
+	pc-bios/kvmvapic.bin
+	pc-bios/linuxboot.bin
+	pc-bios/linuxboot_dma.bin
+	pc-bios/multiboot.bin
+	pc-bios/multiboot_dma.bin
+	pc-bios/openbios-ppc
+	pc-bios/openbios-sparc32
+	pc-bios/openbios-sparc64
+	pc-bios/opensbi-*.bin
+	pc-bios/palcode-clipper
+	pc-bios/pvh.bin
+	pc-bios/qboot.rom
+	pc-bios/qemu_vga.ndrv
+	pc-bios/s390-ccw.img
+	pc-bios/s390-netboot.img
+	pc-bios/sgabios.bin
+	pc-bios/skiboot.lid
+	pc-bios/slof.bin
+	pc-bios/u-boot-sam460-20100605.bin
+	pc-bios/u-boot.e500
+	pc-bios/vgabios.bin
+	pc-bios/vgabios-*.bin
+	pc-bios/vof.bin
 
 Files: *
 Copyright:
