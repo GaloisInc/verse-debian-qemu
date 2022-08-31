@@ -106,7 +106,7 @@ Build-Depends: debhelper-compat (= 13),
 # --enable-vnc
 # --enable-vnc-jpeg
  libjpeg-dev,
-# --enable-vnc-png
+# --enable-png
  libpng-dev,
 # --enable-libpmem	linux-amd64|linux-arm64
  libpmem-dev [linux-amd64 linux-arm64],
