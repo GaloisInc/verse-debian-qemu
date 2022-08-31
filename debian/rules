@@ -320,7 +320,7 @@ b/xen/configured: configure
 		--enable-xen-pci-passthrough \
 		--disable-tcg --disable-kvm \
 		--audio-drv-list= \
-		--enable-vnc --enable-vnc-jpeg --enable-vnc-png \
+		--enable-vnc --enable-vnc-jpeg \
 		--enable-spice \
 		${QEMU_XEN_CONFIGURE_OPTIONS}
 	touch $@
