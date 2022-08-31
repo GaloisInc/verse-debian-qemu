@@ -17,7 +17,7 @@ Build-Depends: debhelper-compat (= 13),
 # iasl (from acpica-tools) is used only in a single test these days, not for building
 # acpica-tools,
 # libcapstone is in universe in ubuntu
-:debian:# --enable-capstone=system
+:debian:# --enable-capstone
 :debian: libcapstone-dev (>> 4.0.2~),
 # --enable-linux-aio	linux-*
  libaio-dev [linux-any],
