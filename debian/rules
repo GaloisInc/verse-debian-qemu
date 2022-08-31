@@ -289,7 +289,7 @@ b/microvm/configured: configure debian/microvm-devices.mak
 		--without-default-devices \
 		--with-devices-x86_64=microvm \
 		--enable-vhost-kernel --enable-vhost-net \
-		--enable-vhost-scsi --enable-vhost-vsock --enable-vhost-vdpa \
+		--enable-vhost-vdpa \
 		--enable-vhost-user --enable-vhost-user-blk-server \
 		--enable-vhost-crypto \
 		${QEMU_MICROVM_CONFIGURE_OPTIONS}
