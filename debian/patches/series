@@ -5,6 +5,7 @@ note-missing-module-pkg-name.diff
 #
 openbios-address-of-packet-member.patch
 openbios-array-bounds.diff
+openbios-array-bounds-gcc12.patch
 openbios-use-source_date_epoch-in-makefile.patch
 seabios-hppa-use-consistent-date-and-remove-hostname.patch
 slof-remove-user-and-host-from-release-version.patch
