@@ -447,8 +447,9 @@ sysdata-components += skiboot
 
 build-vof: b/vof/vof.bin
 b/vof/vof.bin: | b
-	cp -al pc-bios/vof b/
-	${MAKE} -C b/vof CROSS=${PPC64_CROSSPFX}
+	mkdir -p b/vof
+	echo 'CC=$${CROSS}gcc\nLD=$${CROSS}ld\nOBJCOPY=$${CROSS}objcopy\nEXTRA_CFLAGS=-m32 -mbig-endian' > b/vof/config.mak
+	${MAKE} -C b/vof CROSS=${PPC64_CROSSPFX} SRC_DIR=../../pc-bios/vof -f../../pc-bios/vof/Makefile
 install-vof: b/vof/vof.bin
 	install -m 0644 -t ${sysdataidir} $<
 sysdata-components += vof
