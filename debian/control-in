@@ -53,6 +53,8 @@ Build-Depends: debhelper-compat (= 13),
  libncurses-dev,
 # --enable-virglrenderer	linux-*
  libvirglrenderer-dev [linux-any],
+# libvirglrenderer-dev bug #1019485: libva-dev build-dep is only a temp workaround
+ libva-dev [linux-any],
 # --enable-opengl	linux-*
  libepoxy-dev [linux-any], libdrm-dev [linux-any], libgbm-dev [linux-any],
 :debian:# --enable-libnfs
