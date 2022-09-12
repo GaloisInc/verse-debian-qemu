@@ -3,6 +3,7 @@ qemu (1:7.1+dfsg-1) unstable; urgency=medium
   * new upstream release (7.1)
     Closes: #1014958, CVE-2022-35414
     Closes: #1014590, CVE-2022-0216
+    Closes: #979677, CVE-2020-14394
     Closes: #988333
   * d/copyright:
    - remove mentions of slirp (packaged separately)
