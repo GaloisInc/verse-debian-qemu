@@ -75,7 +75,7 @@ ifeq (${enable_system},enable)
 
 # list of system (softmmu) targets, from ./configure
 system_targets = \
- i386 x86_64 alpha aarch64 arm avr cris hppa m68k microblaze microblazeel \
+ i386 x86_64 alpha aarch64 arm avr cris hppa m68k loongarch64 microblaze microblazeel \
  mips mipsel mips64 mips64el nios2 or1k ppc ppc64 riscv32 riscv64 rx \
  sh4 sh4eb sparc sparc64 s390x tricore xtensa xtensaeb
 
