@@ -437,7 +437,7 @@ sysdata-components += openbios
 
 ### powernv firmware in roms/skiboot
 build-skiboot: b/skiboot/skiboot.lid
-b/skiboot/skiboot.lid:
+b/skiboot/skiboot.lid: | roms/skiboot/.version
 	mkdir -p b/skiboot
 	${MAKE} -C b/skiboot -f ${CURDIR}/roms/skiboot/Makefile \
 	  SRC=${CURDIR}/roms/skiboot \
