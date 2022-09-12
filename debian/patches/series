@@ -16,3 +16,4 @@ openbios-spelling-endianess.patch
 slof-spelling-seperator.patch
 ati_2d-fix-buffer-overflow-in-ati_2d_blt-CVE-2021-3638.patch
 ignore-roms-dependency-in-qtest.patch
+tulip-restrict-DMA-engine-to-memories-CVE-2022-2962.patch
