@@ -348,9 +348,12 @@ b/user-static/configured: configure
 # by default this would detect linker option --static-pie, but that
 # breaks some use cases of qemu-static builds (LP: #1908331), therefore
 # add --disable-pie to get "real static" builds.
+# With gcc-12, compiler is unable to build static qemu-aarch64 anymore with no extra options,
+# see https://sourceware.org/bugzilla/show_bug.cgi?id=29514 , so we add -no-pie there.
 	rm -rf b/user-static; mkdir b/user-static
 	cd b/user-static && \
 	    ../../configure ${common_configure_opts} \
+		--extra-cflags="${extra-cflags}$(if $(filter ${DEB_HOST_ARCH},arm64), -fno-pie -no-pie,)" \
 		--static --disable-pie --disable-system --disable-xen \
 		--target-list="$(addsuffix -linux-user,${user_targets})"
 	touch $@
