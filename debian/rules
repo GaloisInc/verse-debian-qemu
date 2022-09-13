@@ -45,10 +45,13 @@ PPC64_CROSSPFX = powerpc64-linux-gnu-
 RISCV64_CROSSPFX = riscv64-linux-gnu-
 ARM_CROSSPFX = arm-none-eabi-
 
+extra-cflags = ${CFLAGS} ${CPPFLAGS}
+extra-ldflags = ${LDFLAGS} -Wl,--as-needed
 # we add another set of configure options from debian/control
 common_configure_opts = \
 	--with-pkgversion="$(PKGVERSION)" \
-	--extra-cflags="$(CFLAGS) $(CPPFLAGS)" --extra-ldflags="$(LDFLAGS) -Wl,--as-needed" \
+	--extra-cflags="${extra-cflags}" \
+	--extra-ldflags="${extra-ldflags}" \
 	--prefix=/usr \
 	--sysconfdir=/etc \
 	--libdir=${libdir} \
@@ -278,7 +281,7 @@ b/microvm/configured: configure debian/microvm-devices.mak
 	cp -up debian/microvm-devices.mak configs/devices/x86_64-softmmu/microvm.mak
 	cd b/microvm && \
 		../../configure ${common_configure_opts} \
-		--extra-cflags="$(CFLAGS) $(CPPFLAGS) -DCONFIG_MICROVM_DEFAULT=1" \
+		--extra-cflags="${extra-cflags} -DCONFIG_MICROVM_DEFAULT=1" \
 		--disable-docs \
 		--without-default-features \
 		--disable-user \
