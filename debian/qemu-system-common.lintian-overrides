@@ -1,0 +1,2 @@
+# probably a false positive
+qemu-system-common: shared-library-lacks-prerequisites [usr/lib/*/qemu/*.so]
