@@ -25,7 +25,7 @@ endif
 MAKEFLAGS += $(subst parallel=,-j,$(filter parallel=%,${DEB_BUILD_OPTIONS}))
 
 # verbose build
-V ?= 1
+V = $(if $(filter terse, ${DEB_BUILD_OPTIONS}),,1)
 
 # list of packages we're supposed to build
 BUILD_PACKAGES := $(shell dh_listpackages)
