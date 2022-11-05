@@ -1,3 +1,9 @@
+qemu (1:7.2+dfsg-1) UNRELEASED; urgency=medium
+
+  * new upstream release
+
+ -- Michael Tokarev <mjt@tls.msk.ru>  Sat, 05 Nov 2022 16:45:06 +0300
+
 qemu (1:7.1+dfsg-2) unstable; urgency=medium
 
   * tulip-restrict-DMA-engine-to-memories-CVE-2022-2962.patch
