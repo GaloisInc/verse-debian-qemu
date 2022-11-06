@@ -504,7 +504,7 @@ sysdata-components += qboot
 build-palcode-clipper: b/qemu-palcode/palcode-clipper
 b/qemu-palcode/palcode-clipper: | b
 	cp -al roms/qemu-palcode b/
-	${MAKE} -C ${CURDIR}/b/qemu-palcode CROSS=${ALPHAEV67_CROSSPFX}
+	${MAKE} -C ${CURDIR}/b/qemu-palcode CROSS=${ALPHAEV67_CROSSPFX} OPT=-O1 #XXX FixMe: #1019011 (remove OPT= when fixed)
 	${ALPHAEV67_CROSSPFX}strip b/qemu-palcode/palcode-clipper
 install-palcode-clipper: b/qemu-palcode/palcode-clipper
 	install -m 0644 $< ${sysdataidir}/palcode-clipper
