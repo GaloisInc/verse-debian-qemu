@@ -3,3 +3,4 @@ qemu source: debian-control-has-unusual-field-spacing Breaks *
 qemu source: debian-control-has-unusual-field-spacing Replaces *
 # we have a ton of files with long lines, just shut up this warning
 qemu source: very-long-line-length-in-source-file *
+qemu source: package-does-not-install-examples *roms/*/examples/*
