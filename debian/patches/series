@@ -30,3 +30,4 @@ master/configure-fix-GLIB_VERSION-for-cross-compilation.patch
 master/target-arm-Fix-sve_probe_page.patch
 master/target-arm-allow-writes-to-SCR_EL3.HXEn-bit-when-FEA.patch
 master/target-arm-Fix-in_debug-path-in-S1_ptw_translate.patch
+target-arm-Fix-physical-address-resolution-for-Stage.patch
