@@ -1,4 +1,4 @@
-qemu (1:7.2+dfsg-3) UNRELEASED; urgency=medium
+qemu (1:7.2+dfsg-3) unstable; urgency=medium
 
   [ Paride Legovini ]
   * Disable LTO on non-amd64 builds (LP: #1921664)
@@ -20,7 +20,7 @@ qemu (1:7.2+dfsg-3) UNRELEASED; urgency=medium
   * disable dwz on certain architectures for older dwz
     (FTBFS on bullseye, #968670)
 
- -- Michael Tokarev <mjt@tls.msk.ru>  Fri, 10 Feb 2023 12:23:27 +0300
+ -- Michael Tokarev <mjt@tls.msk.ru>  Fri, 10 Feb 2023 14:29:12 +0300
 
 qemu (1:7.2+dfsg-2) unstable; urgency=medium
 
