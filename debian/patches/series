@@ -35,3 +35,5 @@ master/target-arm-Fix-physical-address-resolution-for-Stage2.patch
 master/migration-ram-Fix-error-handling-in-ram_write_tracki.patch
 master/migration-ram-Fix-populate_read_range.patch
 master/qcow2-Fix-theoretical-corruption-in-store_bitmap-err.patch
+# from stefanha pullreq "Block patches":
+block-fix-detect-zeroes-with-BDRV_REQ_REGISTERED_BUF.patch
