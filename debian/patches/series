@@ -37,3 +37,8 @@ master/migration-ram-Fix-populate_read_range.patch
 master/qcow2-Fix-theoretical-corruption-in-store_bitmap-err.patch
 # from stefanha pullreq "Block patches":
 block-fix-detect-zeroes-with-BDRV_REQ_REGISTERED_BUF.patch
+# bonzini pullreq "Misc patches for 2022-02-08"
+tests_tcg_i386-introduce-and-use-reg_t-consistently.patch
+target_i386-fix-BEXTR-instruction.patch
+target_i386-fix-C-flag-for-BLSI-BLSMSK-BLSR.patch
+target_i386-fix-ADOX-followed-by-ADCX.patch
