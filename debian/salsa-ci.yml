@@ -4,6 +4,9 @@ include:
   - https://salsa.debian.org/salsa-ci-team/pipeline/raw/master/pipeline-jobs.yml
 
 variables:
-variables:
   SALSA_CI_BUILD_TIMEOUT_ARGS: "2h"
   SALSA_CI_DISABLE_BUILD_PACKAGE_ANY: 1
+
+.provisioning-extract-source:
+  after_script:
+    - cd ${WORKING_DIR}/${SOURCE_DIR}; test -f debian/control || debian/control-gen
