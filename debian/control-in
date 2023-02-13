@@ -19,6 +19,8 @@ Build-Depends: debhelper-compat (= 13),
 # libcapstone is in universe in ubuntu
 :debian:# --enable-capstone
 :debian: libcapstone-dev (>> 4.0.2~),
+# libsndio is in universe in ubuntu
+:ubuntu:# --disable-sndio
 # --enable-linux-aio	linux-*
  libaio-dev [linux-any],
  libjack-dev [linux-any],
