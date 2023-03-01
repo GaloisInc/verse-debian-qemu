@@ -35,8 +35,7 @@ master/migration-ram-Fix-error-handling-in-ram_write_tracki.patch
 master/migration-ram-Fix-populate_read_range.patch
 master/qcow2-Fix-theoretical-corruption-in-store_bitmap-err.patch
 master/block-fix-detect-zeroes-with-BDRV_REQ_REGISTERED_BUF.patch
-# bonzini pullreq "Misc patches for 2022-02-08"
-tests_tcg_i386-introduce-and-use-reg_t-consistently.patch
-target_i386-fix-BEXTR-instruction.patch
-target_i386-fix-C-flag-for-BLSI-BLSMSK-BLSR.patch
-target_i386-fix-ADOX-followed-by-ADCX.patch
+master/tests-tcg-i386-Introduce-and-use-reg_t-consistently.patch
+master/target-i386-Fix-BEXTR-instruction.patch
+master/target-i386-Fix-C-flag-for-BLSI-BLSMSK-BLSR.patch
+master/target-i386-fix-ADOX-followed-by-ADCX.patch
