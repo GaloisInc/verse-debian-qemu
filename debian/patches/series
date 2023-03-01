@@ -40,3 +40,4 @@ master/target-i386-Fix-BEXTR-instruction.patch
 master/target-i386-Fix-C-flag-for-BLSI-BLSMSK-BLSR.patch
 master/target-i386-fix-ADOX-followed-by-ADCX.patch
 master/target-i386-Fix-BZHI-instruction.patch
+master/block-iscsi-fix-double-free-on-BUSY-or-similar-status.patch
