@@ -481,23 +481,6 @@ install-x86-optionrom: build-x86-optionrom | ${sysdataidir}
 	${MAKE} -f ${CURDIR}/debian/optionrom.mak -C b/optionrom SRC_PATH="${CURDIR}" install DESTDIR="${CURDIR}/${sysdataidir}"
 sysdata-components += x86-optionrom
 
-### sgabios.
-# The Makefile is too complex and forces current date to be embedded to binary
-build-sgabios: b/sgabios/sgabios.bin
-b/sgabios/sgabios.bin:
-	mkdir -p b/sgabios
-	cc -c -o b/sgabios/sgabios.o roms/sgabios/sgabios.S -Wall -Os -m32 -nostdlib \
-	  -DBUILD_DATE="\"$$(LC_ALL=C date -u -r roms/sgabios/sgabios.S)\"" \
-	  -DBUILD_SHORT_DATE="\"$$(date -u +%D -r roms/sgabios/sgabios.S)\"" \
-	  -DBUILD_HOST=\"debian\" -DBUILD_USER=\"build\"
-	ld -T roms/sgabios/rom16.ld -nostdlib b/sgabios/sgabios.o -o b/sgabios/sgabios.elf
-	objcopy -O binary b/sgabios/sgabios.elf b/sgabios/sgabios.bin
-	cc -Wall -O2 -o b/sgabios/csum8 roms/sgabios/csum8.c
-	b/sgabios/csum8 b/sgabios/sgabios.bin
-install-sgabios: b/sgabios/sgabios.bin
-	install -m 0644 $< ${sysdataidir}/sgabios.bin
-sysdata-components += sgabios
-
 ### qboot, aka bios-microvm
 build-qboot: b/qboot/bios.bin
 b/qboot/bios.bin: | b
