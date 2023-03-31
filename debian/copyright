@@ -32,6 +32,8 @@ Files-Excluded:
 	pc-bios/openbios-sparc64
 	pc-bios/opensbi-*.bin
 	pc-bios/palcode-clipper
+	pc-bios/petalogix-ml605.dtb
+	pc-bios/petalogix-s3adsp1800.dtb
 	pc-bios/pvh.bin
 	pc-bios/qboot.rom
 	pc-bios/qemu_vga.ndrv
