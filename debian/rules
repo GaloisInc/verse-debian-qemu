@@ -245,18 +245,6 @@ endif
 	  mv debian/tmp/$$f debian/qemu-system-common/$$f ; \
 	done
 
-ifneq (${DEB_HOST_ARCH},sparc64)
-# virtiofsd needs libseccomp which is not ported to sparc (not even the kernel part),
-# so install it only on non-sparc
-	for f in usr/lib/qemu/virtiofsd \
-		 usr/share/man/man1/virtiofsd.1 \
-		 usr/share/qemu/vhost-user/50-qemu-virtiofsd.json \
-	; do \
-	  mkdir -p debian/qemu-system-common/$${f%/*} ; \
-	  mv debian/tmp/$$f debian/qemu-system-common/$$f ; \
-	done
-endif
-
 # for --enable-module-upgrades to work in more environments
 	install -D -m 0644 debian/run-qemu.mount debian/qemu-block-extra/lib/systemd/system/run-qemu.mount
 
