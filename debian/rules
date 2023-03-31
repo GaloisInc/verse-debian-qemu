@@ -565,10 +565,14 @@ b/misc/.built:
 	mkdir -p b/misc
 	dtc -o b/misc/bamboo.dtb pc-bios/bamboo.dts
 	dtc -o b/misc/canyonlands.dtb pc-bios/canyonlands.dts
+	dtc -o b/misc/petalogix-ml605.dtb pc-bios/petalogix-ml605.dts
+	dtc -o b/misc/petalogix-s3adsp1800.dtb pc-bios/petalogix-s3adsp1800.dts
 	touch $@
 install-misc: build-misc
 	install -m 0644 b/misc/bamboo.dtb b/misc/canyonlands.dtb \
-		${sysdataidir}
+		-D -t ${sysdataidir}
+	install -m 0644 b/misc/petalogix-ml605.dtb b/misc/petalogix-s3adsp1800.dtb \
+		-D -t debian/qemu-system-misc/usr/share/qemu/
 sysdata-components += misc
 
 ${sysdataidir}:
