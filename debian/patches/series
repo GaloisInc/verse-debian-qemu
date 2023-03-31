@@ -1,6 +1,5 @@
 microvm-default-machine-type.patch
 skip-meson-pc-bios.diff
-linux-user-binfmt-P.diff
 note-missing-module-pkg-name.diff
 openbios-array-bounds.diff
 openbios-array-bounds-gcc12.patch
