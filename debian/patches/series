@@ -14,4 +14,3 @@ spelling-suppoted.patch
 openbios-spelling-endianess.patch
 slof-spelling-seperator.patch
 ignore-roms-dependency-in-qtest.patch
-hw-pvrdma-protect-against-guest-driver-CVE-2022-1050.patch
