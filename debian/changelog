@@ -1,3 +1,9 @@
+qemu (1:8.0~rc2+dfsg-1) UNRELEASED; urgency=medium
+
+  * new upstream 8.0 (rc2)
+
+ -- Michael Tokarev <mjt@tls.msk.ru>  Fri, 31 Mar 2023 13:47:15 +0300
+
 qemu (1:7.2+dfsg-5) unstable; urgency=medium
 
   * d/qemu-guest-agent.udev: fix missing comma
