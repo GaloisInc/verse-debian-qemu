@@ -312,7 +312,7 @@ b/xen/configured: configure
 	rm -rf b/xen; mkdir -p b/xen
 	cd b/xen && \
 	    ../../configure ${common_configure_opts} \
-		--disable-blobs --disable-docs --disable-tools \
+		--disable-install-blobs --disable-docs --disable-tools \
 		--without-default-features \
 		--enable-avx2 --enable-avx512f \
 		--enable-xen --target-list=i386-softmmu \
