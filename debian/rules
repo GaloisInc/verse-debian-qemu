@@ -632,10 +632,7 @@ clean:	debian/control
 
 .PHONY: build binary-arch binary-indep binary \
 	install-arch install-indep install \
-	clean get-orig-source
-
-get-orig-source:
-	./debian/get-orig-source.sh ${DEB_VERSION}
+	clean
 
 ifneq (,$(wildcard debian/control-in))
 # only include rules for debian/control if debian/control-in is present
