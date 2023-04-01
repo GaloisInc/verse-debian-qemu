@@ -48,6 +48,7 @@ libdir = /usr/lib/${DEB_HOST_MULTIARCH}
 FIRMWAREPATH = /usr/share/qemu:/usr/share/seabios:/usr/lib/ipxe/qemu
 
 ALPHAEV67_CROSSPFX = alpha-linux-gnu-
+PPC_CROSSPFX = powerpc-linux-gnu-
 PPC64_CROSSPFX = powerpc64-linux-gnu-
 RISCV64_CROSSPFX = riscv64-linux-gnu-
 ARM_CROSSPFX = arm-none-eabi-
@@ -466,6 +467,17 @@ b/vof/vof.bin: | b
 install-vof: b/vof/vof.bin
 	install -m 0644 -t ${sysdataidir} $<
 sysdata-components += vof
+
+### u-boot-sam460 (u-boot-sam460-20100605.bin)
+build-u-boot-sam460: b/u-boot-sam460ex/u-boot.bin
+b/u-boot-sam460ex/u-boot.bin: | b
+	cp -alu roms/u-boot-sam460ex b/
+	${MAKE} -C b/u-boot-sam460ex Sam460ex_config
+	${MAKE} -C b/u-boot-sam460ex CROSS_COMPILE=${PPC_CROSSPFX}
+#	${PPC_CROSSPFX}strip $@
+install-u-boot-sam460: b/u-boot-sam460ex/u-boot.bin | ${sysdataidir}
+	install -m 0644 $< ${sysdataidir}/u-boot-sam460-20100605.bin
+sysdata-components += u-boot-sam460
 
 ### x86 optionrom
 build-x86-optionrom: b/optionrom/built
