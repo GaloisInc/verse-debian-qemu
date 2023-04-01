@@ -2,6 +2,7 @@ microvm-default-machine-type.patch
 skip-meson-pc-bios.diff
 note-missing-module-pkg-name.diff
 u-boot-sam460ex-fdi.patch
+u-boot-sam460ex-mstring.patch
 openbios-array-bounds.diff
 openbios-array-bounds-gcc12.patch
 openbios-use-source_date_epoch-in-makefile.patch
