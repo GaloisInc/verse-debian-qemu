@@ -468,6 +468,17 @@ install-vof: b/vof/vof.bin
 	install -m 0644 -t ${sysdataidir} $<
 sysdata-components += vof
 
+### u-boot-e500 (u-boot.e500)
+build-u-boot-e500: b/u-boot/build-e500/u-boot
+b/u-boot/build-e500/u-boot: | b
+	cp -alu roms/u-boot b/
+	${MAKE} -C b/u-boot O=build-e500 qemu-ppce500_config
+	${MAKE} -C b/u-boot CROSS_COMPILE=${PPC_CROSSPFX} O=build-e500 V=$V
+	${PPC_CROSSPFX}strip $@
+install-u-boot-e500: b/u-boot/build-e500/u-boot
+	install -m 0644 $< ${sysdataidir}/u-boot.e500
+sysdata-components += u-boot-e500
+
 ### u-boot-sam460 (u-boot-sam460-20100605.bin)
 build-u-boot-sam460: b/u-boot-sam460ex/u-boot.bin
 b/u-boot-sam460ex/u-boot.bin: | b

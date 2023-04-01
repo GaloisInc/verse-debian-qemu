@@ -130,7 +130,7 @@ Build-Depends-Indep:
 # qemu-palcode/palcode-clipper
  gcc-alpha-linux-gnu,
 # u-boot code
- gcc-powerpc-linux-gnu,
+ gcc-powerpc-linux-gnu, bc,
 # skiboot firmware, openbios
  gcc-powerpc64-linux-gnu,
 # openbios
