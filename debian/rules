@@ -509,8 +509,6 @@ b/qboot/bios.bin: | b
 	ninja -C b/qboot
 install-qboot: b/qboot/bios.bin
 	install -m 0644 $< ${sysdataidir}/qboot.rom
-	# 5.0 & 5.1 compat symlink, can go for bullseye final
-	ln -s qboot.rom ${sysdataidir}/bios-microvm.bin
 sysdata-components += qboot
 
 ### alpha firmware in roms/palcode-clipper
