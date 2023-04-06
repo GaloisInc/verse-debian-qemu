@@ -473,7 +473,7 @@ build-u-boot-sam460: b/u-boot-sam460ex/u-boot.bin
 b/u-boot-sam460ex/u-boot.bin: | b
 	cp -alu roms/u-boot-sam460ex b/
 	${MAKE} -C b/u-boot-sam460ex Sam460ex_config
-	env -u LDFLAGS \
+	env -u LDFLAGS -u OBJCFLAGS \
 	${MAKE} -C b/u-boot-sam460ex CROSS_COMPILE=${PPC_CROSSPFX}
 #	${PPC_CROSSPFX}strip $@
 install-u-boot-sam460: b/u-boot-sam460ex/u-boot.bin | ${sysdataidir}
