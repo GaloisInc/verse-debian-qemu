@@ -613,7 +613,7 @@ override_dh_auto_install-indep: $(addprefix install-, ${sysdata-components})
 	 -t debian/qemu-system-data/usr/share/icons/hicolor/scalable/apps/
 # icon for sdl2 ui (non-sdl-image version)
 	install -Dp -m0644 ui/icons/qemu_32x32.bmp \
-	 -t debian/qemu-system-data/usr/share/icons/hicolor/32x32/apps/
+	 debian/qemu-system-data/usr/share/icons/hicolor/32x32/apps/qemu.bmp
 	install -Dp -m0644 -t debian/qemu-system-data/usr/share/qemu/keymaps/ \
 	 $$(ls -1 pc-bios/keymaps/* | fgrep -v /meson.build)
 
