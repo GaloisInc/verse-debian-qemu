@@ -12,3 +12,4 @@ spelling-suppoted.patch
 openbios-spelling-endianess.patch
 slof-spelling-seperator.patch
 linux-user-fix-getgroups-setgroups-allocations.patch
+disable-xen-on-x32.patch
