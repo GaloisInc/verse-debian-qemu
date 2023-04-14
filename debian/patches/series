@@ -14,3 +14,4 @@ openbios-spelling-endianess.patch
 slof-spelling-seperator.patch
 linux-user-fix-getgroups-setgroups-allocations.patch
 disable-xen-on-x32.patch
+rtl8139-fix-large_send_mss-divide-by-zero.patch
