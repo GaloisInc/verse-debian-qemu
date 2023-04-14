@@ -1,4 +1,5 @@
 microvm-default-machine-type.patch
+note-missing-module-pkg-name.diff
 skip-unpack-edk2-blobs.patch
 u-boot-sam460ex-fdi.patch
 u-boot-sam460ex-mstring.patch
