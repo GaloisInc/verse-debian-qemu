@@ -56,9 +56,9 @@ for arg in $@; do
   fi
 done
 
-archlist="${archlist# }$close"
+archlist="${archlist# }" # remove leading space
 # split long list into 2 lines (will have to change if it becomes longer)
-len2=$(expr length "$archlist" / 2)
+len2=$((${#archlist} / 2))
 if [ $len2 -gt 36 ]; then
  # find subsequent space
  while expr substr "$archlist" $len2 1 != " " >/dev/null; do
