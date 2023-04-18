@@ -1,10 +1,12 @@
 #! /bin/sh
 #
-# Usage ./debian/inst-system pkg-suffix arch[=alias=alias..] arch...
+# Usage ./debian/inst-system pkg-suffix arch[=alias=alias..] arch... [+kvm]
 # where pkg-suffix is the package suffix in
 #  qemu-system-{arm|mips|ppc|sparc|x86|s390x|misc}
 # each arch is qemu arch (with qemu-system-$arch binary), optionally
 # followed by a number of =alias for this arch binary.
+# Optionally +kvm is the qemu-system arch which implements native kvm,
+# so /usr/bin/kvm is created as a link to qemu-system-$arch.
 #
 # The scripts moves (so it can't be re-run) d/tmp/usr/bin/qemu-system-$arch
 # to debian/qemu-system-$suf/usr/bin/, creates manpage link to qemu-system.1,
@@ -25,6 +27,16 @@ dh_link -p$pkg usr/share/doc/qemu-system-common usr/share/doc/$pkg/common
 archlist=
 provides=
 for arg in $@; do
+
+  if [ "${arg#+}" != "${arg}" ]; then # kvm link
+    arch=${arg#+}
+    ln -sf qemu-system-$arch $base/usr/bin/kvm
+    sed "s/@ARCH@/$arch/g" debian/kvm.1 > $base/usr/share/man/man1/kvm.1
+    touch -r debian/kvm.1 $base/usr/share/man/man1/kvm.1
+    #provides="$provides, qemu-kvm" # done in d/control for Replaces/Breaks
+    continue
+  fi
+
   arch=${arg%%=*}
 
   mv debian/tmp/usr/bin/qemu-system-$arch $base/usr/bin/
