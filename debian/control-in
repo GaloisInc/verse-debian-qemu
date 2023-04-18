@@ -268,7 +268,7 @@ Recommends: qemu-system-gui (= ${binary:Version}), qemu-utils,
  seabios, ipxe-qemu,
  qemu-block-extra (= ${binary:Version}),
 Suggests: samba, vde2,
-Provides: ${sysprovides:misc},
+Provides: ${sysprovides},
 :debian: qemu-kvm [s390x],
 Description: QEMU full system emulation binaries (miscellaneous)
  QEMU is a fast processor emulator: currently the package supports
@@ -279,7 +279,7 @@ Description: QEMU full system emulation binaries (miscellaneous)
  This package provides the full system emulation binaries to emulate
  various other hardware which did not made into separate packages.
  Emulators for the following architectures are provided:
-  ${sysarch:misc}.
+  ${sysarch}.
  .
  In system emulation mode QEMU emulates a full system, including a processor
  and various peripherals.  It enables easier testing and debugging of system
@@ -296,7 +296,7 @@ Recommends: qemu-system-gui (= ${binary:Version}), qemu-utils,
  qemu-efi-aarch64, qemu-efi-arm,
  qemu-block-extra (= ${binary:Version}),
 Suggests: samba, vde2,
-Provides: qemu-kvm [linux-arm64 linux-armhf linux-armel], ${sysprovides:arm}
+Provides: qemu-kvm [linux-arm64 linux-armhf linux-armel], ${sysprovides}
 Breaks:   qemu-kvm [linux-arm64 linux-armhf linux-armel]
 Replaces: qemu-kvm [linux-arm64 linux-armhf linux-armel]
 Description: QEMU full system emulation binaries (arm)
@@ -305,7 +305,7 @@ Description: QEMU full system emulation binaries (arm)
  reasonable speed while being easy to port on new host CPUs.
  .
  This package provides the full system emulation binaries to emulate
- the following arm hardware: ${sysarch:arm}.
+ the following arm hardware: ${sysarch}.
  .
  In system emulation mode QEMU emulates a full system, including a processor
  and various peripherals.  It enables easier testing and debugging of system
@@ -321,14 +321,14 @@ Recommends: qemu-system-gui (= ${binary:Version}), qemu-utils,
  seabios, ipxe-qemu,
  qemu-block-extra (= ${binary:Version}),
 Suggests: samba, vde2,
-Provides: ${sysprovides:mips}
+Provides: ${sysprovides}
 Description: QEMU full system emulation binaries (mips)
  QEMU is a fast processor emulator: currently the package supports
  MIPS emulation. By using dynamic translation it achieves
  reasonable speed while being easy to port on new host CPUs.
  .
  This package provides the full system emulation binaries to emulate
- the following mips hardware: ${sysarch:mips}.
+ the following mips hardware: ${sysarch}.
  .
  In system emulation mode QEMU emulates a full system, including a processor
  and various peripherals.  It enables easier testing and debugging of system
@@ -344,7 +344,7 @@ Recommends: qemu-system-gui (= ${binary:Version}), qemu-utils,
  seabios, ipxe-qemu,
  qemu-block-extra (= ${binary:Version}),
 Suggests: samba, vde2,
-Provides: qemu-kvm [linux-ppc64 linux-ppc64el linux-powerpc], ${sysprovides:ppc}
+Provides: qemu-kvm [linux-ppc64 linux-ppc64el linux-powerpc], ${sysprovides}
 Breaks:   qemu-kvm [linux-ppc64 linux-ppc64el linux-powerpc]
 Replaces: qemu-kvm [linux-ppc64 linux-ppc64el linux-powerpc]
 Description: QEMU full system emulation binaries (ppc)
@@ -353,7 +353,7 @@ Description: QEMU full system emulation binaries (ppc)
  reasonable speed while being easy to port on new host CPUs.
  .
  This package provides the full system emulation binaries to emulate
- the following PowerPC hardware: ${sysarch:ppc}.
+ the following PowerPC hardware: ${sysarch}.
  .
  In system emulation mode QEMU emulates a full system, including a processor
  and various peripherals.  It enables easier testing and debugging of system
@@ -369,14 +369,14 @@ Recommends: qemu-system-gui (= ${binary:Version}), qemu-utils,
  seabios, ipxe-qemu,
  qemu-block-extra (= ${binary:Version}),
 Suggests: samba, vde2,
-Provides: ${sysprovides:sparc}
+Provides: ${sysprovides}
 Description: QEMU full system emulation binaries (sparc)
  QEMU is a fast processor emulator: currently the package supports
  SPARC emulation. By using dynamic translation it achieves
  reasonable speed while being easy to port on new host CPUs.
  .
  This package provides the full system emulation binaries to emulate
- the following sparc hardware: ${sysarch:sparc}.
+ the following sparc hardware: ${sysarch}.
  .
  In system emulation mode QEMU emulates a full system, including a processor
  and various peripherals.  It enables easier testing and debugging of system
@@ -393,7 +393,7 @@ Recommends: qemu-system-gui (= ${binary:Version}), qemu-utils,
  qemu-block-extra (= ${binary:Version}),
 :ubuntu: cpu-checker,
 Suggests: samba, vde2,
-Provides: qemu-kvm [linux-amd64 linux-i386], ${sysprovides:x86}
+Provides: qemu-kvm [linux-amd64 linux-i386], ${sysprovides}
 Breaks:   qemu-kvm [linux-amd64 linux-i386]
 Replaces: qemu-kvm [linux-amd64 linux-i386]
 Description: QEMU full system emulation binaries (x86)
@@ -402,7 +402,7 @@ Description: QEMU full system emulation binaries (x86)
  reasonable speed while being easy to port on new host CPUs.
  .
  This package provides the full system emulation binaries to emulate
- the following x86 hardware: ${sysarch:x86}.
+ the following x86 hardware: ${sysarch}.
  .
  In system emulation mode QEMU emulates a full system, including a processor
  and various peripherals.  It enables easier testing and debugging of system
@@ -539,7 +539,7 @@ Description: Guest-side qemu-system agent
 :ubuntu:Depends: ${shlibs:Depends}, ${misc:Depends}, qemu-system-common (= ${binary:Version}), qemu-system-data (>> ${source:Upstream-Version}~),
 :ubuntu:Recommends: qemu-utils,
 :ubuntu: qemu-block-extra (= ${binary:Version}),
-:ubuntu:Provides: qemu-kvm [linux-s390x], ${sysprovides:s390x}
+:ubuntu:Provides: qemu-kvm [linux-s390x], ${sysprovides}
 :ubuntu:Breaks:   qemu-kvm [linux-s390x], qemu-system-misc (<< 1:2.5+dfsg-5ubuntu8~)
 :ubuntu:Replaces: qemu-kvm [linux-s390x], qemu-system-misc (<< 1:2.5+dfsg-5ubuntu8~)
 :ubuntu:Description: QEMU full system emulation binaries (s390x)
@@ -548,7 +548,7 @@ Description: Guest-side qemu-system agent
 :ubuntu: speed while being easy to port on new host CPUs.
 :ubuntu: .
 :ubuntu: This package provides the full system emulation binaries to emulate
-:ubuntu: the following s390x hardware: ${sysarch:s390x}.
+:ubuntu: the following s390x hardware: ${sysarch}.
 :ubuntu: .
 :ubuntu: In system emulation mode QEMU emulates a full system, including a processor
 :ubuntu: and various peripherals.  It enables easier testing and debugging of system

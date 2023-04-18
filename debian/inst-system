@@ -69,5 +69,5 @@ if [ $len2 -gt 36 ]; then
   archlist="$(expr substr "$archlist" 1 $(($len2-1)))\${Newline} $(expr substr "$archlist" $(($len2+1)) $len2)"
 fi
 
-echo "sysarch:$suf=$archlist" > debian/$pkg.substvars
-echo "sysprovides:$suf=$provides" | tr _ - >>debian/$pkg.substvars
+echo "sysarch=$archlist" > debian/$pkg.substvars
+echo "sysprovides=$provides" | tr _ - >>debian/$pkg.substvars
