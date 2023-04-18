@@ -25,7 +25,8 @@ mkdir -p $base/usr/bin $base/usr/share/man/man1
 dh_link -p$pkg usr/share/doc/qemu-system-common usr/share/doc/$pkg/common
 
 archlist=
-provides=
+provides=qemu-system-any
+
 for arg in $@; do
 
   if [ "${arg#+}" != "${arg}" ]; then # kvm link
@@ -69,4 +70,4 @@ if [ $len2 -gt 36 ]; then
 fi
 
 echo "sysarch:$suf=$archlist" > debian/$pkg.substvars
-echo "sysprovides:$suf=${provides#, }" | tr _ - >>debian/$pkg.substvars
+echo "sysprovides:$suf=$provides" | tr _ - >>debian/$pkg.substvars
