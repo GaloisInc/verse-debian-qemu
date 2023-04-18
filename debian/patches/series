@@ -1,6 +1,7 @@
 microvm-default-machine-type.patch
 note-missing-module-pkg-name.diff
 skip-unpack-edk2-blobs.patch
+qemu-bridge-helper-path.patch
 u-boot-sam460ex-fdi.patch
 u-boot-sam460ex-mstring.patch
 openbios-array-bounds.diff
