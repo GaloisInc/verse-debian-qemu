@@ -26,6 +26,7 @@ dh_link -p$pkg usr/share/doc/qemu-system-common usr/share/doc/$pkg/common
 
 archlist=
 provides=qemu-system-any
+kvm=
 
 for arg in $@; do
 
@@ -34,7 +35,7 @@ for arg in $@; do
     ln -sf qemu-system-$arch $base/usr/bin/kvm
     sed "s/@ARCH@/$arch/g" debian/kvm.1 > $base/usr/share/man/man1/kvm.1
     touch -r debian/kvm.1 $base/usr/share/man/man1/kvm.1
-    #provides="$provides, qemu-kvm" # done in d/control for Replaces/Breaks
+    kvm="qemu-kvm"
     continue
   fi
 
@@ -69,5 +70,9 @@ if [ $len2 -gt 36 ]; then
   archlist="$(expr substr "$archlist" 1 $(($len2-1)))\${Newline} $(expr substr "$archlist" $(($len2+1)) $len2)"
 fi
 
-echo "sysarch=$archlist" > debian/$pkg.substvars
-echo "sysprovides=$provides" | tr _ - >>debian/$pkg.substvars
+{
+  echo "sysarch=$archlist"
+  echo "sysbreaks=$kvm"
+  echo "sysreplaces=$kvm"
+  echo "sysprovides=$provides${kvm:+, $kvm}" | tr _ -
+} >debian/$pkg.substvars
