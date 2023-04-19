@@ -218,12 +218,6 @@ ifeq (${enable-linux-user},y)
 	./debian/binfmt-install qemu-user-binfmt
 endif	# enable-linux-user
 
-ifeq (${enable-system},y)
-# qemu-ifup is arch-specific
-	install -D debian/qemu-ifup.$(DEB_HOST_ARCH_OS) \
-		debian/qemu-system-common/etc/qemu-ifup
-endif
-
 qemu-builds += qemu
 
 ##############################################
