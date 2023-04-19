@@ -129,6 +129,7 @@ install-qemu: b/qemu/built
 
 # save block-extra loadable modules on upgrades
 # other module types for now (5.0) can't be loaded at runtime, only at startup
+# the maintscript fragments include version string so we have to generate them
 	echo 'case $$1 in (upgrade|deconfigure) [ -d /run/qemu ] || exit 0; ! findmnt --noheadings --target /run/qemu/ | grep -q noexec || exit 0; mkdir -p ${SAVEMODDIR}; cp -p ${libdir}/qemu/block-*.so ${SAVEMODDIR}/;; esac' \
 	  >> debian/qemu-block-extra.prerm.debhelper
 	echo 'case $$1 in (remove) rm -f ${SAVEMODDIR}/block-*.so;; esac' \
