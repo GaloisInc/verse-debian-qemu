@@ -103,7 +103,7 @@ user_alias_x86_64 = amd64
 define install-linux-user-aliases
 $(foreach q,${user_targets}, $(foreach a,${user_alias_$q},\
 	dh_link -p qemu-user$1 usr/bin/qemu-$q$1 usr/bin/qemu-$a$1
-	dh_link -p qemu-user$1 usr/share/man/man1/qemu-$q$1 usr/share/man/man1/qemu-$a$1
+	dh_link -p qemu-user$1 usr/share/man/man1/qemu-$q$1.1 usr/share/man/man1/qemu-$a$1.1
 ))
 endef
 
