@@ -216,7 +216,9 @@ ifeq ($(enable_linux_user),enable)
 	mkdir -p debian/qemu-user/usr/bin
 	mv -t debian/qemu-user/usr/bin $(patsubst %,debian/tmp/usr/bin/qemu-%,${user_targets})
 	dh_link -p qemu-user $(patsubst %,usr/share/man/man1/qemu-user.1 usr/share/man/man1/qemu-%.1,${user_targets})
-
+	sed -e 's/qemu\\-user\\-static/qemu\\-user/g' \
+	    -e 's/ (static version)//' \
+	    debian/qemu-user-static.1 > debian/qemu-user/usr/share/man/man1/qemu-user.1
 	./debian/binfmt-install qemu-user-binfmt
 endif	# enable_linux_user
 
@@ -316,9 +318,6 @@ build-user-static: b/user-static/built
 b/user-static/built: b/user-static/configured
 	# we use this invocation to build just the binaries
 	$(MAKE) -C b/user-static V=${V} $(addprefix qemu-,${user_targets})
-	sed -e 's/qemu\\-user\\-static/qemu\\-user/g' \
-	    -e 's/ (static version)//' \
-	    debian/qemu-user-static.1 > b/qemu-user.1
 	touch $@
 install-user-static: b/user-static/built
 	mkdir -p debian/qemu-user-static/usr/bin debian/qemu-user-static/usr/share/man/man1
