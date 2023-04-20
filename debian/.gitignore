@@ -5,7 +5,6 @@
 /files
 /qemu-common/
 /qemu-guest-agent/
-/qemu-keymaps/
 /qemu-system/
 /qemu-system-arm/
 /qemu-system-common/
@@ -14,6 +13,7 @@
 /qemu-system-ppc/
 /qemu-system-sparc/
 /qemu-system-x86/
+/qemu-user-binfmt/
 /qemu-user-static/
 /qemu-user/
 /qemu-utils/
