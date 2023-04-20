@@ -84,6 +84,11 @@ common_configure_opts = \
 	--localstatedir=/var \
 	--with-git-submodules=ignore \
 
+# this disables building of qemu-keymap tool (!)
+# qemu-keymap might be helpful for qemu-system -k <lang>
+# but is -k flag useful these days?
+common_configure_opts += --disable-xkbcommon
+
 # Cross compiling support
 ifneq ($(DEB_BUILD_GNU_TYPE), $(DEB_HOST_GNU_TYPE))
 common_configure_opts  += --cross-prefix=$(DEB_HOST_GNU_TYPE)-
