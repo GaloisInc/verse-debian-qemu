@@ -260,15 +260,6 @@ ifeq (DEBIAN-amd64,${VENDOR}-${DEB_HOST_ARCH})
 	   debian/qemu-system-x86/usr/bin/qemu-system-i386
 endif
 
-# virtfs-proxy-helper and qemu-bridge-helper are linux-specific
-	for f in usr/lib/qemu/virtfs-proxy-helper \
-	         usr/share/man/man1/virtfs-proxy-helper.1 \
-		 usr/lib/qemu/qemu-bridge-helper \
-	; do \
-	  mkdir -p debian/qemu-system-common/$${f%/*} ; \
-	  mv debian/tmp/$$f debian/qemu-system-common/$$f ; \
-	done
-
 # for --enable-module-upgrades to work in more environments
 	install -D -m 0644 debian/run-qemu.mount debian/qemu-block-extra/lib/systemd/system/run-qemu.mount
 

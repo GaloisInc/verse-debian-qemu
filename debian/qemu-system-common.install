@@ -13,6 +13,11 @@ usr/bin/qemu-storage-daemon
 usr/share/man/man1/qemu-storage-daemon.1
 usr/share/man/man7/qemu-storage-daemon-qmp-ref.7
 
+# linux-specific
+usr/lib/qemu/qemu-bridge-helper
+usr/lib/qemu/virtfs-proxy-helper
+usr/share/man/man1/virtfs-proxy-helper.1
+
 # common modules. gui modules has been moved into place in d/rules.
 usr/lib/${DEB_HOST_MULTIARCH}/qemu/accel-tcg-*.so
 usr/lib/${DEB_HOST_MULTIARCH}/qemu/audio-*.so
