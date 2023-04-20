@@ -25,7 +25,7 @@ Build-Depends: debhelper-compat (= 13),
 # --enable-linux-aio	linux-any
  libaio-dev            [linux-any],
 # --audio-drv-list=pa,alsa,jack,oss,sdl	:system-arch-linux:
-# --audio-drv-list=pa,oss	kfreebsd-any
+##--audio-drv-list=pa,oss	kfreebsd-any
  libjack-dev  [:system-arch-linux:],
  libpulse-dev,
  libasound2-dev [:system-arch-linux:],
