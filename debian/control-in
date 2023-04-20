@@ -262,9 +262,7 @@ Recommends: qemu-system-gui (= ${binary:Version}), qemu-utils,
  seabios, ipxe-qemu,
  qemu-block-extra (= ${binary:Version}),
 Suggests: samba, vde2,
-Provides: ${qemu:kvm}, ${qemu:provides}
-Breaks:   ${qemu:kvm}
-Replaces: ${qemu:kvm}
+Provides: ${qemu:Provides}
 Description: QEMU full system emulation binaries (miscellaneous)
  QEMU is a fast processor emulator: currently the package supports
  ARM, CRIS, M68k (ColdFire), MicroBlaze, and SH4
@@ -291,9 +289,7 @@ Recommends: qemu-system-gui (= ${binary:Version}), qemu-utils,
  qemu-efi-aarch64, qemu-efi-arm,
  qemu-block-extra (= ${binary:Version}),
 Suggests: samba, vde2,
-Provides: ${qemu:kvm}, ${qemu:provides}
-Breaks:   ${qemu:kvm}
-Replaces: ${qemu:kvm}
+Provides: ${qemu:Provides}
 Description: QEMU full system emulation binaries (arm)
  QEMU is a fast processor emulator: currently the package supports
  ARM emulation. By using dynamic translation it achieves
@@ -316,9 +312,7 @@ Recommends: qemu-system-gui (= ${binary:Version}), qemu-utils,
  seabios, ipxe-qemu,
  qemu-block-extra (= ${binary:Version}),
 Suggests: samba, vde2,
-Provides: ${qemu:kvm}, ${qemu:provides}
-Breaks:   ${qemu:kvm}
-Replaces: ${qemu:kvm}
+Provides: ${qemu:Provides}
 Description: QEMU full system emulation binaries (mips)
  QEMU is a fast processor emulator: currently the package supports
  MIPS emulation. By using dynamic translation it achieves
@@ -341,9 +335,7 @@ Recommends: qemu-system-gui (= ${binary:Version}), qemu-utils,
  seabios, ipxe-qemu,
  qemu-block-extra (= ${binary:Version}),
 Suggests: samba, vde2,
-Provides: ${qemu:kvm}, ${qemu:provides}
-Breaks:   ${qemu:kvm}
-Replaces: ${qemu:kvm}
+Provides: ${qemu:Provides}
 Description: QEMU full system emulation binaries (ppc)
  QEMU is a fast processor emulator: currently the package supports
  PowerPC emulation. By using dynamic translation it achieves
@@ -366,9 +358,7 @@ Recommends: qemu-system-gui (= ${binary:Version}), qemu-utils,
  seabios, ipxe-qemu,
  qemu-block-extra (= ${binary:Version}),
 Suggests: samba, vde2,
-Provides: ${qemu:kvm}, ${qemu:provides}
-Breaks:   ${qemu:kvm}
-Replaces: ${qemu:kvm}
+Provides: ${qemu:Provides}
 Description: QEMU full system emulation binaries (sparc)
  QEMU is a fast processor emulator: currently the package supports
  SPARC emulation. By using dynamic translation it achieves
@@ -392,9 +382,7 @@ Recommends: qemu-system-gui (= ${binary:Version}), qemu-utils,
  qemu-block-extra (= ${binary:Version}),
 :ubuntu: cpu-checker,
 Suggests: samba, vde2,
-Provides: ${qemu:kvm}, ${qemu:provides}
-Breaks:   ${qemu:kvm}
-Replaces: ${qemu:kvm}
+Provides: ${qemu:Provides}
 Description: QEMU full system emulation binaries (x86)
  QEMU is a fast processor emulator: currently the package supports
  i386 and x86-64 emulation. By using dynamic translation it achieves
@@ -538,9 +526,7 @@ Description: Guest-side qemu-system agent
 :ubuntu:Depends: ${shlibs:Depends}, ${misc:Depends}, qemu-system-common (= ${binary:Version}), qemu-system-data (>> ${source:Upstream-Version}~),
 :ubuntu:Recommends: qemu-utils,
 :ubuntu: qemu-block-extra (= ${binary:Version}),
-:ubuntu:Provides: ${qemu:kvm}, ${qemu:provides}
-:ubuntu:Breaks:   ${qemu:kvm}
-:ubuntu:Replaces: ${qemu:kvm}
+:ubuntu:Provides: ${qemu:Provides}
 :ubuntu:Description: QEMU full system emulation binaries (s390x)
 :ubuntu: QEMU is a fast processor emulator: currently the package supports
 :ubuntu: s390x emulation. By using dynamic translation it achieves reasonable
