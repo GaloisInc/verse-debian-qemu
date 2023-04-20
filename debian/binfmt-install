@@ -3,8 +3,8 @@ set -e
 
 PACKAGE="$1"
 case "$#$PACKAGE" in
-  1qemu-user-static) SUFFIX=-static; FIXB=F ;;
-  1qemu-user-binfmt) SUFFIX=; FIXB= ;;
+  1qemu-user-static) SUFFIX=-static; FIXB=F; DOC_PACKAGE=$PACKAGE ;;
+  1qemu-user-binfmt) SUFFIX=; FIXB= ; DOC_PACKAGE=qemu-user ;;
   *) echo "usage: $0 <qemu-user-binfmt|qemu-user-static>"; exit 1 ;;
 esac
 
@@ -95,17 +95,17 @@ case "$DEB_HOST_ARCH" in
 esac
 
 mkdir -p debian/$PACKAGE/usr/lib/binfmt.d \
-	 debian/$PACKAGE/usr/share/doc/$PACKAGE
+	 debian/$DOC_PACKAGE/usr/share/doc/$DOC_PACKAGE
 for fmt in $fmts ; do
     eval "case $fmt in $omit) inst=;; *) inst=y;; esac; magic=\"\$${fmt}_magic\" mask=\"\$${fmt}_mask\""
     # for arch from the same family as host, install stuff to docdir
     # so it is not enabled by default. One can (sym)link selected entries
     # from docdir to /etc/binfmt.d/ to enable them
-    if [ "$inst" ]; then inst=usr/lib/binfmt.d
-    else dst=inst/share/doc/$PACKAGE
+    if [ "$inst" ]; then inst=debian/$PACKAGE/usr/lib/binfmt.d
+    else inst=debian/$DOC_PACKAGE/usr/share/doc/$DOC_PACKAGE
     fi
     echo ":qemu-$fmt:M::$magic:$mask:/usr/bin/qemu-$fmt$SUFFIX:OCP${FIXB}" \
-	>debian/$PACKAGE/$inst/qemu-$fmt.conf
+	>$inst/qemu-$fmt.conf
 done
 
 # generate postinst script to unregister all from binfmt-support
