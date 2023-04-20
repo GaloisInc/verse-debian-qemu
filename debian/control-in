@@ -22,22 +22,22 @@ Build-Depends: debhelper-compat (= 13),
 :debian: libcapstone-dev (>> 4.0.2~),
 # libsndio is in universe in ubuntu
 :ubuntu:# --disable-sndio
-# --enable-linux-aio	linux-*
+# --enable-linux-aio	linux-any
  libaio-dev [linux-any],
  libjack-dev [linux-any],
-# --audio-drv-list=pa,alsa,jack,oss,sdl	linux-*
-# --audio-drv-list=pa,oss	kfreebsd-*
+# --audio-drv-list=pa,alsa,jack,oss,sdl	linux-any
+# --audio-drv-list=pa,oss	kfreebsd-any
  libpulse-dev,
  libasound2-dev [linux-any],
 # for virtfs (now in libc6)
 # --enable-attr
-# --enable-bpf	linux-*
+# --enable-bpf	linux-any
  libbpf-dev	[linux-any],
 # --enable-brlapi
  libbrlapi-dev,
-# --enable-virtfs	linux-*
+# --enable-virtfs	linux-any
 # needed for virtfs
-# --enable-cap-ng	linux-*
+# --enable-cap-ng	linux-any
  libcap-ng-dev [linux-any],
 # --enable-curl
  libcurl4-gnutls-dev,
@@ -54,11 +54,11 @@ Build-Depends: debhelper-compat (= 13),
  libiscsi-dev (>> 1.9.0~),
 # --enable-curses
  libncurses-dev,
-# --enable-virglrenderer	linux-*
+# --enable-virglrenderer	linux-any
  libvirglrenderer-dev [linux-any],
 # libvirglrenderer-dev bug #1019485: libva-dev build-dep is only a temp workaround
  libva-dev [linux-any],
-# --enable-opengl	linux-*
+# --enable-opengl	linux-any
  libepoxy-dev [linux-any], libdrm-dev [linux-any], libgbm-dev [linux-any],
 # --enable-libnfs
  libnfs-dev,
@@ -82,13 +82,13 @@ Build-Depends: debhelper-compat (= 13),
  libslirp-dev,
 # --enable-spice	 linux-amd64|linux-i386|linux-arm64|linux-armel|linux-armhf|linux-mips64el|linux-mipsel|ppc64el|sh4|x32
  libspice-server-dev	[linux-amd64 linux-i386 linux-arm64 linux-armel linux-armhf linux-mips64el linux-mipsel ppc64el sh4 x32],
-# --enable-rdma		linux-*
+# --enable-rdma		linux-any
  librdmacm-dev [linux-any], libibverbs-dev [linux-any], libibumad-dev [linux-any],
-# --enable-linux-io-uring	linux-*
+# --enable-linux-io-uring	linux-any
  liburing-dev [linux-any],
-# --enable-libusb	linux-*
+# --enable-libusb	linux-any
  libusb-1.0-0-dev [linux-any],
-# --enable-usb-redir	linux-*
+# --enable-usb-redir	linux-any
  libusbredirparser-dev [linux-any],
 # --enable-libssh
  libssh-dev,
@@ -115,8 +115,8 @@ Build-Depends: debhelper-compat (= 13),
  libpng-dev,
 # --enable-libpmem	linux-amd64|linux-arm64
  libpmem-dev [linux-amd64 linux-arm64],
-# --enable-kvm		linux-*
-# --enable-vhost-net	linux-*	# is it really linux-specific?
+# --enable-kvm		linux-any
+# --enable-vhost-net	linux-any	# is it really linux-specific?
 ##--enable-lzo todo, for (memory) dumps
 ##--enable-netmap todo bsd
 ##--enable-xen-pci-passthrough todo
