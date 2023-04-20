@@ -117,7 +117,7 @@ system_alias_x86_64 = amd64
 # install-system pkg, qemu-arch-list, [kvmarch]
 define install-system
 	# installing $1
-	dh_installdirs -p$1 usr/bin usr/share/man/man1
+	dh_installdirs -p $1 usr/bin usr/share/man/man1
 	dh_link -p $1 usr/share/doc/qemu-system-common usr/share/doc/$1/common
 	mv -t debian/$1/usr/bin/ $(addprefix debian/tmp/usr/bin/qemu-system-,$2)
 $(foreach q,$2,\
@@ -262,17 +262,16 @@ endif # linux
 endif # enable-system
 
 ifeq (${enable-linux-user},y)
-	mkdir -p debian/qemu-user/usr/bin
+	dh_installdirs -p qemu-user usr/bin usr/share/doc/qemu-user
 	mv -t debian/qemu-user/usr/bin $(patsubst %,debian/tmp/usr/bin/qemu-%,${user_targets})
 	dh_link -p qemu-user $(patsubst %,usr/share/man/man1/qemu-user.1 usr/share/man/man1/qemu-%.1,${user_targets})
 	sed -e 's/qemu\\-user\\-static/qemu\\-user/g' \
 	    -e 's/ (static version)//' \
 	    debian/qemu-user-static.1 > debian/qemu-user/usr/share/man/man1/qemu-user.1
 	$(call install-linux-user-aliases)
-	./debian/binfmt-install qemu-user-binfmt
-	mkdir -p debian/qemu-user/usr/share/doc/qemu-user
 	sed 's|-static||g' debian/qemu-user-static.README.Debian > \
 	    debian/qemu-user/usr/share/doc/qemu-user/README.Debian
+	./debian/binfmt-install qemu-user-binfmt
 endif	# enable-linux-user
 
 qemu-builds += qemu
@@ -363,7 +362,7 @@ b/user-static/built: b/user-static/configured
 	$(MAKE) -C b/user-static V=${V} $(addprefix qemu-,${user_targets})
 	touch $@
 install-user-static: b/user-static/built
-	mkdir -p debian/qemu-user-static/usr/bin debian/qemu-user-static/usr/share/man/man1
+	dh_installdirs -p qemu-user-static usr/bin usr/share/man/man1
 	for t in ${user_targets}; do \
 	   cp -p b/user-static/$$t-linux-user/qemu-$$t \
 	       debian/qemu-user-static/usr/bin/qemu-$$t-static ; \
