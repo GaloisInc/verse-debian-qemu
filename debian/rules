@@ -195,16 +195,6 @@ install-qemu: b/qemu/built
 # remove qtest "accel" modules
 	rm -f debian/tmp${libdir}/qemu/accel-qtest-*.so
 
-# save block-extra loadable modules on upgrades
-# other module types for now (5.0) can't be loaded at runtime, only at startup
-# the maintscript fragments include version string so we have to generate them
-	echo 'case $$1 in (upgrade|deconfigure) [ -d /run/qemu ] || exit 0; ! findmnt --noheadings --target /run/qemu/ | grep -q noexec || exit 0; mkdir -p ${SAVEMODDIR}; cp -p ${libdir}/qemu/block-*.so ${SAVEMODDIR}/;; esac' \
-	  >> debian/qemu-block-extra.prerm.debhelper
-	echo 'case $$1 in (remove) rm -f ${SAVEMODDIR}/block-*.so;; esac' \
-	  >> debian/qemu-block-extra.postrm.debhelper
-	echo 'case $$1 in (purge) if systemctl is-active -q run-qemu.mount; then systemctl stop run-qemu.mount || true; fi; rm -rf "/run/qemu";; esac' \
-	  >> debian/qemu-block-extra.postrm.debhelper
-
 ifeq (${enable-system},y)
 
 	# qemu-system subpackages
@@ -264,6 +254,16 @@ endif
 	install -D -m 0644 debian/run-qemu.mount debian/qemu-block-extra/lib/systemd/system/run-qemu.mount
 
 endif # linux
+
+# save block-extra loadable modules on upgrades
+# other module types for now (5.0) can't be loaded at runtime, only at startup
+# the maintscript fragments include version string so we have to generate them
+	echo 'case $$1 in (upgrade|deconfigure) [ -d /run/qemu ] || exit 0; ! findmnt --noheadings --target /run/qemu/ | grep -q noexec || exit 0; mkdir -p ${SAVEMODDIR}; cp -p ${libdir}/qemu/block-*.so ${SAVEMODDIR}/;; esac' \
+	  >> debian/qemu-block-extra.prerm.debhelper
+	echo 'case $$1 in (remove) rm -f ${SAVEMODDIR}/block-*.so;; esac' \
+	  >> debian/qemu-block-extra.postrm.debhelper
+	echo 'case $$1 in (purge) if systemctl is-active -q run-qemu.mount; then systemctl stop run-qemu.mount || true; fi; rm -rf "/run/qemu";; esac' \
+	  >> debian/qemu-block-extra.postrm.debhelper
 
 else  # !enable-system
 
