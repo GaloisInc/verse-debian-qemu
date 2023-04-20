@@ -136,9 +136,11 @@ $(if $(filter ${DEB_HOST_ARCH_CPU},$3),\
 ,\
 	echo 'qemu:kvm=' >> debian/$1.substvars
 )
-	echo 'qemu:provides=$(patsubst %,qemu-system-%${comma},$2 $(foreach q,$2,${system_alias_$q}))' \
+	echo 'qemu:provides=$(patsubst %,qemu-system-% (=${DEB_VERSION})${comma}, any $2 $(foreach q,$2,${system_alias_$q}))' \
 	    | tr _ - >> debian/$1.substvars
-	list='$(foreach q,$(strip $2),$q$(if ${system_alias_$q}, ($(strip ${system_alias_$q}))))'; \
+# construct list `arch1 arch2 (alias) arch3..' for Description
+# and word-wrap it into two lines if too long
+	list='$(foreach q,$2,$q$(if ${system_alias_$q}, (${system_alias_$q})))'; \
 	  len2=$$(($${#list}/2)); \
 	  if [ $$len2 -gt 36 ]; then \
 	    while expr substr "$$list" $$len2 1 != " " >/dev/null; do len2=$$(($$len2+1)); done; \
