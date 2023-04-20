@@ -24,17 +24,17 @@ Build-Depends: debhelper-compat (= 13),
 :ubuntu:# --disable-sndio
 # --enable-linux-aio	linux-any
  libaio-dev            [linux-any],
-# --audio-drv-list=pa,alsa,jack,oss,sdl	linux-any
+# --audio-drv-list=pa,alsa,jack,oss,sdl	:system-arch-linux:
 # --audio-drv-list=pa,oss	kfreebsd-any
- libjack-dev  [linux-any],
+ libjack-dev  [:system-arch-linux:],
  libpulse-dev,
- libasound2-dev [linux-any],
+ libasound2-dev [:system-arch-linux:],
 # for virtfs (now in libc6)
 # --enable-attr
 # --enable-bpf	linux-any
  libbpf-dev	[linux-any],
-# --enable-brlapi
- libbrlapi-dev,
+# --enable-brlapi	:system-arch:
+ libbrlapi-dev         [:system-arch:],
 # --enable-virtfs	linux-any
 # needed for virtfs
 # --enable-cap-ng	linux-any
@@ -48,18 +48,21 @@ Build-Depends: debhelper-compat (= 13),
  libfuse3-dev,
 # --enable-gnutls
  gnutls-dev,
-# --enable-gtk --enable-vte
- libgtk-3-dev, libvte-2.91-dev,
+# --enable-gtk --enable-vte	:system-arch:
+ libgtk-3-dev [:system-arch:],
+ libvte-2.91-dev [:system-arch:],
 # --enable-libiscsi
  libiscsi-dev (>> 1.9.0~),
-# --enable-curses
- libncurses-dev,
-# --enable-virglrenderer	linux-any
- libvirglrenderer-dev          [linux-any],
+# --enable-curses	:system-arch:
+ libncurses-dev        [:system-arch:],
+# --enable-virglrenderer	:system-arch-linux:
+ libvirglrenderer-dev          [:system-arch-linux:],
 # libvirglrenderer-dev bug #1019485: libva-dev build-dep is only a temp workaround
- libva-dev [linux-any],
-# --enable-opengl	linux-any
- libepoxy-dev [linux-any], libdrm-dev [linux-any], libgbm-dev [linux-any],
+ libva-dev [:system-arch-linux:],
+# --enable-opengl	:system-arch-linux:
+ libepoxy-dev [:system-arch-linux:],
+ libdrm-dev [:system-arch-linux:],
+ libgbm-dev [:system-arch-linux:],
 # --enable-libnfs
  libnfs-dev,
 # --enable-numa	i386 amd64 ia64 mips mipsel mips64 mips64el powerpc powerpcspe x32 ppc64 ppc64el arm64 sparc s390x riscv64
@@ -74,8 +77,8 @@ Build-Depends: debhelper-compat (= 13),
  libglusterfs-dev [linux-any] | glusterfs-common [linux-any],
 # --enable-vnc-sasl
  libsasl2-dev,
-# --enable-sdl
- libsdl2-dev,
+# --enable-sdl	:system-arch:
+ libsdl2-dev [:system-arch:],
 # --enable-seccomp	amd64 arm64 armel armhf i386 mips64el mipsel ppc64el s390x hppa powerpc ppc64 riscv64 x32
  libseccomp-dev        [amd64 arm64 armel armhf i386 mips64el mipsel ppc64el s390x hppa powerpc ppc64 riscv64 x32],
 # --enable-slirp
