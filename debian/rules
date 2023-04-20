@@ -230,12 +230,11 @@ endif
 # hw-display-virtio-gpu-gl also pulls in X11, move it to -gui
 	mkdir -p debian/qemu-system-gui${libdir}/qemu
 	mv -t debian/qemu-system-gui${libdir}/qemu/ \
-		debian/tmp${libdir}/qemu/ui-gtk.so \
-		debian/tmp${libdir}/qemu/ui-sdl.so \
-		debian/tmp${libdir}/qemu/audio-jack.so \
-		debian/tmp${libdir}/qemu/audio-sdl.so \
-		debian/tmp${libdir}/qemu/audio-pa.so \
-		debian/tmp${libdir}/qemu/hw-display-virtio-gpu-gl.so \
+	    $(patsubst %,debian/tmp${libdir}/qemu/%.so,\
+		ui-gtk ui-sdl \
+		audio-jack audio-sdl audio-pa \
+		hw-display-virtio-gpu-gl \
+	    )
 
 ifeq ($(DEB_HOST_ARCH_OS),linux)
 
