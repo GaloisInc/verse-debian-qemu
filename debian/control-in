@@ -79,8 +79,8 @@ Build-Depends: debhelper-compat (= 13),
  libsasl2-dev,
 # --enable-sdl	:system-arch:
  libsdl2-dev [:system-arch:],
-# --enable-seccomp	amd64 arm64 armel armhf i386 mips64el mipsel ppc64el s390x hppa powerpc ppc64 riscv64 x32
- libseccomp-dev        [amd64 arm64 armel armhf i386 mips64el mipsel ppc64el s390x hppa powerpc ppc64 riscv64 x32],
+# --enable-seccomp	amd64 arm64 armel armhf i386 mips64el mipsel ppc64 ppc64el powerpc riscv64 s390x x32
+ libseccomp-dev        [amd64 arm64 armel armhf i386 mips64el mipsel ppc64 ppc64el powerpc riscv64 s390x x32],
 # --enable-slirp
  libslirp-dev,
 # --enable-spice	 amd64 i386 arm64 armel armhf mips64el mipsel ppc64el x32
