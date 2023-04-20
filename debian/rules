@@ -275,6 +275,11 @@ endif
 
 endif # linux
 
+else  # !enable-system
+
+# qemu-system manpage is built regardless of system target
+	rm -fv debian/tmp/usr/share/man/man1/qemu.1
+
 endif # enable-system
 
 ifeq (${enable-linux-user},y)
