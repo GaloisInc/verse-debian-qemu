@@ -98,23 +98,23 @@ endif
 comma:=,
 
 # list of linux-user targets, from ./configure
-user_targets = \
+user-targets = \
  i386 x86_64 alpha aarch64 aarch64_be arm armeb cris hexagon hppa \
  loongarch64 m68k microblaze microblazeel \
  mips mipsel mips64 mips64el mipsn32 mipsn32el nios2 or1k \
  ppc ppc64 ppc64le riscv32 riscv64 sh4 sh4eb sparc sparc64 sparc32plus \
  s390x xtensa xtensaeb
 # aliases for missing ${DEB_HOST_ARCH} names in qemu-user:
-user_alias_aarch64 = arm64
-user_alias_arm = armel armhf
-user_alias_loongarch64 = loong64
-user_alias_ppc = powerpc
-user_alis_ppc64le = ppc64el
-user_alias_x86_64 = amd64
+user-alias-aarch64 = arm64
+user-alias-arm = armel armhf
+user-alias-loongarch64 = loong64
+user-alias-ppc = powerpc
+user-alias-ppc64le = ppc64el
+user-alias-x86_64 = amd64
 
 # install-linux-user-aliases [-static]
 define install-linux-user-aliases
-$(foreach q,${user_targets}, $(foreach a,${user_alias_$q},\
+$(foreach q,${user-targets}, $(foreach a,${user-alias-$q},\
 	dh_link -p qemu-user$1 usr/bin/qemu-$q$1 usr/bin/qemu-$a$1
 	dh_link -p qemu-user$1 usr/share/man/man1/qemu-$q$1.1 usr/share/man/man1/qemu-$a$1.1
 ))
@@ -304,8 +304,8 @@ endif # enable-system
 
 ifeq (${enable-linux-user},y)
 	dh_installdirs -p qemu-user usr/bin usr/share/doc/qemu-user
-	mv -t debian/qemu-user/usr/bin $(patsubst %,debian/tmp/usr/bin/qemu-%,${user_targets})
-	dh_link -p qemu-user $(patsubst %,usr/share/man/man1/qemu-user.1 usr/share/man/man1/qemu-%.1,${user_targets})
+	mv -t debian/qemu-user/usr/bin $(patsubst %,debian/tmp/usr/bin/qemu-%,${user-targets})
+	dh_link -p qemu-user $(patsubst %,usr/share/man/man1/qemu-user.1 usr/share/man/man1/qemu-%.1,${user-targets})
 	sed -e 's/qemu\\-user\\-static/qemu\\-user/g' \
 	    -e 's/ (static version)//' \
 	    debian/qemu-user-static.1 > debian/qemu-user/usr/share/man/man1/qemu-user.1
@@ -396,16 +396,16 @@ b/user-static/configured: configure
 	    ../../configure ${common_configure_opts} \
 		--extra-cflags="${extra-cflags}$(if $(filter ${DEB_HOST_ARCH},arm64), -fno-pie -no-pie,)" \
 		--static --disable-pie --disable-system --disable-xen \
-		--target-list="$(addsuffix -linux-user,${user_targets})"
+		--target-list="$(addsuffix -linux-user,${user-targets})"
 	touch $@
 build-user-static: b/user-static/built
 b/user-static/built: b/user-static/configured
 	# we use this invocation to build just the binaries
-	$(MAKE) -C b/user-static V=${V} $(addprefix qemu-,${user_targets})
+	$(MAKE) -C b/user-static V=${V} $(addprefix qemu-,${user-targets})
 	touch $@
 install-user-static: b/user-static/built
 	dh_installdirs -p qemu-user-static usr/bin usr/share/man/man1
-	for t in ${user_targets}; do \
+	for t in ${user-targets}; do \
 	   cp -p b/user-static/$$t-linux-user/qemu-$$t \
 	       debian/qemu-user-static/usr/bin/qemu-$$t-static ; \
 	   ln -s qemu-user-static.1 \
