@@ -282,6 +282,7 @@ ifeq (${enable-linux-user},y)
 	$(call install-linux-user-aliases)
 	sed 's|-static||g' debian/qemu-user-static.README.Debian > \
 	    debian/qemu-user/usr/share/doc/qemu-user/README.Debian
+	dh_installdocs -p qemu-user-binfmt --link-doc=qemu-user
 	./debian/binfmt-install qemu-user-binfmt
 endif	# enable-linux-user
 
@@ -396,11 +397,6 @@ build-arch: $(addprefix build-, ${qemu-builds})
 
 override_dh_auto_install-arch: $(addprefix install-, ${qemu-builds})
 
-override_dh_installdocs:
-	dh_installdocs -Nqemu-user-binfmt
-	dh_installdocs -pqemu-user-binfmt --link-doc=qemu-user
-override_dh_installchangelogs:
-	dh_installchangelogs -Nqemu-user-binfmt
 override_dh_installinit:
 	dh_installinit -pqemu-guest-agent
 override_dh_installsystemd:
