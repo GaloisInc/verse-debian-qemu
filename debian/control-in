@@ -548,3 +548,13 @@ Description: Guest-side qemu-system agent
  Install this package on a system which is running as guest inside
  qemu virtual machine.  It is not used on the host.
 
+#Package: qemu-system-for-host
+## This is actually all architectures for which qemu-system (softmmu) target is implemented
+#Architecture: any
+#Multi-Arch: same
+#Depends: ${qemu:for-host}:any (=${binary:Version})
+#Description: QEMU full system emulation (dependency-only package for the host architecture)
+# This package pulls one of qemu-system-* subpackages which contains
+# qemu-system-${}{DEB_HOST_ARCH_CPU} binary specific for the host
+# architecture. This one depends on ${qemu:for-host}.
+#

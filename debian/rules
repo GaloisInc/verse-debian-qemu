@@ -416,6 +416,26 @@ install-user-static: b/user-static/built
 qemu-builds += $(if ${enable-linux-user},user-static)
 
 ##############################################
+# qemu-system-for-host dep-only package
+# find the qemu-system-foo package which contains the right binary:
+#qemu-system-for-host=$(strip \
+#    $(foreach p,${system-packages},\
+#        $(if \
+#            $(filter \
+#                ${system-archlist-$p} $(foreach a,${system-archlist-$p},${system-alias-$a}),\
+#                ${DEB_HOST_ARCH_CPU}),\
+#            qemu-system-$p)))
+install-qemu-system-for-host:
+#	$(if ${qemu-system-for-host},,$(error no qemu-system-for-host found for ${DEB_HOST_ARCH_CPU}))
+#	echo 'qemu-for-host=${qemu-system-for-host}'
+	echo 'qemu:for-host=qemu-system-${DEB_HOST_ARCH_CPU}' \
+	  >> debian/qemu-system-for-host.substvars
+	dh_installdocs -p qemu-system-for-host --link-doc=qemu-system-common
+configure-qemu-system-for-host:
+build-qemu-system-for-host:
+qemu-builds += $(filter ${BUILD_PACKAGES},qemu-system-for-host)
+
+##############################################
 # common rules
 
 .PHONY: $(addprefix configure-, ${qemu-builds}) \
