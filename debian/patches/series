@@ -1,3 +1,4 @@
+fix-relocated-path.patch
 microvm-default-machine-type.patch
 note-missing-module-pkg-name.diff
 skip-unpack-edk2-blobs.patch
