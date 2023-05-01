@@ -512,6 +512,11 @@ Multi-Arch: foreign
 Depends: ${shlibs:Depends}, ${misc:Depends},
 Recommends:
  qemu-block-extra (= ${binary:Version}),
+Replaces:
+# qemu-storage-daemon and qemu-block-driver.7 has been moved from q-s-c.
+ qemu-system-common (<< 1:8.0+dfsg-5~),
+Breaks:
+ qemu-system-common (<< 1:8.0+dfsg-5~),
 Description: QEMU utilities
  QEMU is a fast processor emulator: currently the package supports
  ARM, CRIS, i386, M68k (ColdFire), MicroBlaze, MIPS, PowerPC, SH4,
