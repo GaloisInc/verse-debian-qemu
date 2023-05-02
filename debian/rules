@@ -236,6 +236,11 @@ install-qemu: b/qemu/built
 # remove qtest "accel" modules
 	rm -f debian/tmp${libdir}/qemu/accel-qtest-*.so
 
+# fixup the manpage
+# Note: with no enable-system, qemu-system manpage will not be installed.
+	sed -i 's/\\fBqemu(1)\\fP manual page/\\fBqemu-system(1)\\fP manual page (in qemu-system-common package)/' \
+		debian/tmp/usr/share/man/man1/qemu-storage-daemon.1
+
 ifeq (${enable-system},y)
 
 	# qemu-system subpackages
