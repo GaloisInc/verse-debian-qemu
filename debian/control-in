@@ -103,8 +103,6 @@ Build-Depends: debhelper-compat (= 13),
  libxen-dev [linux-amd64],
 # --enable-nettle
  nettle-dev,
-## always enabled: --enable-uuid
- uuid-dev,
 # always needed
  zlib1g-dev,
 # other optional features we enable
