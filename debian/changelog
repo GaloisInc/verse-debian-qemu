@@ -1,3 +1,19 @@
+qemu (1:8.0.2+dfsg-1) UNRELEASED; urgency=medium
+
+  * new upstream stable/bugfix release
+    Closes: #1029155, CVE-2023-0330:
+    A DMA-MMIO reentrancy problem in lsi53c895a device
+  * keep full upstream version number, not just first 2 components
+    (Closes: #855966)
+  * d/copyright: remove stray newline
+  * d/control: drop libuuid-dev build-dep (not used)
+  * clarify files in d/not-installed just a little bit
+  * fixup qemu(1) refs in qemu-storage-daemon(1)
+  * move qemu-storage-daemon and qemu-block-drivers.7
+    from qemu-system-common to qemu-utils
+
+ -- Michael Tokarev <mjt@tls.msk.ru>  Thu, 08 Jun 2023 14:10:13 +0300
+
 qemu (1:8.0+dfsg-4) experimental; urgency=medium
 
   * d/control: do not use --enable-spice on sh4 and --enable-seccomp
