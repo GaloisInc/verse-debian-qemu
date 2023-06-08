@@ -17,3 +17,4 @@ openbios-spelling-endianess.patch
 slof-spelling-seperator.patch
 disable-xen-on-x32.patch
 hw_mips_malta-Fix-malta-machine-on-big-endian-hosts.patch
+qga-fix-suspend-on-linux-guests-without-systemd.patch
