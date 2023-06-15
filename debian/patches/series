@@ -1,5 +1,6 @@
 fix-relocated-path.patch
 microvm-default-machine-type.patch
+linux-user-binfmt-P.diff
 note-missing-module-pkg-name.diff
 skip-unpack-edk2-blobs.patch
 qemu-bridge-helper-path.patch
