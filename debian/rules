@@ -141,6 +141,7 @@ endef
 
 system-archlist-arm = aarch64 arm
 system-alias-aarch64 = arm64
+system-alias-arm = armel armhf
 system-kvmcpus-arm = arm64 arm
 system-kvmlink-arm64 = aarch64
 system-kvmlink-arm = arm
