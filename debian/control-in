@@ -10,6 +10,7 @@ Build-Depends: debhelper-compat (= 13),
 # to qemu's configure script, -- optional features which depend
 # on build-dependencies.
  python3:any,
+ python3-venv,
  ninja-build, meson (>> 0.61.5~),
  flex, bison,
 # --enable-docs
