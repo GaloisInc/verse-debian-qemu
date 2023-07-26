@@ -26,3 +26,4 @@ stable-staging/linux-user-fix-signed-math-overflow-in-brk-syscall.patch
 linux-user-show-heap-address-in-proc-pid-maps.patch
 linux-user-optimize-memory-layout-for-static-and-dyn.patch
 linux-user-load-pie-executables-at-upper-memory.patch
+stable-staging/tcg-ppc-fix-race-in-goto_tb-implementation.patch
