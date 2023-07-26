@@ -88,7 +88,7 @@ common_configure_opts = \
 	--disable-install-blobs \
 	--disable-strip \
 	--localstatedir=/var \
-	--with-git-submodules=ignore \
+	--disable-download \
 
 # this disables building of qemu-keymap tool (!)
 # qemu-keymap might be helpful for qemu-system -k <lang>
