@@ -376,6 +376,7 @@ b/xen/configured: configure
 		--enable-libusb \
 		--enable-vnc --enable-vnc-jpeg \
 		--enable-spice \
+		--enable-virtfs --enable-attr --enable-cap-ng \
 		${QEMU_XEN_CONFIGURE_OPTIONS}
 	touch $@
 build-xen: b/xen/built
