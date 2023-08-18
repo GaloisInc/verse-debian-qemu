@@ -289,8 +289,6 @@ endif # ubuntu
 # for --enable-module-upgrades to work in more environments
 	install -D -m 0644 debian/run-qemu.mount debian/qemu-block-extra/lib/systemd/system/run-qemu.mount
 
-endif # linux
-
 # save block-extra loadable modules on upgrades
 # other module types for now (5.0) can't be loaded at runtime, only at startup
 # the maintscript fragments include version string so we have to generate them
@@ -300,6 +298,8 @@ endif # linux
 	  >> debian/qemu-block-extra.postrm.debhelper
 	echo 'case $$1 in (purge) if systemctl is-active -q run-qemu.mount; then systemctl stop run-qemu.mount || true; fi; rm -rf "/run/qemu";; esac' \
 	  >> debian/qemu-block-extra.postrm.debhelper
+
+endif # linux
 
 else  # !enable-system
 
