@@ -18,3 +18,4 @@ disable-xen-on-x32.patch
 target-arm-Fix-SME-ST1Q.patch
 target-arm-Fix-64-bit-SSRA.patch
 qemu-img-omit-errno-value-in-error-message.patch
+linux-user-Adjust-brk-for-load_bias.patch
