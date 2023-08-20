@@ -1,3 +1,5 @@
+#! /bin/sh
+  { echo '
 debian/qemu-ifup etc/
 debian/qemu-ifdown etc/
 
@@ -34,9 +36,15 @@ usr/lib/${DEB_HOST_MULTIARCH}/qemu/ui-curses.so
 usr/lib/${DEB_HOST_MULTIARCH}/qemu/ui-dbus.so
 usr/lib/${DEB_HOST_MULTIARCH}/qemu/ui-egl-headless.so
 usr/lib/${DEB_HOST_MULTIARCH}/qemu/ui-opengl.so
+  '
 # spice modules
+  case " $(sed -n 's/# --enable-spice\t//p' debian/control) " in
+  (*${DEB_HOST_ARCH}*) echo '
 usr/lib/${DEB_HOST_MULTIARCH}/qemu/audio-spice.so
 usr/lib/${DEB_HOST_MULTIARCH}/qemu/chardev-spice.so
 usr/lib/${DEB_HOST_MULTIARCH}/qemu/hw-display-qxl.so
 usr/lib/${DEB_HOST_MULTIARCH}/qemu/ui-spice-app.so
 usr/lib/${DEB_HOST_MULTIARCH}/qemu/ui-spice-core.so
+  ';;
+  esac
+  } | sed -e 's/#.*//' -e '/^\s*$/D'
