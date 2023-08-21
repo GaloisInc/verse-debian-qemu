@@ -87,7 +87,6 @@ common_configure_opts = \
 	--localstatedir=/var \
 	--disable-install-blobs \
 	--disable-strip \
-	--interp-prefix=/etc/qemu-binfmt/%M \
 	--localstatedir=/var \
 	--with-git-submodules=ignore \
 
