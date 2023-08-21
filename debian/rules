@@ -1,6 +1,9 @@
 #!/usr/bin/make -f
 SHELL = /bin/sh -e
 
+# stop python from generating .pyc caches
+export PYTHONDONTWRITEBYTECODE=1
+
 # in order to keep output non-intermixed together, disable parallel building
 # of different targets in this d/rules but allow running parallel submakes
 .NOTPARALLEL:
