@@ -242,11 +242,9 @@ Depends: ${misc:Depends}, ${shlibs:Depends},
 # we moved vhost-user-gpu files here from qemu-system-common at 6.1-4
 Replaces: qemu-system-common (<< 1:6.1+dfsg-4~)
 Description: QEMU full system emulation binaries (user interface and audio support)
- This package provides local graphical user interface (currently GTK)
- and audio backends for full system emulation (qemu-system-*) packages.
- .
- The default GTK based qemu-system-gui is generally better and recommended,
- but a few corner cases still need SDL which is therefore provided as well.
+ This package provides local graphical user interface (currently GTK and SDL),
+ audio backends and OpenGL display support for full system emulation
+ (qemu-system-*) packages.
 
 Package: qemu-system-misc
 Architecture: :system-arch:
