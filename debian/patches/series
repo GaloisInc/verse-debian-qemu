@@ -17,4 +17,3 @@ spelling-information.patch
 openbios-spelling-endianess.patch
 slof-spelling-seperator.patch
 disable-xen-on-x32.patch
-linux-user-show-heap-address-in-proc-pid-maps.patch
