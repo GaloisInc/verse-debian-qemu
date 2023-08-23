@@ -84,8 +84,8 @@ Build-Depends: debhelper-compat (= 13),
  libseccomp-dev        [amd64 arm64 armel armhf i386 mips64el mipsel ppc64 ppc64el powerpc riscv64 s390x x32],
 # --enable-slirp
  libslirp-dev,
-# --enable-spice	 amd64 i386 arm64 armel armhf mips64el mipsel ppc64el x32
- libspice-server-dev	[amd64 i386 arm64 armel armhf mips64el mipsel ppc64el x32],
+# --enable-spice	 :spice-arch:
+ libspice-server-dev	[:spice-arch:],
 # --enable-rdma		linux-any
  librdmacm-dev [linux-any], libibverbs-dev [linux-any], libibumad-dev [linux-any],
 # --enable-linux-io-uring	linux-any
