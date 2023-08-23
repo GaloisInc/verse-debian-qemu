@@ -184,9 +184,8 @@ Package: qemu-block-extra
 Architecture: :utils-arch:
 Multi-Arch: no
 Depends: ${misc:Depends}, ${shlibs:Depends},
-# we need to ensure qemu-block-extra is upgraded
-# when qemu-system or qemu-utils is upgraded, somehow
-         qemu-system-any (= ${binary:Version}) [:system-arch:] | qemu-utils (= ${binary:Version}),
+# we need to ensure qemu-block-extra is upgraded with qemu-system-* or qemu-utils
+ qemu-system-any (= ${binary:Version}) [:system-arch:] | qemu-utils (= ${binary:Version}),
 Enhances: qemu-utils, qemu-system-misc,
  qemu-system-arm, qemu-system-mips, qemu-system-sparc, qemu-system-x86,
 Description: extra block backend modules for qemu-system and qemu-utils
@@ -205,7 +204,7 @@ Architecture: all
 Multi-Arch: foreign
 Conflicts: sgabios, qemu-skiboot, openbios-sparc, openbios-ppc, qemu-slof,
 Replaces:  sgabios, openbios-sparc, openbios-ppc, qemu-slof,
-        qemu-system-ppc (<< 1:6.1-4~),
+ qemu-system-ppc (<< 1:6.1-4~),
 Breaks: qemu-system-ppc (<< 1:6.1-4~),
 Provides: qemu-keymaps, sgabios, qemu-skiboot, openbios-sparc, openbios-ppc, qemu-slof,
 Depends: ${misc:Depends}
@@ -238,11 +237,10 @@ Architecture: :system-arch:
 #XXX by moving that binary back to q-s-common or packaging it separately
 #Multi-Arch: same
 Depends: ${misc:Depends}, ${shlibs:Depends},
-# we need to ensure qemu-system-gui is upgraded
-# when qemu-system is upgraded, somehow
-        qemu-system-any (= ${binary:Version}),
+# we need to ensure qemu-system-gui is upgraded with qemu-system-*
+ qemu-system-any (= ${binary:Version}),
 # libgl1 is dynamically loaded by sdl display code
-        libgl1,
+ libgl1,
 # we moved vhost-user-gpu files here from qemu-system-common at 6.1-4
 Replaces: qemu-system-common (<< 1:6.1+dfsg-4~)
 Description: QEMU full system emulation binaries (user interface and audio support)
