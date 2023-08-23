@@ -237,6 +237,8 @@ Architecture: :system-arch:
 #XXX by moving that binary back to q-s-common or packaging it separately
 #Multi-Arch: same
 Depends: ${misc:Depends}, ${shlibs:Depends},
+# ui-* depends on ui-opengl
+ qemu-system-modules-opengl (= ${binary:Version}),
 # we need to ensure qemu-system-gui is upgraded with qemu-system-*
  qemu-system-any (= ${binary:Version}),
 # libgl1 is dynamically loaded by sdl display code
@@ -246,18 +248,31 @@ Replaces: qemu-system-common (<< 1:6.1+dfsg-4~)
 Description: QEMU full system emulation binaries (user interface and audio support)
  This package provides local graphical user interface (currently GTK and SDL),
  audio backends and OpenGL display support for full system emulation
- (qemu-system-*) packages.
+ (qemu-system-*) packages.  This package also includes dbus display and
+ audio modules (which depends on opengl).
 
 Package: qemu-system-modules-spice
 Architecture: :spice-arch:
 Depends: ${misc:Depends}, ${shlibs:Depends},
- qemu-system-common (= ${binary:Version}),
+# spice modules depends on ui-opengl
+ qemu-system-modules-opengl (= ${binary:Version}),
 # we need to ensure qemu-system-modules-spice is upgraded with qemu-system-*
  qemu-system-any (= ${binary:Version}),
 Replaces: qemu-system-common (<< 1:8.1.0+ds-1~exp2~)
 Breaks:   qemu-system-common (<< 1:8.1.0+ds-1~exp2~)
 Description: QEMU full system emulation binaries (spice modules)
  This package provides optional spice display (qxl and spice-app) and audio modules
+ for QEMU full system emulation (qemu-system-*) packages.
+
+Package: qemu-system-modules-opengl
+Architecture: :system-arch:
+Depends: ${misc:Depends}, ${shlibs:Depends},
+# we need to ensure qemu-system-modules-opengl is upgraded when qemu-system is upgraded
+ qemu-system-any (= ${binary:Version}),
+Replaces: qemu-system-common (<< 1:8.1.0+ds-1~exp2~), qemu-system-gui (<< 1:8.1.0+ds-1~exp2~)
+Breaks:   qemu-system-common (<< 1:8.1.0+ds-1~exp2~), qemu-system-gui (<< 1:8.1.0+ds-1~exp2~)
+Description: QEMU full system emulation binaries (OpenGL modules)
+ This package provides optional OpenGL support modules
  for QEMU full system emulation (qemu-system-*) packages.
 
 Package: qemu-system-misc
@@ -270,6 +285,7 @@ Recommends: qemu-utils,
  seabios, ipxe-qemu,
  qemu-system-gui (= ${binary:Version}),
  qemu-system-modules-spice (= ${binary:Version}) [:spice-arch:],
+ qemu-system-modules-opengl (= ${binary:Version}),
  qemu-block-extra (= ${binary:Version}),
 Suggests: samba, vde2,
 Provides: ${qemu:Provides}
@@ -300,6 +316,7 @@ Recommends: qemu-utils,
  qemu-efi-aarch64, qemu-efi-arm,
  qemu-system-gui (= ${binary:Version}),
  qemu-system-modules-spice (= ${binary:Version}) [:spice-arch:],
+ qemu-system-modules-opengl (= ${binary:Version}),
  qemu-block-extra (= ${binary:Version}),
 Suggests: samba, vde2,
 Provides: ${qemu:Provides}
@@ -325,6 +342,7 @@ Recommends: qemu-utils,
  seabios, ipxe-qemu,
  qemu-system-gui (= ${binary:Version}),
  qemu-system-modules-spice (= ${binary:Version}) [:spice-arch:],
+ qemu-system-modules-opengl (= ${binary:Version}),
  qemu-block-extra (= ${binary:Version}),
 Suggests: samba, vde2,
 Provides: ${qemu:Provides}
@@ -350,6 +368,7 @@ Recommends: qemu-utils,
  seabios, ipxe-qemu,
  qemu-system-gui (= ${binary:Version}),
  qemu-system-modules-spice (= ${binary:Version}) [:spice-arch:],
+ qemu-system-modules-opengl (= ${binary:Version}),
  qemu-block-extra (= ${binary:Version}),
 Suggests: samba, vde2,
 Provides: ${qemu:Provides}
@@ -375,6 +394,7 @@ Recommends: qemu-utils,
  seabios, ipxe-qemu,
  qemu-system-gui (= ${binary:Version}),
  qemu-system-modules-spice (= ${binary:Version}) [:spice-arch:],
+ qemu-system-modules-opengl (= ${binary:Version}),
  qemu-block-extra (= ${binary:Version}),
 Suggests: samba, vde2,
 Provides: ${qemu:Provides}
@@ -398,6 +418,7 @@ Description: QEMU full system emulation binaries (sparc)
 :ubuntu:Recommends: qemu-utils,
 :ubuntu: qemu-system-gui (= ${binary:Version}),
 :ubuntu: qemu-system-modules-spice (= ${binary:Version}) [:spice-arch:],
+:ubuntu: qemu-system-modules-opengl (= ${binary:Version}),
 :ubuntu: qemu-block-extra (= ${binary:Version}),
 :ubuntu:Provides: ${qemu:Provides}
 :ubuntu:Description: QEMU full system emulation binaries (s390x)
@@ -436,6 +457,7 @@ Recommends: qemu-utils,
  ovmf,
  qemu-system-gui (= ${binary:Version}),
  qemu-system-modules-spice (= ${binary:Version}) [:spice-arch:],
+ qemu-system-modules-opengl (= ${binary:Version}),
  qemu-block-extra (= ${binary:Version}),
 :ubuntu: cpu-checker,
 Suggests: samba, vde2,
