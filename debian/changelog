@@ -12,6 +12,7 @@ qemu (1:8.1.0+ds-1~exp1) experimental; urgency=medium
   * new upstream release
     Closes: #1041102, CVE-2023-3019 (NIC DMA reentrancy issue, problem class)
     Closes: CVE-2021-3750 (DMA MMIO reentrancy issue, problem class)
+    Closes: #984451, CVE-2021-20255 (DMA reentrancy issue)
     Closes: #1041471 (qemu-user armel commpage mapping bug)
   * d/watch: change repack suffix to +ds
   * d/patches: remove patches applied upstream
