@@ -62,6 +62,7 @@ BUILD_PACKAGES := $(shell dh_listpackages)
 
 enable-system = $(if $(filter qemu-system,${BUILD_PACKAGES}),y)
 enable-user = $(if $(filter qemu-user,${BUILD_PACKAGES}),y)
+enable-user-static = $(if $(filter qemu-user-static,${BUILD_PACKAGES}),y)
 
 QEMU_XEN = /usr/libexec/xen-qemu-system-i386
 PKGVERSION = Debian ${DEB_VERSION}
@@ -428,7 +429,7 @@ install-user-static: b/user-static/built
 	done
 	$(call install-user-aliases,-static)
 	./debian/binfmt-install qemu-user-static
-qemu-builds += $(if ${enable-user},user-static)
+qemu-builds += $(if ${enable-user-static},user-static)
 
 ##############################################
 # qemu-system-for-host dep-only package
@@ -490,7 +491,7 @@ install-arch: pre-install-arch $(addprefix install-, ${qemu-builds})
 	esac
 	dh_strip -a
 	dh_shlibdeps -a
-ifeq (${enable-user},y)
+ifeq (${enable-user-static},y)
 # after shlibdeps finished, grab ${shlibs:Depends} from -user package
 # and transform it into Built-Using field for -user-static.
 # See also dpkg-query bug #588505
