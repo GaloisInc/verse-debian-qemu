@@ -11,6 +11,13 @@ export PYTHONDONTWRITEBYTECODE=1
 # we build in a sub-subdir so strip that from file paths too
 export DEB_CFLAGS_MAINT_APPEND = -ffile-prefix-map=../../=
 
+# Disable LTO on non-amd64 builds, see:
+# https://bugs.launchpad.net/ubuntu/+source/qemu/+bug/1921664
+# https://bugzilla.redhat.com/show_bug.cgi?id=1952483
+ifneq ($(DEB_HOST_ARCH),amd64)
+  export DEB_BUILD_MAINT_OPTIONS += optimize=-lto
+endif
+
 # get DEB_VERSION
 include /usr/share/dpkg/pkg-info.mk
 # get CFLAGS LDFLAGS etc
@@ -18,13 +25,6 @@ include /usr/share/dpkg/buildflags.mk
 # Fast version of dpkg/architecture.mk defining all vars in one go
 ifeq (${DEB_HOST_MULTIARCH},)
    $(foreach d, $(shell dpkg-architecture | sed 's/=/?=/'), $(eval export $d))
-endif
-
-# Disable LTO on non-amd64 builds, see:
-# https://bugs.launchpad.net/ubuntu/+source/qemu/+bug/1921664
-# https://bugzilla.redhat.com/show_bug.cgi?id=1952483
-ifneq ($(DEB_HOST_ARCH),amd64)
-  export DEB_BUILD_MAINT_OPTIONS += optimize=-lto
 endif
 
 ifeq ($(shell dpkg-vendor --derives-from Ubuntu && echo yes),yes)
