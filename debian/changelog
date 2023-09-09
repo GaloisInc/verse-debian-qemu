@@ -1,3 +1,13 @@
+qemu (1:8.1.0+ds-1) unstable; urgency=medium
+
+  * d/changelog: mention closing of #984451, CVE-2021-20255 by 8.1
+  * d/changelog: mention closing of #1041471 by 8.1
+  * d/patches: add patches currenly staged for 8.1.1
+  * d/gbp.conf: switch from experimental to master
+  * upload to unstable
+
+ -- Michael Tokarev <mjt@tls.msk.ru>  Sat, 09 Sep 2023 17:03:54 +0300
+
 qemu (1:8.1.0+ds-1~exp2) experimental; urgency=medium
 
   * qemu-system-modules-spice & qemu-system-modules-opengl packages,
