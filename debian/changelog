@@ -6,7 +6,7 @@ qemu (1:8.1.0+ds-2) unstable; urgency=medium
   * d/rules: enable verbose (-v) build for qboot
   * d/rules: move lto control to where it actually works
   * d/rules: remove usage of "standard dh sequencer".
-    It has mutliple issues.  To name a few:
+    It has multiple issues.  To name a few:
     - it exports CFLAGS &Co which breaks badly when trying to compile
       bios/firmware code (fixes FTBFS with new -fcf-protection)
     - it performs multiple recursive calls to d/rules which is
