@@ -55,6 +55,8 @@ MAKEFLAGS += $(subst parallel=,-j,$(filter parallel=%,${DEB_BUILD_OPTIONS}))
 # verbose build
 V = $(if $(filter terse, ${DEB_BUILD_OPTIONS}),,1)
 
+NINJA = ninja $(if $V,-v) $(or $(filter -j%,${MAKEFLAGS}),-j1)
+
 # list of packages we're supposed to build
 BUILD_PACKAGES := $(shell dh_listpackages)
 
@@ -241,7 +243,7 @@ b/qemu/configured: configure
 
 build-qemu: b/qemu/built
 b/qemu/built: b/qemu/configured
-	$(MAKE) -C b/qemu V=${V}
+	${NINJA} -C b/qemu
 	touch $@
 
 test-qemu: b/qemu/tested
@@ -257,7 +259,8 @@ endif
 	touch $@
 
 install-qemu: b/qemu/built
-	$(MAKE) -C b/qemu DESTDIR=${CURDIR}/debian/tmp install
+	DESTDIR=${CURDIR}/debian/tmp \
+	    ${NINJA} -C b/qemu install
 
 # remove qtest "accel" modules
 	rm -f debian/tmp${libdir}/qemu/accel-qtest-*.so
@@ -355,7 +358,7 @@ b/microvm/configured: configure debian/microvm-devices.mak
 	touch $@
 build-microvm: b/microvm/qemu-system-x86_64
 b/microvm/qemu-system-x86_64: b/microvm/configured
-	$(MAKE) -C b/microvm V=${V} qemu-system-x86_64
+	${NINJA} -C b/microvm qemu-system-x86_64
 install-microvm: b/microvm/qemu-system-x86_64
 	cp b/microvm/x86_64-softmmu/qemu-system-x86_64 debian/qemu-system-x86/usr/bin/qemu-system-x86_64-microvm
 	echo ".so man1/qemu-system.1" > debian/qemu-system-x86/usr/share/man/man1/qemu-system-x86_64-microvm.1
@@ -385,7 +388,7 @@ b/xen/configured: configure
 	touch $@
 build-xen: b/xen/built
 b/xen/built: b/xen/configured
-	$(MAKE) -C b/xen V=${V} qemu-system-i386
+	${NINJA} -C b/xen qemu-system-i386
 	touch $@
 install-xen: b/xen/built
 	install -D b/xen/qemu-system-i386 \
@@ -413,7 +416,7 @@ b/user-static/configured: configure
 build-user-static: b/user-static/built
 b/user-static/built: b/user-static/configured
 	# we use this invocation to build just the binaries
-	$(MAKE) -C b/user-static V=${V} $(addprefix qemu-,${user-targets})
+	${NINJA} -C b/user-static $(addprefix qemu-,${user-targets})
 	touch $@
 install-user-static: b/user-static/built
 	dh_installdirs -p qemu-user-static usr/bin usr/share/man/man1
