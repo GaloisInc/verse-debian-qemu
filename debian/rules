@@ -394,7 +394,7 @@ b/xen/built: b/xen/configured
 install-xen: b/xen/built
 	install -D b/xen/qemu-system-i386 \
 	  debian/qemu-system-xen${QEMU_XEN}
-qemu-builds += $(if $(filter ${DEB_HOST_ARCH}-${enable-system},amd64-y),xen)
+qemu-builds += $(if $(filter qemu-system-xen,${BUILD_PACKAGES}),xen)
 
 ##############################################
 # user-static build

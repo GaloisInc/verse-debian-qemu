@@ -161,6 +161,7 @@ Rules-Requires-Root: binary-targets
 Package: qemu-system
 Architecture: :system-arch:
 Multi-Arch: foreign
+Build-Profiles: <!pkg.qemu.omit-system>
 Depends: ${misc:Depends},
  qemu-system-arm,
  qemu-system-mips,
@@ -216,6 +217,7 @@ Description: QEMU full system emulation (data files)
 Package: qemu-system-common
 Architecture: :system-arch:
 Multi-Arch: no
+Build-Profiles: <!pkg.qemu.omit-system>
 Breaks: libvirt-daemon (<< 7.2.0-1)
 Depends: ${misc:Depends}, ${shlibs:Depends},
 # to fix wrong acl for newly created device node on ubuntu:
@@ -253,6 +255,7 @@ Description: QEMU full system emulation binaries (user interface and audio suppo
 
 Package: qemu-system-modules-spice
 Architecture: :spice-arch:
+Build-Profiles: <!pkg.qemu.omit-system>
 Depends: ${misc:Depends}, ${shlibs:Depends},
 # spice modules depends on ui-opengl
  qemu-system-modules-opengl (= ${binary:Version}),
@@ -266,6 +269,7 @@ Description: QEMU full system emulation binaries (spice modules)
 
 Package: qemu-system-modules-opengl
 Architecture: :system-arch:
+Build-Profiles: <!pkg.qemu.omit-system>
 Depends: ${misc:Depends}, ${shlibs:Depends},
 # we need to ensure qemu-system-modules-opengl is upgraded when qemu-system is upgraded
  qemu-system-any (= ${binary:Version}),
@@ -278,6 +282,7 @@ Description: QEMU full system emulation binaries (OpenGL modules)
 Package: qemu-system-misc
 Architecture: :system-arch:
 Multi-Arch: foreign
+Build-Profiles: <!pkg.qemu.omit-system>
 Depends: ${shlibs:Depends}, ${misc:Depends}, qemu-system-common (= ${binary:Version}), qemu-system-data (>> ${source:Upstream-Version}~),
 Recommends: qemu-utils,
 # alpha uses vgabios
@@ -309,6 +314,7 @@ Description: QEMU full system emulation binaries (miscellaneous)
 Package: qemu-system-arm
 Architecture: :system-arch:
 Multi-Arch: foreign
+Build-Profiles: <!pkg.qemu.omit-system>
 Depends: ${shlibs:Depends}, ${misc:Depends}, qemu-system-common (= ${binary:Version}), qemu-system-data (>> ${source:Upstream-Version}~),
 Recommends: qemu-utils,
 # aarch64 arm uses bootroms
@@ -336,6 +342,7 @@ Description: QEMU full system emulation binaries (arm)
 Package: qemu-system-mips
 Architecture: :system-arch:
 Multi-Arch: foreign
+Build-Profiles: <!pkg.qemu.omit-system>
 Depends: ${shlibs:Depends}, ${misc:Depends}, qemu-system-common (= ${binary:Version}), qemu-system-data (>> ${source:Upstream-Version}~),
 Recommends: qemu-utils,
 # all mips targets uses vgabios and bootroms
@@ -362,6 +369,7 @@ Description: QEMU full system emulation binaries (mips)
 Package: qemu-system-ppc
 Architecture: :system-arch:
 Multi-Arch: foreign
+Build-Profiles: <!pkg.qemu.omit-system>
 Depends: ${shlibs:Depends}, ${misc:Depends}, qemu-system-common (= ${binary:Version}), qemu-system-data (>> ${source:Upstream-Version}~),
 Recommends: qemu-utils,
 # ppc targets use vgabios-stdvga and bootroms
@@ -388,6 +396,7 @@ Description: QEMU full system emulation binaries (ppc)
 Package: qemu-system-sparc
 Architecture: :system-arch:
 Multi-Arch: foreign
+Build-Profiles: <!pkg.qemu.omit-system>
 Depends: ${shlibs:Depends}, ${misc:Depends}, qemu-system-common (= ${binary:Version}), qemu-system-data (>> ${source:Upstream-Version}~),
 Recommends: qemu-utils,
 # sparc64 uses vgabios-stdvga and bootroms
@@ -414,6 +423,7 @@ Description: QEMU full system emulation binaries (sparc)
 :ubuntu:Package: qemu-system-s390x
 :ubuntu:Architecture: :system-arch:
 :ubuntu:Multi-Arch: foreign
+:ubuntu:Build-Profiles: <!pkg.qemu.omit-system>
 :ubuntu:Depends: ${shlibs:Depends}, ${misc:Depends}, qemu-system-common (= ${binary:Version}), qemu-system-data (>> ${source:Upstream-Version}~),
 :ubuntu:Recommends: qemu-utils,
 :ubuntu: qemu-system-gui (= ${binary:Version}),
@@ -451,6 +461,7 @@ Description: QEMU full system emulation binaries (sparc)
 Package: qemu-system-x86
 Architecture: :system-arch:
 Multi-Arch: foreign
+Build-Profiles: <!pkg.qemu.omit-system>
 Depends: ${shlibs:Depends}, ${misc:Depends}, qemu-system-common (= ${binary:Version}), qemu-system-data (>> ${source:Upstream-Version}~),
  seabios, ipxe-qemu,
 Recommends: qemu-utils,
@@ -481,6 +492,7 @@ Description: QEMU full system emulation binaries (x86)
 Package: qemu-system-xen
 Architecture: amd64
 Multi-Arch: no
+Build-Profiles: <!pkg.qemu.omit-system-xen>
 # do we really need qemu-system-data? keymaps only?
 Depends: ${shlibs:Depends}, ${misc:Depends}, qemu-system-data (>> ${source:Upstream-Version}~),
  seabios
@@ -498,6 +510,7 @@ Description: QEMU full system emulation (Xen helper package)
 Package: qemu-user
 Architecture: :user-arch:
 Multi-Arch: foreign
+Build-Profiles: <!pkg.qemu.omit-user>
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Recommends: qemu-user-binfmt
 Description: QEMU user mode emulation binaries
@@ -521,6 +534,7 @@ Package: qemu-user-static
 Architecture: :user-arch:
 Built-Using: ${built-using}
 Multi-Arch: foreign
+Build-Profiles: <!pkg.qemu.omit-user-static>
 Depends: ${misc:Depends}
 # Recommend systemd for binfmt-misc registration
 Recommends: systemd
@@ -544,6 +558,7 @@ Description: QEMU user mode emulation binaries (static version)
 Package: qemu-user-binfmt
 Architecture: :user-arch:
 Multi-Arch: foreign
+Build-Profiles: <!pkg.qemu.omit-user>
 Depends: ${misc:Depends}, qemu-user (= ${binary:Version})
 # Recommend systemd for binfmt-misc registration
 Recommends: systemd
