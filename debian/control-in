@@ -261,8 +261,8 @@ Depends: ${misc:Depends}, ${shlibs:Depends},
 Replaces: qemu-system-common (<< 1:8.1.0+ds-1~exp2~)
 Breaks:   qemu-system-common (<< 1:8.1.0+ds-1~exp2~)
 Description: QEMU full system emulation binaries (spice modules)
- This package provides optional spice display (qxl and spice-app) and audio modules
- for QEMU full system emulation (qemu-system-*) packages.
+ This package provides optional spice display (qxl and spice-app) and
+ audio modules for QEMU full system emulation (qemu-system-*) packages.
 
 Package: qemu-system-modules-opengl
 Architecture: :system-arch:
