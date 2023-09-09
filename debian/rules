@@ -494,12 +494,9 @@ install-arch: pre-install-arch $(addprefix install-, ${qemu-builds})
 ifeq (${enable-user-static},y)
 # after shlibdeps finished, grab ${shlibs:Depends} from -user package
 # and transform it into Built-Using field for -user-static.
-# See also dpkg-query bug #588505
 	if [ -f debian/qemu-user.substvars ]; then \
 	  pkgs=$$(sed -n -e's/([^)]*)//g' -e's/,//g' -e's/^shlibs:Depends=//p' debian/qemu-user.substvars); \
-	  srcs=; for p in $$pkgs; do \
-	    srcs="$$srcs $$(dpkg-query -f '$${source:Package} (= $${source:Version}),' -W $$p)"; \
-	  done ; \
+	  srcs="$$srcs $$(dpkg-query -f '$${source:Package} (= $${source:Version}),' -W $$pkgs)"; \
 	  echo "built-using=$$srcs" >> debian/qemu-user-static.substvars ; \
 	fi
 endif
