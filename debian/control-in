@@ -6,13 +6,14 @@ Priority: optional
 :ubuntu:XSBC-Original-Maintainer: Debian QEMU Team <pkg-qemu-devel@lists.alioth.debian.org>
 Uploaders: Michael Tokarev <mjt@tls.msk.ru>
 Build-Depends: debhelper-compat (= 13),
+ python3:any,
+ meson (>> 0.63.0~), ninja-build,
+ flex, bison,
+Build-Depends-Arch:
 # In comments below we also specify (system-specific) arguments
 # to qemu's configure script, -- optional features which depend
 # on build-dependencies.
- python3:any,
  python3-venv,
- ninja-build, meson (>> 0.63.0~),
- flex, bison,
 # --enable-docs
 # for python3-sphinx:native see #995622
  texinfo, python3-sphinx:native, python3-sphinx-rtd-theme,
@@ -139,6 +140,8 @@ Build-Depends-Indep:
  gcc-powerpc-linux-gnu, bc,
 # skiboot firmware, openbios
  gcc-powerpc64-linux-gnu,
+# skiboot includes <openssl/something.h>
+ libssl-dev,
 # openbios
  gcc-sparc64-linux-gnu, fcode-utils, xsltproc,
 # hppa-firmware
