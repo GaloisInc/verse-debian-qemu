@@ -6,7 +6,7 @@ qemu (1:8.1.0+ds-3) unstable; urgency=medium
     Only very few things left in common Build-Depends.
   * Removing most things from B-D discovered that skiboot includes openssl
     header(s) (!), so add libssl-dev to Build-Depends-Indep.
-  * d/control,d/rules: introduce build profiles to omit bulding some packages
+  * d/control,d/rules: introduce build profiles to omit building some packages
     (mostly debugging aid, to reduce test build run time).
   * d/rules: use ninja directly for various qemu builds
     (non-verbose build now shows errors/warnings nicely)
