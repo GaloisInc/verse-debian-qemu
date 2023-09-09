@@ -61,7 +61,7 @@ NINJA = ninja $(if $V,-v) $(or $(filter -j%,${MAKEFLAGS}),-j1)
 BUILD_PACKAGES := $(shell dh_listpackages)
 
 enable-system = $(if $(filter qemu-system,${BUILD_PACKAGES}),y)
-enable-linux-user = $(if $(filter qemu-user,${BUILD_PACKAGES}),y)
+enable-user = $(if $(filter qemu-user,${BUILD_PACKAGES}),y)
 
 QEMU_XEN = /usr/libexec/xen-qemu-system-i386
 PKGVERSION = Debian ${DEB_VERSION}
@@ -127,8 +127,8 @@ user-alias-ppc = powerpc
 user-alias-ppc64le = ppc64el
 user-alias-x86_64 = amd64
 
-# install-linux-user-aliases [-static]
-define install-linux-user-aliases
+# install-user-aliases [-static]
+define install-user-aliases
 $(foreach q,${user-targets}, $(foreach a,${user-alias-$q},\
 	dh_link -p qemu-user$1 usr/bin/qemu-$q$1 usr/bin/qemu-$a$1
 	dh_link -p qemu-user$1 usr/share/man/man1/qemu-$q$1.1 usr/share/man/man1/qemu-$a$1.1
@@ -231,7 +231,7 @@ b/qemu/configured: configure
 	cd b/qemu && \
 	    ../../configure ${common_configure_opts} --disable-user \
 		--$(if ${enable-system},enable,disable)-system \
-		--$(if ${enable-linux-user},enable,disable)-linux-user \
+		--$(if ${enable-user},enable,disable)-linux-user \
 		--enable-tools \
 		--disable-xen \
 		--enable-modules \
@@ -315,19 +315,19 @@ else  # !enable-system
 
 endif # enable-system
 
-ifeq (${enable-linux-user},y)
+ifeq (${enable-user},y)
 	dh_installdirs -p qemu-user usr/bin usr/share/doc/qemu-user
 	mv -t debian/qemu-user/usr/bin $(patsubst %,debian/tmp/usr/bin/qemu-%,${user-targets})
 	dh_link -p qemu-user $(patsubst %,usr/share/man/man1/qemu-user.1 usr/share/man/man1/qemu-%.1,${user-targets})
 	sed -e 's/qemu\\-user\\-static/qemu\\-user/g' \
 	    -e 's/ (static version)//' \
 	    debian/qemu-user-static.1 > debian/qemu-user/usr/share/man/man1/qemu-user.1
-	$(call install-linux-user-aliases)
+	$(call install-user-aliases)
 	sed 's|-static||g' debian/qemu-user-static.README.Debian > \
 	    debian/qemu-user/usr/share/doc/qemu-user/README.Debian
 	dh_installdocs -p qemu-user-binfmt --link-doc=qemu-user
 	./debian/binfmt-install qemu-user-binfmt
-endif	# enable-linux-user
+endif	# enable-user
 
 qemu-builds += qemu
 
@@ -396,7 +396,7 @@ install-xen: b/xen/built
 qemu-builds += $(if $(filter ${DEB_HOST_ARCH}-${enable-system},amd64-y),xen)
 
 ##############################################
-# linux-user-static build
+# user-static build
 configure-user-static: b/user-static/configured
 b/user-static/configured: configure
 # do not use debian/configure-opts here, all optional stuff will be enabled
@@ -421,14 +421,14 @@ b/user-static/built: b/user-static/configured
 install-user-static: b/user-static/built
 	dh_installdirs -p qemu-user-static usr/bin usr/share/man/man1
 	for t in ${user-targets}; do \
-	   cp -p b/user-static/$$t-linux-user/qemu-$$t \
+	   cp -p b/user-static/qemu-$$t \
 	       debian/qemu-user-static/usr/bin/qemu-$$t-static ; \
 	   ln -s qemu-user-static.1 \
 	       debian/qemu-user-static/usr/share/man/man1/qemu-$$t-static.1 ; \
 	done
-	$(call install-linux-user-aliases,-static)
+	$(call install-user-aliases,-static)
 	./debian/binfmt-install qemu-user-static
-qemu-builds += $(if ${enable-linux-user},user-static)
+qemu-builds += $(if ${enable-user},user-static)
 
 ##############################################
 # qemu-system-for-host dep-only package
@@ -490,7 +490,7 @@ install-arch: pre-install-arch $(addprefix install-, ${qemu-builds})
 	esac
 	dh_strip -a
 	dh_shlibdeps -a
-ifeq (${enable-linux-user},y)
+ifeq (${enable-user},y)
 # after shlibdeps finished, grab ${shlibs:Depends} from -user package
 # and transform it into Built-Using field for -user-static.
 # See also dpkg-query bug #588505
