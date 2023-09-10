@@ -34,7 +34,7 @@ else
 VENDOR := DEBIAN
 endif
 
-# Architectures we produce packages for.
+# Host architectures we produce packages for.
 # when changing this list, check d/control-in too, if any changes
 # needs to be done for build deps and --enable options.
 system-arch-linux = \
