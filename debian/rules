@@ -476,7 +476,7 @@ qemu-builds += $(filter ${BUILD_PACKAGES},qemu-system-for-host)
 	pre-install-arch install-arch binary-arch
 configure-arch: $(addprefix configure-, ${qemu-builds})
 build-arch: $(addprefix build-, ${qemu-builds}) \
-	$(if $(findstring nocheck, ${DEB_BUILD_OPTIONS}),, test-qemu)
+	$(if $(findstring nocheck, ${DEB_BUILD_OPTIONS} ${DEB_BUILD_PROFILES}),, test-qemu)
 
 pre-install-arch:
 	dh_testroot
