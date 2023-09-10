@@ -236,7 +236,7 @@ b/qemu/configured: configure
 		--enable-tools \
 		--disable-xen \
 		--enable-modules \
-		--enable-module-upgrades \
+		$(if ${enable-system},--enable-module-upgrades) \
 		$(shell sh debian/extract-config-opts \
 		    $(DEB_HOST_ARCH_OS)-$(DEB_HOST_ARCH) debian/control) \
 		${QEMU_CONFIGURE_OPTIONS}
