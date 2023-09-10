@@ -411,7 +411,7 @@ b/user-static/configured: configure
 	    ../../configure ${common_configure_opts} \
 		--extra-cflags="${extra-cflags}$(if $(filter ${DEB_HOST_ARCH},arm64), -fno-pie -no-pie,)" \
 		--static --disable-pie \
-		--disable-system --disable-xen --disable-plugins \
+		--disable-plugins \
 		--target-list="$(addsuffix -linux-user,${user-targets})"
 	touch $@
 build-user-static: b/user-static/built
