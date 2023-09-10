@@ -343,7 +343,6 @@ b/microvm/configured: configure debian/microvm-devices.mak
 		--extra-cflags="${extra-cflags} -DCONFIG_MICROVM_DEFAULT=1" \
 		--disable-docs \
 		--without-default-features \
-		--disable-user \
 		--target-list=x86_64-softmmu --enable-kvm --disable-tcg \
 		--enable-vnc \
 		--enable-attr --enable-avx2 \
