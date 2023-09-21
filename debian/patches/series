@@ -80,3 +80,13 @@ always-can-do-io-1866/accel-tcg-Track-current-value-of-can_do_io-in-the-TB.patch
 always-can-do-io-1866/accel-tcg-Improve-setting-of-can_do_io-at-start-of-T.patch
 always-can-do-io-1866/accel-tcg-Always-set-CF_LAST_IO-with-CF_NOIRQ.patch
 always-can-do-io-1866/accel-tcg-Always-require-can_do_io.patch
+# do not link everything with system-specific async-teardown.c
+# (fixes build error on ia64 without clone(2))
+move-vl-opts/include-sysemu-os-posix.h-move-daemonize-declaration.patch
+move-vl-opts/os-posix.c-create-and-export-os_set_runas.patch
+move-vl-opts/os-posix.c-create-and-export-os_set_chroot.patch
+move-vl-opts/os-posix.c-softmmu-vl.c-move-os_parse_cmd_args-into-.patch
+move-vl-opts/os-posix.c-move-code-around.patch
+move-vl-opts/os-posix.c-remove-unneeded-includes.patch
+move-vl-opts/softmmu-vl.c-inline-include-qemu-qemu-options.h-into.patch
+move-vl-opts/util-async-teardown.c-move-to-softmmu-only-build-it-.patch
