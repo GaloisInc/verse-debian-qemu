@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/48a35e12faf90a896c5aa4755812201e00d60316
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/48a35e12faf90a896c5aa4755812201e00d60316
 From: =?UTF-8?q?Marc-Andr=C3=A9=20Lureau?= <marcandre.lureau@redhat.com>
 Date: Mon, 11 Sep 2023 18:04:47 +0400
 Subject: ui: fix crash when there are no active_console

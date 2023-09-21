@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/09a3fffae00b042bed8ad9c351b1a58c505fde37
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/09a3fffae00b042bed8ad9c351b1a58c505fde37
 From: =?UTF-8?q?Philippe=20Mathieu-Daud=C3=A9?= <philmd@linaro.org>
 Date: Tue, 22 Aug 2023 14:57:16 +0200
 Subject: docs/about/license: Update LICENSE URL

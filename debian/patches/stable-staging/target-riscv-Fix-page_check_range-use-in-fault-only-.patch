@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/4cc9f284d5971ecd8055d26ef74c23ef0be8b8f5
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/4cc9f284d5971ecd8055d26ef74c23ef0be8b8f5
 From: LIU Zhiwei <zhiwei_liu@linux.alibaba.com>
 Date: Sat, 29 Jul 2023 11:16:18 +0800
 Subject: target/riscv: Fix page_check_range use in fault-only-first

@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/97b8aa5ae9ff197394395eda5062ea3681e09c28
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/97b8aa5ae9ff197394395eda5062ea3681e09c28
 From: Hang Yu <francis_yuu@stu.pku.edu.cn>
 Date: Sat, 12 Aug 2023 14:52:28 +0800
 Subject: hw/i2c/aspeed: Fix Tx count and Rx size error in buffer pool mode

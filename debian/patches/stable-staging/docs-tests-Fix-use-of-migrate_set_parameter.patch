@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/b21a6e31a182a5ae7436a444f840d49aac07c94f
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/b21a6e31a182a5ae7436a444f840d49aac07c94f
 From: Markus Armbruster <armbru@redhat.com>
 Date: Fri, 25 Aug 2023 17:59:22 +0200
 Subject: docs tests: Fix use of migrate_set_parameter

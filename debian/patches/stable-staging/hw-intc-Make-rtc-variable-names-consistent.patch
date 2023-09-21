@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/9382a9eafccad8dc6a487ea3a8d2bed03dc35db9
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/9382a9eafccad8dc6a487ea3a8d2bed03dc35db9
 From: Jason Chien <jason.chien@sifive.com>
 Date: Fri, 28 Jul 2023 08:24:39 +0000
 Subject: hw/intc: Make rtc variable names consistent

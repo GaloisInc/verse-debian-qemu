@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/0d58c660689f6da1e3feff8a997014003d928b3b
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/0d58c660689f6da1e3feff8a997014003d928b3b
 From: Richard Henderson <richard.henderson@linaro.org>
 Date: Fri, 25 Aug 2023 16:13:17 -0700
 Subject: softmmu: Use async_run_on_cpu in tcg_commit

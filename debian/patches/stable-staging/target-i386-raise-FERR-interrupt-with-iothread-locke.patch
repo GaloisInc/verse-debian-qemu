@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/c1f27a0c6ae4059a1d809e9c2bc4d47b823c32a3
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/c1f27a0c6ae4059a1d809e9c2bc4d47b823c32a3
 From: Paolo Bonzini <pbonzini@redhat.com>
 Date: Tue, 29 Aug 2023 17:33:06 +0200
 Subject: target/i386: raise FERR interrupt with iothread locked

@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/a7c272df82af11c568ea83921b04334791dccd5e
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/a7c272df82af11c568ea83921b04334791dccd5e
 From: Akihiko Odaki <akihiko.odaki@daynix.com>
 Date: Fri, 18 Aug 2023 12:40:58 +0900
 Subject: target/riscv: Allocate itrigger timers only once

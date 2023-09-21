@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/d194362910138776e8abd6bb3c9fb3693254e95f
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/d194362910138776e8abd6bb3c9fb3693254e95f
 From: Thomas Huth <thuth@redhat.com>
 Date: Tue, 15 Aug 2023 14:20:07 +0200
 Subject: include/hw/virtio/virtio-gpu: Fix virtio-gpu with blob on big endian hosts

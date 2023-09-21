@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/7b8589d7ce7e23f26ff53338d575a5cbd7818e28
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/7b8589d7ce7e23f26ff53338d575a5cbd7818e28
 From: Nicholas Piggin <npiggin@gmail.com>
 Date: Tue, 8 Aug 2023 14:19:44 +1000
 Subject: ppc/vof: Fix missed fields in VOF cleanup

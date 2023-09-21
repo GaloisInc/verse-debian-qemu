@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/3a2fc23563885c219c73c8f24318921daf02f3f2
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/3a2fc23563885c219c73c8f24318921daf02f3f2
 From: Daniel Henrique Barboza <dbarboza@ventanamicro.com>
 Date: Thu, 17 Aug 2023 12:29:03 -0300
 Subject: target/riscv: fix satp_mode_finalize() when satp_mode.supported = 0

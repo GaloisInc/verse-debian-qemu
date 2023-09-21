@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/4b3520fd93cd49cc56dfcab45d90735cc2e35af7
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/4b3520fd93cd49cc56dfcab45d90735cc2e35af7
 From: Richard Henderson <richard.henderson@linaro.org>
 Date: Tue, 22 Aug 2023 17:31:13 +0100
 Subject: target/arm: Fix SME ST1Q

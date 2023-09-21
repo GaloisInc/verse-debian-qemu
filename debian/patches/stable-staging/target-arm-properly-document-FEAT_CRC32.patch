@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/9e771a2fc68d98c5719b877e008d1dca64e6896e
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/9e771a2fc68d98c5719b877e008d1dca64e6896e
 From: =?UTF-8?q?Alex=20Benn=C3=A9e?= <alex.bennee@linaro.org>
 Date: Thu, 31 Aug 2023 09:45:16 +0100
 Subject: target/arm: properly document FEAT_CRC32

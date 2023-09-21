@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/7e85cb0db4c693b4e084a00e66fe73a22ed1688a
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/7e85cb0db4c693b4e084a00e66fe73a22ed1688a
 From: Niklas Cassel <niklas.cassel@wdc.com>
 Date: Fri, 9 Jun 2023 16:08:43 +0200
 Subject: hw/ide/ahci: fix ahci_write_fis_sdb()

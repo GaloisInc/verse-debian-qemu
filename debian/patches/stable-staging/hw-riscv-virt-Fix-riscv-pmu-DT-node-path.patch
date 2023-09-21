@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/9ff31406312500053ecb5f92df01dd9ce52e635d
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/9ff31406312500053ecb5f92df01dd9ce52e635d
 From: Conor Dooley <conor.dooley@microchip.com>
 Date: Thu, 27 Jul 2023 15:24:17 +0100
 Subject: hw/riscv: virt: Fix riscv,pmu DT node path

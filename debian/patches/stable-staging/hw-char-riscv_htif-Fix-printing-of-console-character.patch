@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/c255946e3df4d9660e4f468a456633c24393d468
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/c255946e3df4d9660e4f468a456633c24393d468
 From: Thomas Huth <thuth@redhat.com>
 Date: Fri, 21 Jul 2023 11:47:19 +0200
 Subject: hw/char/riscv_htif: Fix printing of console characters on big endian hosts

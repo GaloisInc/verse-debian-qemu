@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/6a2ea6151835aa4f5fee29382a421c13b0e6619f
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/6a2ea6151835aa4f5fee29382a421c13b0e6619f
 From: Ilya Leoshkevich <iii@linux.ibm.com>
 Date: Sat, 5 Aug 2023 01:46:10 +0200
 Subject: target/s390x: Check reserved bits of VFMIN/VFMAX's M5

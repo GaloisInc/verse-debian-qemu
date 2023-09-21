@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/cd1e4db73646006039f25879af3bff55b2295ff3
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/cd1e4db73646006039f25879af3bff55b2295ff3
 From: Richard Henderson <richard.henderson@linaro.org>
 Date: Tue, 22 Aug 2023 17:31:14 +0100
 Subject: target/arm: Fix 64-bit SSRA

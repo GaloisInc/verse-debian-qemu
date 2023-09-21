@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/2967dc8209dd27b61a6ab7bad78cf7c6ec58ddb4
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/2967dc8209dd27b61a6ab7bad78cf7c6ec58ddb4
 From: Niklas Cassel <niklas.cassel@wdc.com>
 Date: Fri, 9 Jun 2023 16:08:39 +0200
 Subject: hw/ide/ahci: write D2H FIS when processing NCQ command

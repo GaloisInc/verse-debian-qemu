@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/1ab445af8cd99343f29032b5944023ad7d8edebf
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/1ab445af8cd99343f29032b5944023ad7d8edebf
 From: Akihiko Odaki <akihiko.odaki@daynix.com>
 Date: Tue, 22 Aug 2023 17:31:02 +0100
 Subject: accel/kvm: Specify default IPA size for arm64

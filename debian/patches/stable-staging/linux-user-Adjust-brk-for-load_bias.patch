@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/aec338d63bc28f1f13d5e64c561d7f1dd0e4b07e
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/aec338d63bc28f1f13d5e64c561d7f1dd0e4b07e
 From: Richard Henderson <richard.henderson@linaro.org>
 Date: Wed, 16 Aug 2023 10:32:18 -0700
 Subject: linux-user: Adjust brk for load_bias

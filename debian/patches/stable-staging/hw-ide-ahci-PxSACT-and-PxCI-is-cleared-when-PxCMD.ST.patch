@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/d73b84d0b664e60fffb66f46e84d0db4a8e1c713
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/d73b84d0b664e60fffb66f46e84d0db4a8e1c713
 From: Niklas Cassel <niklas.cassel@wdc.com>
 Date: Fri, 9 Jun 2023 16:08:41 +0200
 Subject: hw/ide/ahci: PxSACT and PxCI is cleared when PxCMD.ST is cleared

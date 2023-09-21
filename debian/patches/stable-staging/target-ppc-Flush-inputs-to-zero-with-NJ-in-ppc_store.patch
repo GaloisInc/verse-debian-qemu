@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/af03aeb631eeb81a44d2c0ff5b429cd4b5dc2799
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/af03aeb631eeb81a44d2c0ff5b429cd4b5dc2799
 From: Richard Henderson <richard.henderson@linaro.org>
 Date: Sun, 20 Aug 2023 19:59:35 -0700
 Subject: target/ppc: Flush inputs to zero with NJ in ppc_store_vscr

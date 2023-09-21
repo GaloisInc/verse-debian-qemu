@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/961faf3ddbd8ffcdf776bbcf88af0bc97218114a
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/961faf3ddbd8ffcdf776bbcf88af0bc97218114a
 From: Hang Yu <francis_yuu@stu.pku.edu.cn>
 Date: Sat, 12 Aug 2023 14:52:29 +0800
 Subject: hw/i2c/aspeed: Fix TXBUF transmission start position error

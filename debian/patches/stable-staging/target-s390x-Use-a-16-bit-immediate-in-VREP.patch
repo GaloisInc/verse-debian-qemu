@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/23e87d419f347b6b5f4da3bf70d222acc24cdb64
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/23e87d419f347b6b5f4da3bf70d222acc24cdb64
 From: Ilya Leoshkevich <iii@linux.ibm.com>
 Date: Mon, 7 Aug 2023 18:34:31 +0200
 Subject: target/s390x: Use a 16-bit immediate in VREP

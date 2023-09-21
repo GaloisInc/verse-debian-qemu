@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/f187609f27b261702a17f79d20bf252ee0d4f9cd
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/f187609f27b261702a17f79d20bf252ee0d4f9cd
 From: Fabiano Rosas <farosas@suse.de>
 Date: Mon, 31 Jul 2023 17:33:38 -0300
 Subject: block-migration: Ensure we don't crash during migration cleanup

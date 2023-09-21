@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/90a0778421acdf4ca903be64c8ed19378183c944
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/90a0778421acdf4ca903be64c8ed19378183c944
 From: Thomas Huth <thuth@redhat.com>
 Date: Thu, 17 Aug 2023 14:56:00 +0200
 Subject: hw/net/vmxnet3: Fix guest-triggerable assert()

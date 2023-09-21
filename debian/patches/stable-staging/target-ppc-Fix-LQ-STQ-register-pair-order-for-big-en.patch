@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/718209358f2e4f231cbacf974c3299c4fe7beb83
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/718209358f2e4f231cbacf974c3299c4fe7beb83
 From: Nicholas Piggin <npiggin@gmail.com>
 Date: Tue, 22 Aug 2023 01:30:51 +1000
 Subject: target/ppc: Fix LQ, STQ register-pair order for big-endian

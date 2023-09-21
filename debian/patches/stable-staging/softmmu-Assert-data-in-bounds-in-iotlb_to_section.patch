@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/86e4f93d827d3c1efd00cd8a906e38a2c0f2b5bc
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/86e4f93d827d3c1efd00cd8a906e38a2c0f2b5bc
 From: Richard Henderson <richard.henderson@linaro.org>
 Date: Fri, 25 Aug 2023 14:06:58 -0700
 Subject: softmmu: Assert data in bounds in iotlb_to_section

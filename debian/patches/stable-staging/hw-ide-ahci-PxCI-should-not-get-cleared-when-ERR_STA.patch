@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/1a16ce64fda11bdf50f0c4ab5d9fdde72c1383a2
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/1a16ce64fda11bdf50f0c4ab5d9fdde72c1383a2
 From: Niklas Cassel <niklas.cassel@wdc.com>
 Date: Fri, 9 Jun 2023 16:08:42 +0200
 Subject: hw/ide/ahci: PxCI should not get cleared when ERR_STAT is set

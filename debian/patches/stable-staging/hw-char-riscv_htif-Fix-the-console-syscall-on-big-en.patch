@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/058096f1c55ab688db7e1d6814aaefc1bcd87f7a
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/058096f1c55ab688db7e1d6814aaefc1bcd87f7a
 From: Thomas Huth <thuth@redhat.com>
 Date: Fri, 21 Jul 2023 11:47:20 +0200
 Subject: hw/char/riscv_htif: Fix the console syscall on big endian hosts

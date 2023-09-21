@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/8e32ddff69b6b4547cc00592ad816484e160817a
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/8e32ddff69b6b4547cc00592ad816484e160817a
 From: =?UTF-8?q?Marc-Andr=C3=A9=20Lureau?= <marcandre.lureau@redhat.com>
 Date: Mon, 11 Sep 2023 17:25:51 +0400
 Subject: tpm: fix crash when FD >= 1024 and unnecessary errors due to EINTR

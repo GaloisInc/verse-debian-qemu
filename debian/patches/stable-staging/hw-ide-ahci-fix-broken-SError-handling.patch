@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/9f89423537653de07ca40c18b5ff5b70b104cc93
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/9f89423537653de07ca40c18b5ff5b70b104cc93
 From: Niklas Cassel <niklas.cassel@wdc.com>
 Date: Fri, 9 Jun 2023 16:08:44 +0200
 Subject: hw/ide/ahci: fix broken SError handling

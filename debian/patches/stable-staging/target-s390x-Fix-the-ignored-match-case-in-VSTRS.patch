@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/791b2b6a930273db694b9ba48bbb406e78715927
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/791b2b6a930273db694b9ba48bbb406e78715927
 From: Ilya Leoshkevich <iii@linux.ibm.com>
 Date: Sat, 5 Aug 2023 01:03:18 +0200
 Subject: target/s390x: Fix the "ignored match" case in VSTRS

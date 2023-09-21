@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/6ec65b69ba17c954414fa23a397fb8a3fcfb4a43
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/6ec65b69ba17c954414fa23a397fb8a3fcfb4a43
 From: Maksim Kostin <maksim.kostin@ispras.ru>
 Date: Wed, 9 Aug 2023 13:07:33 +0300
 Subject: hw/ppc/e500: fix broken snapshot replay

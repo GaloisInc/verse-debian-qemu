@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/6db3518ba4fcddd71049718f138552999f0d97b4
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/6db3518ba4fcddd71049718f138552999f0d97b4
 From: Ilya Leoshkevich <iii@linux.ibm.com>
 Date: Sat, 5 Aug 2023 01:55:33 +0200
 Subject: target/s390x: Fix VSTL with a large length

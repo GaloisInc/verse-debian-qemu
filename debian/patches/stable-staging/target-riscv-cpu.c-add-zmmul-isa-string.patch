@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/50f9464962fb41f04fd5f42e7ee2cb60942aba89
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/50f9464962fb41f04fd5f42e7ee2cb60942aba89
 From: Daniel Henrique Barboza <dbarboza@ventanamicro.com>
 Date: Thu, 20 Jul 2023 10:24:23 -0300
 Subject: target/riscv/cpu.c: add zmmul isa string

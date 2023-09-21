@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/04562ee88e99d71f4e6017f64123f726dd8b41e1
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/04562ee88e99d71f4e6017f64123f726dd8b41e1
 From: =?UTF-8?q?Marc-Andr=C3=A9=20Lureau?= <marcandre.lureau@redhat.com>
 Date: Wed, 6 Sep 2023 16:37:43 +0400
 Subject: virtio-gpu/win32: set the destroy function on load

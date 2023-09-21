@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/cb6ccdc9ca705cd8c3ef50e51c16a3732c2fa734
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/cb6ccdc9ca705cd8c3ef50e51c16a3732c2fa734
 From: Bilal Elmoussaoui <belmouss@redhat.com>
 Date: Fri, 1 Sep 2023 14:45:07 +0200
 Subject: ui/dbus: Properly dispose touch/mouse dbus objects

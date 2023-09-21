@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/fb0a8b0e238277296907ffe765bf76874cfc1df6
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/fb0a8b0e238277296907ffe765bf76874cfc1df6
 From: Jonathan Perkin <jonathan@perkin.org.uk>
 Date: Fri, 8 Sep 2023 18:45:42 +0100
 Subject: meson: Fix targetos match for illumos and Solaris.

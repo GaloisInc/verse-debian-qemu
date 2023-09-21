@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/bcd8e243083c878884e52d609deddbe6be17c730
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/bcd8e243083c878884e52d609deddbe6be17c730
 From: Thomas Huth <thuth@redhat.com>
 Date: Tue, 29 Aug 2023 15:29:48 +0200
 Subject: qemu-options.hx: Rephrase the descriptions of the -hd* and -cdrom options

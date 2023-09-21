@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/297ec01f0b9864ea8209ca0ddc6643b4c0574bdb
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/297ec01f0b9864ea8209ca0ddc6643b4c0574bdb
 From: Janosch Frank <frankja@linux.ibm.com>
 Date: Wed, 23 Aug 2023 16:22:15 +0200
 Subject: s390x/ap: fix missing subsystem reset registration

@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/e2a5d9b3d9c3d311618160603cc9bc04fbd98796
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/e2a5d9b3d9c3d311618160603cc9bc04fbd98796
 From: Niklas Cassel <niklas.cassel@wdc.com>
 Date: Fri, 9 Jun 2023 16:08:40 +0200
 Subject: hw/ide/ahci: simplify and document PxCI handling

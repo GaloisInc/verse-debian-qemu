@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/c3461c6264a7c8ca15b117e91fe5da786924a784
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/c3461c6264a7c8ca15b117e91fe5da786924a784
 From: Niklas Cassel <niklas.cassel@wdc.com>
 Date: Fri, 9 Jun 2023 16:08:38 +0200
 Subject: hw/ide/core: set ERR_STAT in unsupported command completion

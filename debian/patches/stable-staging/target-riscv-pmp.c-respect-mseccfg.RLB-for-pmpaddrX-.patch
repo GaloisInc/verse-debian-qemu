@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/4e3adce1244e1ca30ec05874c3eca14911dc0825
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/4e3adce1244e1ca30ec05874c3eca14911dc0825
 From: Leon Schuermann <leons@opentitan.org>
 Date: Tue, 29 Aug 2023 17:50:46 -0400
 Subject: target/riscv/pmp.c: respect mseccfg.RLB for pmpaddrX changes

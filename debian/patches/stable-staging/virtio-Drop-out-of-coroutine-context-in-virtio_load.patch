@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/92e2e6a867334a990f8d29f07ca34e3162fdd6ec
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/92e2e6a867334a990f8d29f07ca34e3162fdd6ec
 From: Kevin Wolf <kwolf@redhat.com>
 Date: Tue, 5 Sep 2023 16:50:02 +0200
 Subject: virtio: Drop out of coroutine context in virtio_load()

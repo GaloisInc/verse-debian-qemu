@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/95bef686e490bc3afc3f51f5fc6e20bf260b938c
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/95bef686e490bc3afc3f51f5fc6e20bf260b938c
 From: =?UTF-8?q?Marc-Andr=C3=A9=20Lureau?= <marcandre.lureau@redhat.com>
 Date: Mon, 14 Aug 2023 23:33:30 +0400
 Subject: qxl: don't assert() if device isn't yet initialized

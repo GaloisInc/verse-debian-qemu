@@ -1,4 +1,4 @@
-Origin: https://gitlab.com/qemu-project/qemu/-/commit/5e0d65909c6f335d578b90491e165440c99adf81
+Origin: upstream, https://gitlab.com/qemu-project/qemu/-/commit/5e0d65909c6f335d578b90491e165440c99adf81
 From: Akihiko Odaki <akihiko.odaki@daynix.com>
 Date: Tue, 22 Aug 2023 17:31:02 +0100
 Subject: kvm: Introduce kvm_arch_get_default_type hook
