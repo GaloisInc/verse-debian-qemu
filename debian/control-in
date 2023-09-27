@@ -121,9 +121,7 @@ Build-Depends-Arch:
 ##--enable-lzo todo, for (memory) dumps
 ##--enable-netmap todo bsd
 ##--enable-xen-pci-passthrough todo
-##--with-iconv (libiconv for curses wide char support)
 ## auth-pam - for auth for vnc&Co using PAM
-## gio-2.0 - for -display=spice-app
 #
 # the testsuite:
 #XXX-cyclic-test-dep-dak-bug seabios [:system-arch-linux:] <!nocheck>,
