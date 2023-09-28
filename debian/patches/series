@@ -39,3 +39,4 @@ move-vl-opts/os-posix.c-move-code-around.patch
 move-vl-opts/os-posix.c-remove-unneeded-includes.patch
 move-vl-opts/softmmu-vl.c-inline-include-qemu-qemu-options.h-into.patch
 move-vl-opts/util-async-teardown.c-move-to-softmmu-only-build-it-.patch
+vfio-display-fix-missing-update-to-set-backing-field.patch
