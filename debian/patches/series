@@ -30,6 +30,7 @@ move-vl-opts/util-async-teardown.c-move-to-softmmu-only-build-it-.patch
 vfio-display-fix-missing-update-to-set-backing-field.patch
 migration-qmp-Fix-crash-on-setting-tls-authz-with-nu.patch
 hw-ide-ahci-fix-legacy-software-reset.patch
+target-mips-Fix-MSA-BZ-BNZ-opcodes-displacement.patch
 # 8.1.2 stable-staging changes (all cherry-picked from qemu master branch)
 stable-staging/hw-ppc-Introduce-functions-for-conversion-between-ti.patch
 stable-staging/host-utils-Add-muldiv64_round_up.patch
