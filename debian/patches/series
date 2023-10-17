@@ -27,8 +27,6 @@ move-vl-opts/os-posix.c-move-code-around.patch
 move-vl-opts/os-posix.c-remove-unneeded-includes.patch
 move-vl-opts/softmmu-vl.c-inline-include-qemu-qemu-options.h-into.patch
 move-vl-opts/util-async-teardown.c-move-to-softmmu-only-build-it-.patch
-vfio-display-fix-missing-update-to-set-backing-field.patch
-migration-qmp-Fix-crash-on-setting-tls-authz-with-nu.patch
 hw-ide-ahci-fix-legacy-software-reset.patch
 target-mips-Fix-MSA-BZ-BNZ-opcodes-displacement.patch
 hw-ide-reset-cancel-async-DMA-operation-before-reset.patch
