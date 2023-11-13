@@ -310,7 +310,7 @@ b/microvm/configured: configure debian/microvm-devices.mak
 		--disable-docs \
 		--without-default-features \
 		--target-list=x86_64-softmmu --enable-kvm --disable-tcg \
-		--enable-vnc \
+		--enable-pixman --enable-vnc \
 		--enable-attr \
 		--enable-coroutine-pool \
 		--audio-drv-list="" \
@@ -347,7 +347,7 @@ b/xen/configured: configure
 		--disable-tcg --disable-kvm \
 		--audio-drv-list= \
 		--enable-libusb \
-		--enable-vnc --enable-vnc-jpeg \
+		--enable-pixman --enable-vnc --enable-vnc-jpeg \
 		--enable-spice \
 		--enable-virtfs --enable-attr --enable-cap-ng \
 		${QEMU_XEN_CONFIGURE_OPTIONS}
