@@ -96,6 +96,7 @@ common_configure_opts = \
 	--disable-strip \
 	--localstatedir=/var \
 	--disable-download \
+	--disable-relocatable \
 
 # this disables building of qemu-keymap tool (!)
 # qemu-keymap might be helpful for qemu-system -k <lang>
