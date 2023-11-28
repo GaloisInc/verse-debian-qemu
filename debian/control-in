@@ -289,7 +289,8 @@ Depends: ${shlibs:Depends}, ${misc:Depends}, qemu-system-common (= ${binary:Vers
 Recommends: qemu-utils,
 # alpha uses vgabios
 # alpha m68k sh4 uses bootroms
- seabios, ipxe-qemu,
+ seabios,
+ ipxe-qemu,
  qemu-system-gui (= ${binary:Version}),
  qemu-system-modules-spice (= ${binary:Version}) [:spice-arch:],
  qemu-system-modules-opengl (= ${binary:Version}),
@@ -348,7 +349,8 @@ Build-Profiles: <!pkg.qemu.omit-system>
 Depends: ${shlibs:Depends}, ${misc:Depends}, qemu-system-common (= ${binary:Version}), qemu-system-data (>> ${source:Upstream-Version}~),
 Recommends: qemu-utils,
 # all mips targets uses vgabios and bootroms
- seabios, ipxe-qemu,
+ seabios,
+ ipxe-qemu,
  qemu-system-gui (= ${binary:Version}),
  qemu-system-modules-spice (= ${binary:Version}) [:spice-arch:],
  qemu-system-modules-opengl (= ${binary:Version}),
@@ -375,7 +377,8 @@ Build-Profiles: <!pkg.qemu.omit-system>
 Depends: ${shlibs:Depends}, ${misc:Depends}, qemu-system-common (= ${binary:Version}), qemu-system-data (>> ${source:Upstream-Version}~),
 Recommends: qemu-utils,
 # ppc targets use vgabios-stdvga and bootroms
- seabios, ipxe-qemu,
+ seabios,
+ ipxe-qemu,
  qemu-system-gui (= ${binary:Version}),
  qemu-system-modules-spice (= ${binary:Version}) [:spice-arch:],
  qemu-system-modules-opengl (= ${binary:Version}),
@@ -402,7 +405,8 @@ Build-Profiles: <!pkg.qemu.omit-system>
 Depends: ${shlibs:Depends}, ${misc:Depends}, qemu-system-common (= ${binary:Version}), qemu-system-data (>> ${source:Upstream-Version}~),
 Recommends: qemu-utils,
 # sparc64 uses vgabios-stdvga and bootroms
- seabios, ipxe-qemu,
+ seabios,
+ ipxe-qemu,
  qemu-system-gui (= ${binary:Version}),
  qemu-system-modules-spice (= ${binary:Version}) [:spice-arch:],
  qemu-system-modules-opengl (= ${binary:Version}),
@@ -465,7 +469,8 @@ Architecture: :system-arch:
 Multi-Arch: foreign
 Build-Profiles: <!pkg.qemu.omit-system>
 Depends: ${shlibs:Depends}, ${misc:Depends}, qemu-system-common (= ${binary:Version}), qemu-system-data (>> ${source:Upstream-Version}~),
- seabios, ipxe-qemu,
+ seabios (>> 1.16.3-1~),
+ ipxe-qemu,
 Recommends: qemu-utils,
  ovmf,
  qemu-system-gui (= ${binary:Version}),
