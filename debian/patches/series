@@ -27,3 +27,4 @@ move-vl-opts/os-posix.c-remove-unneeded-includes.patch
 move-vl-opts/softmmu-vl.c-inline-include-qemu-qemu-options.h-into.patch
 move-vl-opts/util-async-teardown.c-move-to-softmmu-only-build-it-.patch
 hw-ide-ahci-fix-legacy-software-reset.patch
+hw-ide-ahci-write-D2H-FIS-when-processing-NCQ-commands.patch
