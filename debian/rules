@@ -427,12 +427,14 @@ b/user-static/configured: configure
 # automatically, dependencies are already verified in the main build
 # See LP:#1908331 for --static-pie (the default in qemu) and #1053101
 # See https://sourceware.org/bugzilla/show_bug.cgi?id=29514
-# for gcc-12 and qemu-aarch64 (needs -no-pie -fno-pie on DEB_HOST_ARCH=aarch64?)
+# use --disable-pie on i386 for now due to #1056739
+# (maybe also add arm64 here for gcc12)
 	rm -rf b/user-static; mkdir -p b/user-static
 	cd b/user-static && \
 	    ../../configure ${common_configure_opts} \
 		--extra-cflags="${extra-cflags}" \
 		--static \
+		$(if $(filter i386,${DEB_HOST_ARCH}),--disable-pie) \
 		--disable-plugins \
 		--target-list="$(addsuffix -linux-user,${user-targets})"
 	touch $@
