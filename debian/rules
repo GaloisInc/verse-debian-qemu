@@ -28,7 +28,7 @@ export DEB_CFLAGS_MAINT_APPEND = -ffile-prefix-map=../../=
 
 # Disable LTO on non-amd64 builds, see:
 # https://bugs.launchpad.net/ubuntu/+source/qemu/+bug/1921664
-# https://bugzilla.redhat.com/show_bug.cgi?id=1952483
+# https://issues.redhat.com/browse/RHEL-7385
 ifneq ($(DEB_HOST_ARCH),amd64)
   export DEB_BUILD_MAINT_OPTIONS += optimize=-lto
 endif
