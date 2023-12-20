@@ -509,7 +509,9 @@ install-arch: pre-install-arch $(addprefix install-, ${qemu-builds})
 	  (*) dh_dwz -a ;; \
 	esac
 	dh_strip -a
-	dh_shlibdeps -a
+# qemu-user-static contains static binaries only, but they might be built
+# as static-pie executables and dpkg-shlibdeps complains. Just omit it here.
+	dh_shlibdeps -a -Nqemu-user-static
 ifeq (${enable-user-static},y)
 # after shlibdeps finished, grab ${shlibs:Depends} from -user package
 # and transform it into Built-Using field for -user-static.
