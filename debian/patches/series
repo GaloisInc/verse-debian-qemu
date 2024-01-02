@@ -15,3 +15,4 @@ openbios-spelling-endianess.patch
 disable-xen-on-x32.patch
 include-ui-rect.h-fix-qemu_rect_init-mis-assignment.patch
 hw-vfio-fix-iteration-over-global-VFIODevice-list.patch
+target-i386-do-not-re-compute-new-pc-with-CF_PCREL.patch
