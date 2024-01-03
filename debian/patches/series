@@ -20,3 +20,6 @@ block-fix-crash-when-loading-snapshot-on-inactive-no.patch
 virtio-net-correctly-copy-vnet-header-when-flushing-TX-CVE-2023-6693.patch
 target-i386-the-sgx_epc_get_section-stub-is-reachable.patch
 target-xtensa-fix-OOB-TLB-entry-access.patch
+hw-net-cadence_gem-fix-MDIO_OP_xxx-values.patch
+tcg-ppc-use-new-registers-for-LQ-destination.patch
+target-riscv-fix-mcycle-minstret-increment-behavior.patch
