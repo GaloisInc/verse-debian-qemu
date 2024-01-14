@@ -57,3 +57,7 @@ seabios-hppa/20-parisc-parisc64-Allow-booting-64-bit-kernel-up-into-.patch
 seabios-hppa/21-parisc-Fix-FPU-detection-on-NetBSD.patch
 seabios-hppa/22-parisc-Enable-power-button-switch-and-add-option-to-.patch
 seabios-hppa/23-parisc-SEABIOS_HPPA_VERSION-14.patch
+seabios-hppa/24-parisc-Fix-PDC_MEM_MAP-for-OpenBSD-7.4.patch
+seabios-hppa/25-parisc-Show-if-32-or-64-bit-SeaBIOS-version.patch
+seabios-hppa/26-parisc-Update-copyright-year-to-2024.patch
+seabios-hppa/27-parisc-SEABIOS_HPPA_VERSION-15.patch
