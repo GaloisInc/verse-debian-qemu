@@ -28,10 +28,11 @@ hppa/01-hw-hppa-machine-Allow-up-to-3840-MB-total-memory.patch
 hppa/02-hw-hppa-machine-Disable-default-devices-with-nodefau.patch
 hppa/03-hw-pci-host-astro-Add-missing-astro-elroy-registers-.patch
 hppa/04-target-hppa-Fix-PDC-address-translation-on-PA2.0-wit.patch
-hppa/05-target-hppa-Strip-upper-32-bits-of-IOR-on-error-in-p.patch
-hppa/06-target-hppa-Strip-upper-32-bits-of-IOR-on-unaligned-.patch
-hppa/07-hw-hppa-Move-software-power-button-address-back-into.patch
-hppa/08-target-hppa-Avoid-accessing-gr0-when-raising-excepti.patch
+hppa/05-hw-hppa-Move-software-power-button-address-back-into.patch
+hppa/06-target-hppa-Avoid-accessing-gr0-when-raising-excepti.patch
+hppa/07-target-hppa-Export-function-hppa_set_ior_and_isr.patch
+hppa/08-target-hppa-Fix-IOR-and-ISR-on-unaligned-access-trap.patch
+hppa/09-target-hppa-Fix-IOR-and-ISR-on-error-in-probe.patch
 # a bunch of seabios-hppa patches:
 seabios-hppa/01-parisc-Increase-PCI-mapping-space-with-PARISC_MMIO_L.patch
 seabios-hppa/02-parisc-Fix-detection-of-mptsas-and-esp-scsi-drivers.patch
