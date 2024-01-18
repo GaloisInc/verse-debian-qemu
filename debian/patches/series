@@ -63,3 +63,4 @@ seabios-hppa/26-parisc-Update-copyright-year-to-2024.patch
 seabios-hppa/27-parisc-SEABIOS_HPPA_VERSION-15.patch
 ui-clipboard-avoid-crash-upon-request-when-clipboard-CVE-2023-6683.patch
 target-s390x-Fix-LAE-setting-a-wrong-access-register.patch
+tcg-s390x-Fix-encoding-of-VRIc-VRSa-VRSc-insns.patch
