@@ -68,7 +68,6 @@ enable-user-static = $(if $(filter qemu-user-static,${BUILD_PACKAGES}),y)
 
 QEMU_XEN = /usr/libexec/xen-qemu-system-i386
 PKGVERSION = Debian ${DEB_VERSION}
-SAVEMODDIR = /run/qemu/$(shell echo -n "${PKGVERSION}" | tr --complement '[:alnum:]+-.~' '_')
 sysdataidir = debian/qemu-system-data/usr/share/qemu
 libdir = /usr/lib/${DEB_HOST_MULTIARCH}
 FIRMWAREPATH = /usr/share/qemu:/usr/share/seabios:/usr/lib/ipxe/qemu
@@ -275,16 +274,8 @@ endif # x86
 		 debian/source_qemu.py
 endif # ubuntu
 
-# for --enable-module-upgrades to work (also see run-qemu.mount install)
-# save block-extra loadable modules on upgrades
-# other module types for now (5.0) can't be loaded at runtime, only at startup
-# the maintscript fragments include version string so we have to generate them
-	echo 'case $$1 in (upgrade|deconfigure) [ -d /run/qemu ] || exit 0; ! findmnt --noheadings --target /run/qemu/ | grep -q noexec || exit 0; mkdir -p ${SAVEMODDIR}; cp -p ${libdir}/qemu/block-*.so ${SAVEMODDIR}/;; esac' \
-	  >> debian/qemu-block-extra.prerm.debhelper
-	echo 'case $$1 in (remove) rm -f ${SAVEMODDIR}/block-*.so;; esac' \
-	  >> debian/qemu-block-extra.postrm.debhelper
-	echo 'case $$1 in (purge) if systemctl is-active -q run-qemu.mount; then systemctl stop run-qemu.mount || true; fi; rm -rf "/run/qemu";; esac' \
-	  >> debian/qemu-block-extra.postrm.debhelper
+# save loadable modules on upgrades for --enable-module-upgrades
+	sh debian/gen-module-upgrade.sh "${PKGVERSION}" ${libdir}
 
 endif # linux
 
@@ -494,10 +485,6 @@ install-arch: pre-install-arch $(addprefix install-, ${qemu-builds})
 	dh_installinit -pqemu-guest-agent
 	dh_installsystemd -pqemu-guest-agent --no-enable
 	dh_installudev -pqemu-guest-agent
-# default-enable /run/qemu mount only on ubuntu,
-# on debian let it be manually controlled and off by default
-	dh_installsystemd -pqemu-block-extra --no-restart-on-upgrade --name=run-qemu \
-		$(if $(filter ${VENDOR},DEBIAN),--no-start --no-enable,)
 	dh_lintian -a
 	dh_strip_nondeterminism -a
 	dh_compress -a
