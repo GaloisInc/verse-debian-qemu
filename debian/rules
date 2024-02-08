@@ -521,6 +521,32 @@ b/data/.configured: | b
 	cd b/data && ../../configure --skip-meson
 	touch $@
 
+### x86 optionrom
+build-x86-optionrom: b/data/pc-bios/optionrom/.built
+b/data/pc-bios/optionrom/.built: b/data/.configured
+	make -C ${@D}
+	touch $@
+install-x86-optionrom: b/data/pc-bios/optionrom/.built
+	install -m 0644 -t ${sysdataidir} ${<D}/*.bin
+sysdata-components += x86-optionrom
+
+### s390x firmware in pc-bios/s390-ccw
+build-s390x-fw: b/data/pc-bios/s390-ccw/.built
+b/data/pc-bios/s390-ccw/.built: b/data/.configured
+	make -C ${@D} V=$V
+	touch $@
+install-s390x-fw: b/data/pc-bios/s390-ccw/.built
+	install -m 0644 -t ${sysdataidir} ${<D}/s390*.img
+sysdata-components += s390x-fw
+
+### vof.bin
+build-vof: b/data/pc-bios/vof/vof.bin
+b/data/pc-bios/vof/vof.bin: b/data/.configured
+	${MAKE} -C ${@D} V=$V ${@F}
+install-vof: b/data/pc-bios/vof/vof.bin
+	install -m 0644 -t ${sysdataidir} $<
+sysdata-components += vof
+
 ### openbios rules
 b/openbios/config-host.mak:
 	mkdir -p b/openbios
@@ -555,14 +581,6 @@ install-skiboot: b/skiboot/skiboot.lid
 	install -m 0644 -t ${sysdataidir} $<
 sysdata-components += skiboot
 
-### vof.bin
-build-vof: b/data/pc-bios/vof/vof.bin
-b/data/pc-bios/vof/vof.bin: b/data/.configured
-	${MAKE} -C ${@D} V=$V ${@F}
-install-vof: b/data/pc-bios/vof/vof.bin
-	install -m 0644 -t ${sysdataidir} $<
-sysdata-components += vof
-
 ### u-boot-e500 (u-boot.e500)
 build-u-boot-e500: b/u-boot/build-e500/u-boot
 b/u-boot/build-e500/u-boot: | b
@@ -585,15 +603,6 @@ b/u-boot-sam460ex/u-boot.bin: | b
 install-u-boot-sam460: b/u-boot-sam460ex/u-boot.bin | ${sysdataidir}
 	install -m 0644 $< ${sysdataidir}/u-boot-sam460-20100605.bin
 sysdata-components += u-boot-sam460
-
-### x86 optionrom
-build-x86-optionrom: b/data/pc-bios/optionrom/.built
-b/data/pc-bios/optionrom/.built: b/data/.configured
-	make -C ${@D}
-	touch $@
-install-x86-optionrom: b/data/pc-bios/optionrom/.built
-	install -m 0644 -t ${sysdataidir} ${<D}/*.bin
-sysdata-components += x86-optionrom
 
 ### qboot, aka bios-microvm
 build-qboot: b/qboot/bios.bin
@@ -625,15 +634,6 @@ b/SLOF/boot_rom.bin: | b
 install-slof: b/SLOF/boot_rom.bin
 	install -m 0644 $< ${sysdataidir}/slof.bin
 sysdata-components += slof
-
-### s390x firmware in pc-bios/s390-ccw
-build-s390x-fw: b/data/pc-bios/s390-ccw/.built
-b/data/pc-bios/s390-ccw/.built: b/data/.configured
-	make -C ${@D} V=$V
-	touch $@
-install-s390x-fw: b/data/pc-bios/s390-ccw/.built
-	install -m 0644 -t ${sysdataidir} ${<D}/s390*.img
-sysdata-components += s390x-fw
 
 ### hppa-firmware (roms/seabios-hppa)
 build-hppa-fw: b/hppafw/hppa-firmware.img
