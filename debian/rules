@@ -513,6 +513,14 @@ binary-arch: a=-a
 ##############################################
 ### firmware, qemu-user-data package
 
+### main qemu arch-indep build
+# we configure qemu in b/data with default options, so that various
+# subcomponents can be built from the main qemu source
+b/data/.configured: | b
+	rm -rf b/data; mkdir -p b/data
+	cd b/data && ../../configure --skip-meson
+	touch $@
+
 ### openbios rules
 b/openbios/config-host.mak:
 	mkdir -p b/openbios
@@ -547,12 +555,11 @@ install-skiboot: b/skiboot/skiboot.lid
 	install -m 0644 -t ${sysdataidir} $<
 sysdata-components += skiboot
 
-build-vof: b/vof/vof.bin
-b/vof/vof.bin: | b
-	mkdir -p b/vof
-	printf 'CC=$${CROSS}gcc\nLD=$${CROSS}ld\nOBJCOPY=$${CROSS}objcopy\nEXTRA_CFLAGS=-m32 -mbig-endian' > b/vof/config.mak
-	${MAKE} -C b/vof CROSS=${PPC64_CROSSPFX} SRC_DIR=../../pc-bios/vof -f../../pc-bios/vof/Makefile
-install-vof: b/vof/vof.bin
+### vof.bin
+build-vof: b/data/pc-bios/vof/vof.bin
+b/data/pc-bios/vof/vof.bin: b/data/.configured
+	${MAKE} -C ${@D} V=$V ${@F}
+install-vof: b/data/pc-bios/vof/vof.bin
 	install -m 0644 -t ${sysdataidir} $<
 sysdata-components += vof
 
@@ -621,13 +628,12 @@ install-slof: b/SLOF/boot_rom.bin
 sysdata-components += slof
 
 ### s390x firmware in pc-bios/s390-ccw
-build-s390x-fw: b/s390fw/built
-b/s390fw/built:
-	mkdir -p b/s390fw
-	${MAKE} -f debian/s390fw.mak OUT=b/s390fw/
+build-s390x-fw: b/data/pc-bios/s390-ccw/.built
+b/data/pc-bios/s390-ccw/.built: b/data/.configured
+	make -C ${@D} V=$V
 	touch $@
-install-s390x-fw: build-s390x-fw
-	install -m 0644 -t ${sysdataidir} b/s390fw/s390*.img
+install-s390x-fw: b/data/pc-bios/s390-ccw/.built
+	install -m 0644 -t ${sysdataidir} ${<D}/s390*.img
 sysdata-components += s390x-fw
 
 ### hppa-firmware (roms/seabios-hppa)
