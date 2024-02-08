@@ -587,13 +587,12 @@ install-u-boot-sam460: b/u-boot-sam460ex/u-boot.bin | ${sysdataidir}
 sysdata-components += u-boot-sam460
 
 ### x86 optionrom
-build-x86-optionrom: b/optionrom/built
-b/optionrom/built:
-	mkdir -p b/optionrom
-	${MAKE} -f ${CURDIR}/debian/optionrom.mak -C b/optionrom SRC_PATH="${CURDIR}" all
+build-x86-optionrom: b/data/pc-bios/optionrom/.built
+b/data/pc-bios/optionrom/.built: b/data/.configured
+	make -C ${@D}
 	touch $@
-install-x86-optionrom: build-x86-optionrom | ${sysdataidir}
-	${MAKE} -f ${CURDIR}/debian/optionrom.mak -C b/optionrom SRC_PATH="${CURDIR}" install DESTDIR="${CURDIR}/${sysdataidir}"
+install-x86-optionrom: b/data/pc-bios/optionrom/.built
+	install -m 0644 -t ${sysdataidir} ${<D}/*.bin
 sysdata-components += x86-optionrom
 
 ### qboot, aka bios-microvm
