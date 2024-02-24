@@ -8,6 +8,7 @@ Uploaders: Michael Tokarev <mjt@tls.msk.ru>
 Build-Depends: debhelper-compat (= 13),
  python3:any,
  python3-venv,
+ python3:any (>> 3.11) | python3-tomli,
  meson (>> 0.63.0~), ninja-build,
  flex, bison,
 Build-Depends-Arch:
