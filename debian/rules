@@ -183,8 +183,9 @@ $(if $3,\
 	dh_link -p $1 usr/bin/$3 usr/bin/kvm
 	dh_link -p $1 usr/share/man/man1/$3.1 usr/share/man/man1/kvm.1
 )
+# note: older make does not understand line-splitting inside $(functions ..)
 	echo 'qemu:Provides=$(if $3,qemu-kvm (=${DEB_VERSION})${comma})\
-	 $(patsubst %,qemu-system-% (=${DEB_VERSION})${comma}, any $2 $(foreach q,$2,${system-alias-$q}))' \
+	 $(patsubst %,% (=${DEB_VERSION})${comma},$(filter-out $1, $(patsubst %, qemu-system-%, any $2 $(foreach q,$2,${system-alias-$q}))))' \
 	    | tr _ - >> debian/$1.substvars
 # construct list `arch1 arch2 (alias) arch3..' for Description
 # and word-wrap it into two lines if too long
