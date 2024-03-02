@@ -15,7 +15,6 @@ Build-Depends-Arch:
 # In comments below we also specify (system-specific) arguments
 # to qemu's configure script, -- optional features which depend
 # on build-dependencies.
-# --enable-docs
 # for python3-sphinx:native see #995622
  python3-sphinx:native, python3-sphinx-rtd-theme,
 # always needed

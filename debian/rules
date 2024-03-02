@@ -96,6 +96,7 @@ common_configure_opts = \
 	--localstatedir=/var \
 	--disable-download \
 	--disable-relocatable \
+	--disable-docs \
 
 # this disables building of qemu-keymap tool (!)
 # qemu-keymap might be helpful for qemu-system -k <lang>
@@ -247,15 +248,9 @@ install-qemu: b/qemu/built
 # remove qtest "accel" modules
 	rm -f debian/tmp${libdir}/qemu/accel-qtest-*.so
 
-# fixup the manpage
-# Note: with no enable-system, qemu-system manpage will not be installed.
-	sed -i 's/\\fBqemu(1)\\fP manual page/\\fBqemu-system(1)\\fP manual page (in qemu-system-common package)/' \
-		debian/tmp/usr/share/man/man1/qemu-storage-daemon.1
-
 ifeq (${enable-system},y)
 
 	# qemu-system subpackages
-	mv debian/tmp/usr/share/man/man1/qemu.1 debian/tmp/usr/share/man/man1/qemu-system.1
 	$(foreach p,${system-packages},\
 	    $(call install-system,qemu-system-$p,${system-archlist-$p}\
 	    ,$(if $(filter ${DEB_HOST_ARCH_CPU},${system-kvmcpus-$p}),qemu-system-${system-kvmlink-${DEB_HOST_ARCH_CPU}})))
@@ -298,7 +293,6 @@ b/microvm/configured: configure debian/microvm-devices.mak
 	cd b/microvm && \
 		../../configure ${common_configure_opts} \
 		--extra-cflags="${extra-cflags} -DCONFIG_MICROVM_DEFAULT=1" \
-		--disable-docs \
 		--without-default-features \
 		--target-list=x86_64-softmmu --enable-kvm --disable-tcg \
 		--enable-pixman --enable-vnc \
@@ -330,7 +324,7 @@ b/xen/configured: configure
 	rm -rf b/xen; mkdir -p b/xen
 	cd b/xen && \
 	    ../../configure ${common_configure_opts} \
-		--disable-install-blobs --disable-docs --disable-tools \
+		--disable-install-blobs --disable-tools \
 		--without-default-features \
 		--enable-avx2 \
 		--enable-xen --target-list=i386-softmmu \
@@ -441,6 +435,29 @@ install-user-static: b/user-static/built
 qemu-builds += $(if ${enable-user-static},user-static)
 
 ##############################################
+# docs: build it with sphinx directly
+# two sphinx should not run in parallel!
+docdir := b/docs
+sphinx-build = CONFDIR=/etc/qemu sphinx-build -j auto \
+   -Dversion="$$(cat VERSION)" -Drelease="${PKGVERSION}" \
+   -d ${docdir}/manual.p ${CURDIR}/docs ${docdir}
+${docdir}/qemu-system.1:
+	${sphinx-build} -b man
+# fixup the q-s-d manpage
+	sed -i 's/\\fBqemu(1)\\fP manual page/\\fBqemu-system(1)\\fP manual page (in qemu-system-common package)/' \
+		${docdir}/qemu-storage-daemon.1
+	mv ${docdir}/qemu.1 ${docdir}/qemu-system.1
+${docdir}/html-built:
+	${sphinx-build} -b html
+# remove links to user/* from the main index
+	sed -i '/href="user\//D' ${docdir}/index.html
+	touch $@
+build-html: ${docdir}/html-built
+install-html: build-html
+build-man: ${docdir}/qemu-system.1
+install-man: build-man
+
+##############################################
 # qemu-system-for-host dep-only package
 # find the qemu-system-foo package which contains the right binary:
 #qemu-system-for-host=$(strip \
@@ -462,6 +479,8 @@ qemu-builds += $(filter ${BUILD_PACKAGES},qemu-system-for-host)
 
 ##############################################
 # common rules
+
+qemu-builds += man html
 
 .PHONY: $(addprefix configure-, ${qemu-builds}) \
 	$(addprefix build-, ${qemu-builds}) \
