@@ -738,7 +738,7 @@ install-indep: pre-install-indep $(addprefix install-, ${sysdata-components})
 	dh_install -i
 	dh_installchangelogs -i
 	dh_lintian -i
-	dh_compress -i
+	dh_compress -i -Xusr/share/doc/qemu-system-common/config
 	dh_fixperms -i
 binary-indep: install-indep binary-helper
 binary-indep: a=-i
