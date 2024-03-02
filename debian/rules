@@ -716,6 +716,8 @@ install-misc: build-misc
 	 $$(ls -1 pc-bios/keymaps/* | fgrep -v /meson.build)
 sysdata-components += misc
 
+sysdata-components += html
+
 ${sysdataidir}:
 	mkdir -p -m 0755 $@
 b:
@@ -733,7 +735,7 @@ pre-install-indep:
 	dh_prep -i -v
 	mkdir -p -m 0755 ${sysdataidir}
 install-indep: pre-install-indep $(addprefix install-, ${sysdata-components})
-	dh_installdocs -i
+	dh_install -i
 	dh_installchangelogs -i
 	dh_lintian -i
 	dh_compress -i

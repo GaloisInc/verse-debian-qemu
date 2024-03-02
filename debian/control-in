@@ -11,12 +11,12 @@ Build-Depends: debhelper-compat (= 13),
  python3:any (>> 3.11) | python3-tomli,
  meson (>> 0.63.0~), ninja-build,
  flex, bison,
+# for python3-sphinx:native see #995622
+ python3-sphinx:native, python3-sphinx-rtd-theme,
 Build-Depends-Arch:
 # In comments below we also specify (system-specific) arguments
 # to qemu's configure script, -- optional features which depend
 # on build-dependencies.
-# for python3-sphinx:native see #995622
- python3-sphinx:native, python3-sphinx-rtd-theme,
 # always needed
  libglib2.0-dev,
  zlib1g-dev,
@@ -211,7 +211,9 @@ Multi-Arch: foreign
 Conflicts: sgabios, qemu-skiboot, openbios-sparc, openbios-ppc, qemu-slof,
 Replaces:  sgabios, openbios-sparc, openbios-ppc, qemu-slof,
  qemu-system-ppc (<< 1:6.1-4~),
+ qemu-system-common (<< 8.2.1+ds-3~),
 Breaks: qemu-system-ppc (<< 1:6.1-4~),
+ qemu-system-common (<< 8.2.1+ds-3~),
 Provides: qemu-keymaps, sgabios, qemu-skiboot, openbios-sparc, openbios-ppc, qemu-slof,
 Depends: ${misc:Depends}
 Description: QEMU full system emulation (data files)
