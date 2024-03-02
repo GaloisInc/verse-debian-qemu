@@ -1,3 +1,18 @@
+qemu (1:8.2.1+ds-3) UNRELEASED; urgency=medium
+
+  * d/gen-module-upgrade.sh: change addfr() for clarity
+  * d/rules: stop qemu-system-${arch} packages from providing themselves
+    (different fix, really closes: #1063233)
+  * d/rules: ensure ${sysdataidir} is created in pre-install-indep
+  * d/control: stop build-depending on texinfo (not used)
+  * d/rules: build docs directly with sphinx, --disable-docs, install more docs
+  * move system docs to qemu-system-data
+  * d/rules: stop compressing config examples
+  * d/control: bc isn't needed for u-boot anymore
+  * d/copyright: exclude python/wheels/*.whl (not used on debian)
+
+ -- Michael Tokarev <mjt@tls.msk.ru>  Sat, 02 Mar 2024 14:03:04 +0300
+
 qemu (1:8.2.1+ds-2) unstable; urgency=medium
 
   * rework module-upgrade handling: do not ship /run/qemu.mount unit
