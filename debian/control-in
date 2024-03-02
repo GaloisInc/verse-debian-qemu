@@ -17,7 +17,7 @@ Build-Depends-Arch:
 # on build-dependencies.
 # --enable-docs
 # for python3-sphinx:native see #995622
- texinfo, python3-sphinx:native, python3-sphinx-rtd-theme,
+ python3-sphinx:native, python3-sphinx-rtd-theme,
 # always needed
  libglib2.0-dev,
  zlib1g-dev,
