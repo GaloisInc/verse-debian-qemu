@@ -710,7 +710,9 @@ $(addprefix install-, ${sysdata-components}): | ${sysdataidir}
 build-indep: $(addprefix build-, ${sysdata-components})
 pre-install-indep:
 	dh_testroot
-	dh_prep -i
+# dh_prep might undo ${sysdataidir} creation, or even some install-foo?
+	dh_prep -i -v
+	mkdir -p -m 0755 ${sysdataidir}
 install-indep: pre-install-indep $(addprefix install-, ${sysdata-components})
 	dh_installdocs -i
 	dh_installchangelogs -i
