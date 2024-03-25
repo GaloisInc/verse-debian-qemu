@@ -670,15 +670,18 @@ install-slof: b/SLOF/boot_rom.bin
 sysdata-components += slof
 
 ### hppa-firmware (roms/seabios-hppa)
-build-hppa-fw: b/hppafw/hppa-firmware.img
-b/hppafw/hppa-firmware.img:
-	mkdir -p b/hppafw
-	echo CONFIG_PARISC=y > roms/seabios-hppa/.config
-	${MAKE} -C roms/seabios-hppa olddefconfig
-	${MAKE} -C roms/seabios-hppa OUT=../../b/hppafw/ PYTHON=python3 parisc
-	hppa-linux-gnu-strip -R.note -R.comment $@
-install-hppa-fw: b/hppafw/hppa-firmware.img
-	install -m 0644 $< ${sysdataidir}
+build-hppa-fw: b/hppa-fw/.built
+b/hppa-fw/.built:
+	rm -rf $(dir $@)
+	cp -al roms/seabios-hppa $(dir $@)
+	${MAKE} -C $(dir $@) PYTHON=python3 parisc
+	hppa-linux-gnu-strip -R.note -R.comment $(dir $@)out/hppa-firmware.img
+	hppa64-linux-gnu-strip -R.note -R.comment $(dir $@)out-64/hppa-firmware64.img
+	touch $@
+install-hppa-fw: b/hppa-fw/.built
+	install -m 0644 -t ${sysdataidir} \
+	    $(dir $<)out/hppa-firmware.img \
+	    $(dir $<)out-64/hppa-firmware64.img
 sysdata-components += hppa-fw
 
 ### opensbi (riscv firmware)
