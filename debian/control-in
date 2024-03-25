@@ -149,8 +149,8 @@ Build-Depends-Indep:
  libssl-dev,
 # openbios
  gcc-sparc64-linux-gnu, fcode-utils, xsltproc,
-# hppa-firmware
- gcc-hppa-linux-gnu,
+# hppa-firmware (32 and 64 bit)
+ gcc-hppa-linux-gnu, gcc-hppa64-linux-gnu,
 # opensbi
  gcc-riscv64-linux-gnu,
 # vbootrom/npcm7xx_bootrom
