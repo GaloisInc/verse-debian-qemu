@@ -140,10 +140,6 @@ static bool transport_supports_multi_channels(MigrationAddress *addr)
     if (addr->transport == MIGRATION_ADDRESS_TYPE_SOCKET) {
         SocketAddress *saddr = &addr->u.socket;
 
-        if (saddr->type == SOCKET_ADDRESS_TYPE_FD) {
-            return migrate_mapped_ram();
-        }
-
         return (saddr->type == SOCKET_ADDRESS_TYPE_INET ||
                 saddr->type == SOCKET_ADDRESS_TYPE_UNIX ||
                 saddr->type == SOCKET_ADDRESS_TYPE_VSOCK);
@@ -163,15 +159,6 @@ static bool transport_supports_seeking(MigrationAddress *addr)
 {
     if (addr->transport == MIGRATION_ADDRESS_TYPE_FILE) {
         return true;
-    }
-
-    /*
-     * At this point QEMU has not yet fetched the fd passed in by the
-     * user, so we cannot know for sure whether it refers to a plain
-     * file or a socket. Let it through anyway and check at fd.c.
-     */
-    if (addr->transport == MIGRATION_ADDRESS_TYPE_SOCKET) {
-        return addr->u.socket.type == SOCKET_ADDRESS_TYPE_FD;
     }
 
     return false;
@@ -2523,6 +2510,8 @@ static int postcopy_start(MigrationState *ms, Error **errp)
         migration_wait_main_channel(ms);
         if (postcopy_preempt_establish_channel(ms)) {
             migrate_set_state(&ms->state, ms->state, MIGRATION_STATUS_FAILED);
+            error_setg(errp, "%s: Failed to establish preempt channel",
+                       __func__);
             return -1;
         }
     }
@@ -2538,17 +2527,22 @@ static int postcopy_start(MigrationState *ms, Error **errp)
 
     ret = migration_stop_vm(ms, RUN_STATE_FINISH_MIGRATE);
     if (ret < 0) {
+        error_setg_errno(errp, -ret, "%s: Failed to stop the VM", __func__);
         goto fail;
     }
 
     ret = migration_maybe_pause(ms, &cur_state,
                                 MIGRATION_STATUS_POSTCOPY_ACTIVE);
     if (ret < 0) {
+        error_setg_errno(errp, -ret, "%s: Failed in migration_maybe_pause()",
+                         __func__);
         goto fail;
     }
 
     ret = bdrv_inactivate_all();
     if (ret < 0) {
+        error_setg_errno(errp, -ret, "%s: Failed in bdrv_inactivate_all()",
+                         __func__);
         goto fail;
     }
     restart_block = true;
@@ -2625,6 +2619,7 @@ static int postcopy_start(MigrationState *ms, Error **errp)
 
     /* Now send that blob */
     if (qemu_savevm_send_packaged(ms->to_dst_file, bioc->data, bioc->usage)) {
+        error_setg(errp, "%s: Failed to send packaged data", __func__);
         goto fail_closefb;
     }
     qemu_fclose(fb);
@@ -2812,6 +2807,7 @@ static void migration_completion(MigrationState *s)
 {
     int ret = 0;
     int current_active_state = s->state;
+    Error *local_err = NULL;
 
     if (s->state == MIGRATION_STATUS_ACTIVE) {
         ret = migration_completion_precopy(s, &current_active_state);
@@ -2845,6 +2841,15 @@ static void migration_completion(MigrationState *s)
     return;
 
 fail:
+    if (qemu_file_get_error_obj(s->to_dst_file, &local_err)) {
+        migrate_set_error(s, local_err);
+        error_free(local_err);
+    } else if (ret) {
+        error_setg_errno(&local_err, -ret, "Error in migration completion");
+        migrate_set_error(s, local_err);
+        error_free(local_err);
+    }
+
     migration_completion_failed(s, current_active_state);
 }
 
@@ -3212,17 +3217,16 @@ typedef enum {
  */
 static MigIterateState migration_iteration_run(MigrationState *s)
 {
-    uint64_t must_precopy, can_postcopy;
+    uint64_t must_precopy, can_postcopy, pending_size;
     Error *local_err = NULL;
     bool in_postcopy = s->state == MIGRATION_STATUS_POSTCOPY_ACTIVE;
     bool can_switchover = migration_can_switchover(s);
 
     qemu_savevm_state_pending_estimate(&must_precopy, &can_postcopy);
-    uint64_t pending_size = must_precopy + can_postcopy;
-
+    pending_size = must_precopy + can_postcopy;
     trace_migrate_pending_estimate(pending_size, must_precopy, can_postcopy);
 
-    if (must_precopy <= s->threshold_size) {
+    if (pending_size < s->threshold_size) {
         qemu_savevm_state_pending_exact(&must_precopy, &can_postcopy);
         pending_size = must_precopy + can_postcopy;
         trace_migrate_pending_exact(pending_size, must_precopy, can_postcopy);

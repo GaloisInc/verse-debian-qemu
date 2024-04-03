@@ -1545,12 +1545,12 @@ F: pc-bios/skiboot.lid
 F: tests/qtest/pnv*
 
 pca955x
-M: Glenn Miles <milesg@linux.vnet.ibm.com>
+M: Glenn Miles <milesg@linux.ibm.com>
 L: qemu-ppc@nongnu.org
 L: qemu-arm@nongnu.org
 S: Odd Fixes
-F: hw/misc/pca955*.c
-F: include/hw/misc/pca955*.h
+F: hw/gpio/pca955*.c
+F: include/hw/gpio/pca955*.h
 
 virtex_ml507
 M: Edgar E. Iglesias <edgar.iglesias@gmail.com>
@@ -3013,7 +3013,7 @@ F: include/qapi/error.h
 F: include/qemu/error-report.h
 F: qapi/error.json
 F: util/error.c
-F: util/qemu-error.c
+F: util/error-report.c
 F: scripts/coccinelle/err-bad-newline.cocci
 F: scripts/coccinelle/error-use-after-free.cocci
 F: scripts/coccinelle/error_propagate_null.cocci
