@@ -3,6 +3,10 @@ qemu (1:8.2.3+ds-1) unstable; urgency=medium
   [ Michael Tokarev ]
 
   * new upstream stable/bugfix release
+    Closes: #1068819, CVE-2024-26327, CVE-2024-26328
+    Closes: #1068820, CVE-2024-3446
+    Closes: #1068821, CVE-2024-3447
+    Closes: #1068822, CVE-2024-3567
   * fix typo in newly added change (expection)
   * d/rules: run dh_installdocs for install-indep too
 
