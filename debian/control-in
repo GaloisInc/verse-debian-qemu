@@ -18,8 +18,7 @@ Build-Depends-Arch:
 # to qemu's configure script, -- optional features which depend
 # on build-dependencies.
 # always needed
- libglib2.0-dev,
- zlib1g-dev,
+ pkgconf, libglib2.0-dev, zlib1g-dev,
 # iasl (from acpica-tools) is used only in a single test these days, not for building
 # acpica-tools,
 # libcapstone is in universe in ubuntu
