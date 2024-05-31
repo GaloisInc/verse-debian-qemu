@@ -52,8 +52,8 @@ Build-Depends-Arch:
  libcurl4-gnutls-dev,
 # --enable-fdt
  libfdt-dev,
-# --enable-fuse
- libfuse3-dev,
+# --enable-fuse		 linux-any
+ libfuse3-dev		[linux-any],
 # --enable-gnutls
  gnutls-dev,
 # --enable-gtk --enable-vte	:system-arch:
