@@ -77,8 +77,8 @@ Build-Depends-Arch:
  libcacard-dev,
 # --enable-pixman
  libpixman-1-dev,
-# --enable-rbd		amd64 arm64 mips64el ppc64el ppc64 riscv64 s390x sparc64
- librbd-dev            [amd64 arm64 mips64el ppc64el ppc64 riscv64 s390x sparc64],
+# --enable-rbd		amd64 arm64 mips64el ppc64el riscv64 s390x
+ librbd-dev            [amd64 arm64 mips64el ppc64el riscv64 s390x],
 # gluster is 64bit-only: #1039604
 # --enable-glusterfs	 amd64 arm64 ppc64el ppc64 riscv64 mips64el s390x ia64 sparc64
  libglusterfs-dev	[amd64 arm64 ppc64el ppc64 riscv64 mips64el s390x ia64 sparc64],
