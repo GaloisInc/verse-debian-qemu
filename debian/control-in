@@ -207,6 +207,30 @@ Description: extra block backend modules for qemu-system and qemu-utils
  This package provides extra block device backend modules for qemu-system
  emulation and qemu-img from qemu-utils package, which are rarely used and
  has extra dependencies.
+:ubuntu:
+:ubuntu:Package: qemu-block-supplemental
+:ubuntu:# gluster is 64bit-only: #1039604
+:ubuntu:Architecture: amd64 arm64 ppc64el riscv64 s390x
+:ubuntu:Multi-Arch: no
+:ubuntu:Depends: ${misc:Depends}, ${shlibs:Depends},
+:ubuntu:# we need to ensure qemu-block-supplemental is upgraded with qemu-system-* or qemu-utils
+:ubuntu: qemu-system-any (= ${binary:Version}) [amd64 arm64 armhf ppc64el riscv64 s390x] | qemu-utils (= ${binary:Version}),
+:ubuntu:Enhances: qemu-utils, qemu-system-misc,
+:ubuntu: qemu-system-arm, qemu-system-mips, qemu-system-sparc, qemu-system-x86,
+:ubuntu: qemu-system-s390x,
+:ubuntu:Breaks: qemu-block-extra (<< 1:8.2.0+ds-4ubuntu2~)
+:ubuntu:Replaces: qemu-block-extra (<< 1:8.2.0+ds-4ubuntu2~)
+:ubuntu:Description: supplemental block backend modules for qemu-system and qemu-utils
+:ubuntu: QEMU is a fast processor emulator: currently the package supports Alpha, ARM,
+:ubuntu: CRIS, i386, LoongArch, M68k (ColdFire), MicroBlaze, MIPS, PowerPC, RISC-V,
+:ubuntu: S390x, SH4, SPARC, x86-64, Xtensa and other emulations. By using dynamic
+:ubuntu: translation it achieves reasonable speed while being easy to port on new host
+:ubuntu: CPUs.
+:ubuntu: .
+:ubuntu: This package provides supplemental block device backend modules for qemu-system
+:ubuntu: emulation and qemu-img from qemu-utils package.
+:ubuntu: .
+:ubuntu: Currently, the following module is shipped in this package: block-glusterfs
 
 Package: qemu-system-data
 Architecture: all
