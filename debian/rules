@@ -270,9 +270,6 @@ endif # x86
 		 debian/source_qemu.py
 endif # ubuntu
 
-# save loadable modules on upgrades for --enable-module-upgrades
-	sh debian/gen-module-upgrade.sh "${PKGVERSION}" ${libdir}
-
 endif # linux
 
 else  # !enable-system
@@ -281,6 +278,15 @@ else  # !enable-system
 	rm -fv debian/tmp/usr/share/man/man1/qemu.1
 
 endif # enable-system
+
+ifneq (,$(filter qemu-block-extra,${BUILD_PACKAGES}))
+	mkdir -p debian/qemu-block-extra/${libdir}/qemu
+	mv debian/tmp/${libdir}/qemu/block-*.so \
+	         debian/qemu-block-extra/${libdir}/qemu
+ifeq (${enable-system},y)
+	sh debian/gen-module-upgrade.sh qemu-block-extra "${PKGVERSION}" ${libdir}/qemu
+endif
+endif
 
 qemu-builds += qemu
 
