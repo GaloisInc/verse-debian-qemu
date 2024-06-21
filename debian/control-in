@@ -210,7 +210,6 @@ Description: extra block backend modules for qemu-system and qemu-utils
  has extra dependencies.
 :ubuntu:
 :ubuntu:Package: qemu-block-supplemental
-:ubuntu:# gluster is 64bit-only: #1039604
 :ubuntu:Architecture: amd64 arm64 ppc64el riscv64 s390x
 :ubuntu:Multi-Arch: no
 :ubuntu:Depends: ${misc:Depends}, ${shlibs:Depends},
@@ -231,7 +230,8 @@ Description: extra block backend modules for qemu-system and qemu-utils
 :ubuntu: This package provides supplemental block device backend modules for qemu-system
 :ubuntu: emulation and qemu-img from qemu-utils package.
 :ubuntu: .
-:ubuntu: Currently, the following module is shipped in this package: block-glusterfs
+:ubuntu: Currently, the following modules are shipped in this package:
+:ubuntu:  block-glusterfs block-blkio
 
 Package: qemu-system-data
 Architecture: all
