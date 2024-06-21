@@ -312,6 +312,9 @@ b/microvm/configured: configure debian/microvm-devices.mak
 		--without-default-features \
 		--target-list=x86_64-softmmu --enable-kvm --disable-tcg \
 		--enable-pixman --enable-vnc \
+		--enable-virtfs \
+		--enable-linux-aio --enable-linux-io-uring \
+		--enable-numa \
 		--enable-attr \
 		--enable-coroutine-pool \
 		--audio-drv-list="" \
@@ -321,6 +324,7 @@ b/microvm/configured: configure debian/microvm-devices.mak
 		--enable-vhost-vdpa \
 		--enable-vhost-user --enable-vhost-user-blk-server \
 		--enable-vhost-crypto \
+		--enable-seccomp \
 		${QEMU_MICROVM_CONFIGURE_OPTIONS}
 	touch $@
 build-microvm: b/microvm/qemu-system-x86_64
