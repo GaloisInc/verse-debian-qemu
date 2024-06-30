@@ -86,8 +86,8 @@ Build-Depends-Arch:
  libsasl2-dev,
 # --enable-sdl	:system-arch:
  libsdl2-dev [:system-arch:],
-# --enable-seccomp	amd64 arm64 armel armhf i386 mips64el mipsel ppc64 ppc64el powerpc riscv64 s390x x32
- libseccomp-dev        [amd64 arm64 armel armhf i386 mips64el mipsel ppc64 ppc64el powerpc riscv64 s390x x32],
+# --enable-seccomp	amd64 arm64 armel armhf i386 mips64el mipsel ppc64 ppc64el powerpc riscv64 s390x
+ libseccomp-dev        [amd64 arm64 armel armhf i386 mips64el mipsel ppc64 ppc64el powerpc riscv64 s390x],
 # --enable-slirp
  libslirp-dev,
 # --enable-spice	 :spice-arch:
