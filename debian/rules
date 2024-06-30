@@ -40,7 +40,7 @@ include /usr/share/dpkg/buildflags.mk
 # when changing this list, check d/control-in too, if any changes
 # needs to be done for build deps and --enable options.
 system-arch-linux-64 = \
-	amd64 arm64 mips64 mips64el ppc64 ppc64el riscv64 s390x sparc64
+	amd64 arm64 loong64 mips64 mips64el ppc64 ppc64el riscv64 s390x sparc64
 system-arch-linux = $(sort ${system-arch-linux-64} \
 	arm armel armhf i386 mips mipsel powerpc powerpcspe sparc)
 system-arch = ${system-arch-linux}
