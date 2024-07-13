@@ -20,3 +20,4 @@ qcow2-Don-t-open-data_file-with-BDRV_O_NO_IO.patch
 iotests-244-Don-t-store-data-file-with-protocol-in-i.patch
 iotests-270-Don-t-store-data-file-with-json-prefix-i.patch
 block-Parse-filenames-only-when-explicitly-requested.patch
+scsi-fix-regression-and-honor-bootindex-again-for-le.patch
