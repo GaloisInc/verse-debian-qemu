@@ -31,11 +31,15 @@ Build-Depends-Arch:
 # libsndio is in universe in ubuntu
 # --disable-sndio
 # --audio-drv-list=	:system-arch-linux:
+# --disable-jack	:system-arch-linux:
+# --disable-pa	:system-arch-linux:
+# --disable-pipewire	:system-arch-linux:
 ##--audio-drv-list=pa,oss	kfreebsd-any
 # libjack-dev    [:system-arch-linux:],
 # libpulse-dev   [:system-arch:],
 # libasound2-dev [:system-arch-linux:],
 # libpipewire-0.3-dev (>> 0.3.60) [:system-arch-linux:],
+# --disable-dbus-display	:system-arch-linux:
 # for virtfs (now in libc6)
 # --enable-attr
 # --enable-bpf	 :system-arch-linux:
