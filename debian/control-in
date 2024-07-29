@@ -34,6 +34,8 @@ Build-Depends-Arch:
 # --disable-jack	:system-arch-linux:
 # --disable-pa	:system-arch-linux:
 # --disable-pipewire	:system-arch-linux:
+# --disable-alsa	:system-arch-linux:
+# --disable-oss	:system-arch-linux:
 ##--audio-drv-list=pa,oss	kfreebsd-any
 # libjack-dev    [:system-arch-linux:],
 # libpulse-dev   [:system-arch:],
