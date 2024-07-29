@@ -287,8 +287,8 @@ endif
 endif
 ifneq (,$(filter qemu-block-extra,${BUILD_PACKAGES}))
 	mkdir -p debian/qemu-block-extra/${libdir}/qemu
-	mv debian/tmp/${libdir}/qemu/block-*.so \
-	         debian/qemu-block-extra/${libdir}/qemu
+	#mv debian/tmp/${libdir}/qemu/block-*.so \
+	#         debian/qemu-block-extra/${libdir}/qemu
 ifeq (${enable-system},y)
 	sh debian/gen-module-upgrade.sh qemu-block-extra "${PKGVERSION}" ${libdir}/qemu
 endif
