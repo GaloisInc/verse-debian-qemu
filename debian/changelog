@@ -1,3 +1,9 @@
+qemu (1:9.0.2+ds-9999+verse1) bookworm; urgency=medium
+
+  * VERSE OpenSUT build with limited featureset
+
+ -- Stuart Pernsteiner <spernsteiner@galois.com>  Mon, 29 Jul 2024 15:58:51 -0700
+
 qemu (1:9.0.2+ds-1) unstable; urgency=medium
 
   * new upstream stable/bugfix release
