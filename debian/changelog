@@ -1,3 +1,9 @@
+qemu (1:9.0.2+ds-9999+verse2) bookworm; urgency=medium
+
+  * Ignore KVM_SET_USER_MEMORY_REGION errors from pKVM
+
+ -- Stuart Pernsteiner <spernsteiner@galois.com>  Thu, 29 Aug 2024 11:11:34 -0700
+
 qemu (1:9.0.2+ds-9999+verse1) bookworm; urgency=medium
 
   * VERSE OpenSUT build with limited featureset
