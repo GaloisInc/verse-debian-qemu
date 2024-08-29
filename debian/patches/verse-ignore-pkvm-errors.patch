@@ -1,0 +1,12 @@
+Index: qemu/accel/kvm/kvm-all.c
+===================================================================
+--- qemu.orig/accel/kvm/kvm-all.c
++++ qemu/accel/kvm/kvm-all.c
+@@ -310,6 +310,7 @@ err:
+                      " start=0x%" PRIx64 ", size=0x%" PRIx64 ": %s",
+                      __func__, mem.slot, slot->start_addr,
+                      (uint64_t)mem.memory_size, strerror(errno));
++        ret = 0; // HACK: crosvm ignores these errors on pkvm, so we do too
+     }
+     return ret;
+ }

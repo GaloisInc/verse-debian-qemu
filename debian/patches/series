@@ -1,3 +1,4 @@
+verse-ignore-pkvm-errors.patch
 microvm-default-machine-type.patch
 static-linux-user-stubs.diff
 linux-user-binfmt-P.diff
